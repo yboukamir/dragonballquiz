@@ -63,14 +63,25 @@ propositions, l'absence de doublons et la bonne répartition des réponses.
 
 ### Niveaux
 
-| Niveau | Questions | Composition visée |
-| --- | --- | --- |
-| Facile | 10 | 70 % faciles, 30 % moyennes |
-| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles |
-| Difficile | 15 | 40 % moyennes, 60 % difficiles |
+| Niveau | Questions | Composition visée | Recouvrement entre deux parties |
+| --- | --- | --- | --- |
+| Facile | 10 | 70 % faciles, 30 % moyennes | ~6,8 / 10 |
+| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,9 / 10 |
+| Difficile | 10 | 40 % moyennes, 60 % difficiles | ~4,9 / 10 |
 
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
+
+**Pourquoi 10 questions partout.** La taille d'une manche est bornée par le
+vivier dans lequel elle puise : tirer `n` questions parmi `v` impose au minimum
+`2n − v` questions communes entre deux parties consécutives. Le mode difficile
+ne puise que dans les paliers moyen et difficile, soit 22 questions par
+catégorie ; à 15 questions par manche, 8 revenaient donc systématiquement.
+
+Le mode facile reste le moins varié (~6,8 sur 10) : il tire 7 questions faciles
+parmi les 8 que compte chaque catégorie. Le corriger demande soit d'écrire
+davantage de questions faciles, soit d'ouvrir son mélange vers le palier moyen —
+au prix d'un mode d'entrée sensiblement moins accessible.
 
 ### Partage du score
 

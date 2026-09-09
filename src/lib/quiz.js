@@ -30,9 +30,12 @@ export const DIFFICULTIES = [
   {
     id: 'difficile',
     label: 'Difficile',
-    subtitle: '15 questions',
+    subtitle: '10 questions',
     blurb: 'Chiffres exacts, seconds rôles, détails de films.',
-    count: 15,
+    // 10 et non 15 : tirer 15 questions dans le vivier moyen+difficile
+    // (22 questions) imposait au minimum 8 questions communes entre deux
+    // parties consécutives. À 10, ce plancher tombe à zéro.
+    count: 10,
     mix: { 1: 0, 2: 0.4, 3: 0.6 },
     accent: 'crimson',
   },
