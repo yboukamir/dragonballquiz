@@ -1,5 +1,5 @@
 /**
- * Banque de questions — 152 questions originales rédigées pour ce site.
+ * Banque de questions — 192 questions originales rédigées pour ce site.
  *
  * Convention d'écriture : `a[0]` est TOUJOURS la bonne réponse.
  * Les propositions sont mélangées à l'exécution (voir `src/lib/quiz.js`),
@@ -274,6 +274,67 @@ export const QUESTIONS = [
     why: "Il se sacrifie contre Nappa en tentant de s'autodétruire.",
   },
 
+  {
+    id: 'pe39', cat: 'personnages', diff: 3,
+    q: "Quel membre du Commando Ginyu se proclame le plus rapide de l'univers ?",
+    a: ["Burter", "Jeece", "Recoome", "Guldo"],
+    why: "Sa vitesse ne suffit pourtant pas à suivre un Goku revenu de son entraînement.",
+  },
+  {
+    id: 'pe40', cat: 'personnages', diff: 3,
+    q: "Quel membre du Commando Ginyu fige le temps en retenant sa respiration ?",
+    a: ["Guldo", "Burter", "Jeece", "Recoome"],
+    why: "Le plus faible du groupe physiquement, mais doté de pouvoirs mentaux redoutables.",
+  },
+  {
+    id: 'pe41', cat: 'personnages', diff: 3,
+    q: "Quel Namek éveille le potentiel caché de Krilin puis de Gohan sur Namek ?",
+    a: ["Le Grand Doyen", "Nail", "Muri", "Dendé"],
+    why: "Saichôrô en version originale : c'est de lui que naissent les Dragon Balls nameks.",
+  },
+  {
+    id: 'pe42', cat: 'personnages', diff: 3,
+    q: "Quel Saiyan sosie de Goku se nourrit des fruits de l'Arbre Divin ?",
+    a: ["Turles", "Raditz", "Broly", "Nappa"],
+    why: "Personnage de film : l'Arbre Divin draine toute la vie de la planète où il pousse.",
+  },
+  {
+    id: 'pe43', cat: 'personnages', diff: 3,
+    q: "Quel frère de Freezer revient sous une forme entièrement métallique ?",
+    a: ["Cooler", "King Cold", "Turles", "Slug"],
+    why: "Meta-Cooler se reconstruit indéfiniment tant que son ordinateur central tient.",
+  },
+  {
+    id: 'pe44', cat: 'personnages', diff: 3,
+    q: "Quel Pride Trooper de l'univers 11 mise tout sur sa vitesse ?",
+    a: ["Dyspo", "Toppo", "Jiren", "Kahseral"],
+    why: "Son Ultime Kaio-ken pousse sa vitesse à un point que même Goku peine à suivre.",
+  },
+  {
+    id: 'pe45', cat: 'personnages', diff: 3,
+    q: "Quel Kaioshin, seul rescapé de son rang, combat aux côtés des guerriers Z contre Buu ?",
+    a: ["Shin", "Gowasu", "Kibito", "Le Vieux Kaioshin"],
+    why: "Kaioshin de l'Est, il est le dernier survivant du massacre commis par Majin Buu.",
+  },
+  {
+    id: 'pe46', cat: 'personnages', diff: 3,
+    q: "Quel assassin professionnel, frère de Tsuru Sennin, est engagé pour tuer Goku enfant ?",
+    a: ["Tao Pai Pai", "Yajirobé", "Le Commandant Red", "Le Général Blue"],
+    why: "Il revient plus tard en cyborg, sans plus de succès.",
+  },
+  {
+    id: 'pe47', cat: 'personnages', diff: 3,
+    q: "Quel agent de la Patrouille Galactique, en réalité un ange, entraîne Goku dans l'arc Moro ?",
+    a: ["Merus", "Jaco", "Whis", "Vados"],
+    why: "Intervenir dans les affaires mortelles lui coûtera son existence même.",
+  },
+  {
+    id: 'pe48', cat: 'personnages', diff: 3,
+    q: "Quel sorcier millénaire, libéré de sa prison, absorbe l'énergie de planètes entières ?",
+    a: ["Moro", "Babidi", "Bibidi", "Dabra"],
+    why: "Antagoniste du manga Super, il avait été enfermé dix millions d'années plus tôt.",
+  },
+
   /* ---------------------------------------------------------------
      SAGAS
   --------------------------------------------------------------- */
@@ -518,6 +579,67 @@ export const QUESTIONS = [
     why: "Goten naît et grandit pendant cette absence, sans jamais connaître son père.",
   },
 
+  {
+    id: 'sa39', cat: 'sagas', diff: 3,
+    q: "Quel univers remporte le Tournoi du Pouvoir ?",
+    a: ["L'univers 7", "L'univers 11", "L'univers 6", "L'univers 2"],
+    why: "C-17 est le dernier debout, après que Goku et Freezer ont emporté Jiren avec eux.",
+  },
+  {
+    id: 'sa40', cat: 'sagas', diff: 3,
+    q: "Qui formule le vœu final aux Super Dragon Balls, à l'issue du Tournoi du Pouvoir ?",
+    a: ["C-17", "Goku", "Vegeta", "Freezer"],
+    why: "Il demande le rétablissement de tous les univers effacés, plutôt qu'une faveur personnelle.",
+  },
+  {
+    id: 'sa41', cat: 'sagas', diff: 3,
+    q: "Qui tue Yamcha, Ten Shin Han, Chaozu et Piccolo lors de l'arrivée des Saiyans ?",
+    a: ["Nappa", "Vegeta", "Raditz", "Les Saibaimen"],
+    why: "Seul Yamcha tombe sous un Saibaiman : les trois autres meurent bien de la main de Nappa.",
+  },
+  {
+    id: 'sa42', cat: 'sagas', diff: 3,
+    q: "Combien de temps dure le Tournoi du Pouvoir ?",
+    a: ["48 minutes", "24 heures", "Une semaine", "3 heures"],
+    why: "Une durée fixée par Zeno, mesurée sur un sablier posé devant les gradins.",
+  },
+  {
+    id: 'sa43', cat: 'sagas', diff: 3,
+    q: "Quel ancien ennemi est ressuscité pour compléter l'équipe de l'univers 7 ?",
+    a: ["Freezer", "Cell", "Majin Buu", "Cooler"],
+    why: "Buu devait y participer, mais s'endort profondément à la veille du tournoi.",
+  },
+  {
+    id: 'sa44', cat: 'sagas', diff: 3,
+    q: "Quel agent de la Patrouille Galactique débarque sur Terre pour prévenir du retour de Freezer ?",
+    a: ["Jaco", "Merus", "Whis", "Le Grand Prêtre"],
+    why: "Il avait déjà croisé Bulma bien des années plus tôt, dans un récit préquel.",
+  },
+  {
+    id: 'sa45', cat: 'sagas', diff: 3,
+    q: "Quel film introduit la transformation en Super Saiyan God ?",
+    a: ["Battle of Gods", "La Résurrection de F", "Super Hero", "Broly"],
+    why: "Il marque aussi la première apparition de Beerus et de Whis.",
+  },
+  {
+    id: 'sa46', cat: 'sagas', diff: 3,
+    q: "Quel assassin de l'univers 6 affronte Goku lors du tournoi entre les univers 6 et 7 ?",
+    a: ["Hit", "Cabba", "Frost", "Botamo"],
+    why: "Réputé n'avoir jamais échoué sur un contrat en plus de mille ans de carrière.",
+  },
+  {
+    id: 'sa47', cat: 'sagas', diff: 3,
+    q: "Qui manipule Broly dans le film de 2018 ?",
+    a: ["Paragus, son père", "Freezer seul", "Vegeta", "Cheelai"],
+    why: "Il lui impose un collier de contrôle pour assouvir sa propre vengeance.",
+  },
+  {
+    id: 'sa48', cat: 'sagas', diff: 3,
+    q: "Avec qui Goku part-il s'entraîner à la toute fin de Dragon Ball Z ?",
+    a: ["Uub", "Gohan", "Vegeta", "Pan"],
+    why: "La réincarnation de Kid Buu, née humaine grâce au vœu formulé par Goku lui-même.",
+  },
+
   /* ---------------------------------------------------------------
      TECHNIQUES & TRANSFORMATIONS
   --------------------------------------------------------------- */
@@ -755,6 +877,82 @@ export const QUESTIONS = [
     q: "De quelle couleur sont les cheveux du Super Saiyan Blue ?",
     a: ["Bleus", "Dorés", "Rouges", "Argentés"],
     why: "Le rouge appartient au Super Saiyan God, l'argenté à l'Ultra Instinct.",
+  },
+
+  {
+    id: 'te39', cat: 'techniques', diff: 3,
+    q: "Quelle technique de Hit fige son adversaire dans le temps ?",
+    a: ["Le Saut Temporel", "L'Ultra Instinct", "Le Mafuba", "Le Taiyoken"],
+    why: "Un dixième de seconde au départ, qu'il allonge à mesure que le combat progresse.",
+  },
+  {
+    id: 'te40', cat: 'techniques', diff: 3,
+    q: "Quelle est l'attaque signature de Gogeta ?",
+    a: ["Le Big Bang Kaméhaméha", "Le Final Kaméhaméha", "Le Final Flash", "Le Galick Gun"],
+    why: "Elle mêle le Big Bang Attack de Vegeta au Kaméhaméha de Goku.",
+  },
+  {
+    id: 'te41', cat: 'techniques', diff: 3,
+    q: "Quelle attaque Vegetto lance-t-il en combinant l'héritage de ses deux moitiés ?",
+    a: ["Le Final Kaméhaméha", "Le Big Bang Kaméhaméha", "Le Makankosappo", "Le Kienzan"],
+    why: "La posture du Final Flash, la décharge du Kaméhaméha.",
+  },
+  {
+    id: 'te42', cat: 'techniques', diff: 3,
+    q: "Grâce à quoi Cell renaît-il après son autodestruction ?",
+    a: [
+      "Une unique cellule survivante",
+      "Un vœu adressé à Shenron",
+      "Une nouvelle absorption",
+      "Un clone laissé sur Terre",
+    ],
+    why: "Il en revient plus fort encore : le Zenkai fait partie de son patrimoine saiyan.",
+  },
+  {
+    id: 'te43', cat: 'techniques', diff: 3,
+    q: "Comment Vegeta se transforme-t-il en singe géant sur Terre, sans pleine lune ?",
+    a: [
+      "Il crée une lune artificielle",
+      "Il absorbe l'énergie du sol",
+      "Il utilise son scouter",
+      "Il attend une éclipse",
+    ],
+    why: "La Balle de Lumière : une sphère d'énergie qui imite le rayonnement lunaire.",
+  },
+  {
+    id: 'te44', cat: 'techniques', diff: 3,
+    q: "Quelle technique permet à Ten Shin Han de se dédoubler en quatre combattants ?",
+    a: ["La technique des quatre corps", "Le Kikoho", "Le Taiyoken", "Le Zanzoken"],
+    why: "Chaque copie ne dispose que du quart de la puissance de l'original.",
+  },
+  {
+    id: 'te45', cat: 'techniques', diff: 3,
+    q: "Comment nomme-t-on la technique d'image rémanente qui laisse un double illusoire ?",
+    a: ["Le Zanzoken", "Le Taiyoken", "Le Bukujutsu", "Le Kienzan"],
+    why: "Un simple déplacement à très grande vitesse, que l'œil interprète comme un double.",
+  },
+  {
+    id: 'te46', cat: 'techniques', diff: 3,
+    q: "Quel état Goku atteint-il avant de maîtriser complètement l'Ultra Instinct ?",
+    a: [
+      "L'Ultra Instinct « signe »",
+      "Le Super Saiyan Blue Evolution",
+      "Le Super Saiyan Rosé",
+      "Le Gohan Beast",
+    ],
+    why: "Cheveux encore sombres et regard argenté : le corps esquive seul, mais frappe mal.",
+  },
+  {
+    id: 'te47', cat: 'techniques', diff: 3,
+    q: "Quel guerrier naît de la fusion Potara entre Goku et Vegeta, face à Super Buu ?",
+    a: ["Vegetto", "Gogeta", "Gotenks", "Gohanks"],
+    why: "Gogeta naît lui de la danse de Metamor, jamais des Potaras.",
+  },
+  {
+    id: 'te48', cat: 'techniques', diff: 3,
+    q: "Quelle capacité de Majin Buu transforme ses adversaires en friandises ?",
+    a: ["Un rayon transformateur", "Le Mafuba", "Le Taiyoken", "Le Kienzan"],
+    why: "Il les dévore ensuite, ce qui reste sa manière la plus expéditive de faire le vide.",
   },
 
   /* ---------------------------------------------------------------
@@ -1017,6 +1215,66 @@ export const QUESTIONS = [
     q: "Quel appareil ennemi Bulma parvient-elle à réparer pour les guerriers Z ?",
     a: ["Un scouter", "Un vaisseau de Freezer", "Une cuve de régénération", "Une Potara"],
     why: "Elle en traduit même le langage, ce qui permet de suivre les communications ennemies.",
+  },
+  {
+    id: 'po39', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat le scouter attribue-t-il à Chaozu, à l'arrivée des Saiyans ?",
+    a: ["610", "981", "1 083", "450"],
+    why: "Le plus faible des guerriers Z présents ce jour-là.",
+  },
+  {
+    id: 'po40', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Piccolo atteint-il à l'arrivée des Saiyans ?",
+    a: ["3 500", "1 830", "2 400", "4 000"],
+    why: "Loin devant les humains, mais toujours sous les 4 000 de Nappa.",
+  },
+  {
+    id: 'po41', cat: 'power', diff: 3,
+    q: "Quelle puissance Goku atteint-il avec le Kaio-ken x2 face à Vegeta ?",
+    a: ["16 000", "24 000", "12 000", "8 000"],
+    why: "Le double de ses 8 000 — encore insuffisant face aux 18 000 du prince.",
+  },
+  {
+    id: 'po42', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat possède un Saibaiman ?",
+    a: ["1 200", "610", "2 000", "800"],
+    why: "Assez pour tuer Yamcha, dont la puissance était pourtant supérieure.",
+  },
+  {
+    id: 'po43', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Nail affiche-t-il face à Freezer ?",
+    a: ["42 000", "23 000", "120 000", "18 000"],
+    why: "Dérisoire face à Freezer, mais colossal pour un Namek non guerrier.",
+  },
+  {
+    id: 'po44', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat le capitaine Ginyu possède-t-il ?",
+    a: ["120 000", "42 000", "23 000", "530 000"],
+    why: "Le plus puissant de son commando, et de loin.",
+  },
+  {
+    id: 'po45', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Dodoria possède-t-il ?",
+    a: ["22 000", "23 000", "18 000", "42 000"],
+    why: "Presque au niveau de Zarbon, mais sans sa transformation.",
+  },
+  {
+    id: 'po46', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Zarbon affiche-t-il sous sa forme normale ?",
+    a: ["23 000", "22 000", "42 000", "18 000"],
+    why: "Sa transformation la fait plus que doubler, au prix de son élégance.",
+  },
+  {
+    id: 'po47', cat: 'power', diff: 3,
+    q: "Par combien la transformation en singe géant multiplie-t-elle la puissance d'un Saiyan ?",
+    a: ["10", "50", "5", "100"],
+    why: "D'où l'intérêt de la queue, et le danger que représente la moindre pleine lune.",
+  },
+  {
+    id: 'po48', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Cui, l'ancien rival de Vegeta, possède-t-il ?",
+    a: ["18 000", "22 000", "23 000", "24 000"],
+    why: "Exactement le niveau de Vegeta avant la Terre — ce que Cui ignorait.",
   },
 ]
 

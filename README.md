@@ -30,7 +30,7 @@ npm run dev
 
 ```
 src/
-├── data/questions.js      152 questions, 4 catégories, 3 niveaux
+├── data/questions.js      192 questions, 4 catégories, 3 niveaux
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
@@ -65,9 +65,11 @@ propositions, l'absence de doublons et la bonne répartition des réponses.
 
 | Niveau | Questions | Composition visée | Recouvrement entre deux parties |
 | --- | --- | --- | --- |
-| Facile | 10 | 70 % faciles, 30 % moyennes | ~3,7 / 10 |
-| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,6 / 10 |
-| Difficile | 10 | 40 % moyennes, 60 % difficiles | ~4,9 / 10 |
+| Facile | 10 | 70 % faciles, 30 % moyennes | ~3,8 / 10 |
+| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,5 / 10 |
+| Difficile | 10 | 40 % moyennes, 60 % difficiles | ~3,1 / 10 |
+
+Chaque catégorie compte 48 questions : 16 faciles, 12 moyennes, 20 difficiles.
 
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
@@ -83,7 +85,12 @@ questions, mais du vivier réellement atteint par son mélange. Deux règles suf
 - Au-delà de ce plancher, le recouvrement d'un palier vaut environ `q²/p`, où `q` est
   le quota tiré dans ce palier et `p` sa taille. Le mode facile tirant 7 questions
   faciles, passer de 8 à 16 faciles par catégorie a fait chuter son recouvrement de
-  6,8 à 3,7 sur 10.
+  6,8 à 3,8 sur 10. Le même calcul appliqué au palier difficile (6 tirées parmi 20,
+  plus 4 moyennes parmi 12) prévoyait 3,1 — c'est exactement la valeur mesurée.
+
+Autrement dit, agrandir un palier n'a d'effet que sur les modes qui y puisent, et
+l'effet suit une courbe en `1/p` : les premiers ajouts rapportent beaucoup, les
+suivants de moins en moins.
 
 Le script de mesure tient en quelques lignes : jouer deux manches d'affilée et
 compter les identifiants communs, répété quelques centaines de fois.
