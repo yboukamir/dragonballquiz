@@ -1,5 +1,5 @@
 /**
- * English question bank — 240 original questions.
+ * English question bank — 290 original questions.
  *
  * Same ids, same categories and same difficulty levels as
  * `questions.fr.js`: the two banks are interchangeable, and `npm run check`
@@ -81,7 +81,7 @@ export const QUESTIONS = [
     id: 'pe11', cat: 'personnages', diff: 2,
     q: "What is Master Roshi's Japanese name?",
     a: ["Muten Roshi", "Korin", "Shen", "King Kai"],
-    why: "Literally « the invincible old master ».",
+    why: "Literally “the invincible old master”.",
   },
   {
     id: 'pe12', cat: 'personnages', diff: 2,
@@ -305,7 +305,75 @@ export const QUESTIONS = [
     a: ["Moro", "Babidi", "Bibidi", "Dabura"],
     why: "The antagonist of the Super manga, he had been locked away ten million years earlier.",
   },
+  {
+    id: "pe49", cat: "personnages", diff: 1,
+    q: "What do Goku, Gohan and Goten have in common in the Japanese version?",
+    a: ["One actress voices all three", "They share a birthday", "They never appear in the same chapter", "They each own a scouter"],
+    why: "Masako Nozawa has voiced all three generations since 1986.",
+  },
 
+  {
+    id: "pe50", cat: "personnages", diff: 1,
+    q: "Which English word is Vegeta's name taken from?",
+    a: ["Vegetable", "Victory", "Veteran", "Vengeance"],
+    why: "The rule holds for every Saiyan — and their planet is named after its king.",
+  },
+
+  {
+    id: "pe51", cat: "personnages", diff: 1,
+    q: "Which character was born on the big screen and appears in no chapter of the original manga?",
+    a: ["Broly", "Trunks", "Android 18", "Dende"],
+    why: "Created for a film in 1993, he only entered official continuity in 2018.",
+  },
+
+  {
+    id: "pe52", cat: "personnages", diff: 2,
+    q: "What is Mr Satan called across much of the Western releases?",
+    a: ["Hercule", "Ajax", "Titan", "Goliath"],
+    why: "His original name sat badly with some broadcasters.",
+  },
+
+  {
+    id: "pe53", cat: "personnages", diff: 2,
+    q: "What is Krillin's Japanese name, Kuririn, made of?",
+    a: ["Chestnut and Shaolin", "Rice and dragon", "Moon and fist", "Salt and sea"],
+    why: "“Kuri”, the chestnut, for the head; “rin”, as in Shaolin, for the monk.",
+  },
+
+  {
+    id: "pe54", cat: "personnages", diff: 2,
+    q: "Which character did the old French dub rename “Satan Petit Cœur”?",
+    a: ["Piccolo", "Frieza", "Cell", "Vegeta"],
+    why: "That version renamed most of the cast; the manga restored the original names.",
+  },
+
+  {
+    id: "pe55", cat: "personnages", diff: 2,
+    q: "Which character did Toriyama want to install as the lead after the Cell arc?",
+    a: ["Son Gohan", "Trunks", "Vegeta", "Piccolo"],
+    why: "He decided the role did not suit him and brought Goku back to the front.",
+  },
+
+  {
+    id: "pe56", cat: "personnages", diff: 3,
+    q: "Where do the names Bibidi, Babidi and Buu come from?",
+    a: ["A magic spell from a fairy tale", "Musical instruments", "Spicy dishes", "Constellations"],
+    why: "“Bibbidi-Bobbidi-Boo”, the fairy godmother's spell in Cinderella.",
+  },
+
+  {
+    id: "pe57", cat: "personnages", diff: 3,
+    q: "Videl's name is an anagram of which word?",
+    a: ["Devil", "Video", "Livde", "Ledvi"],
+    why: "Like her father Mr Satan, she carries a devilish name.",
+  },
+
+  {
+    id: "pe58", cat: "personnages", diff: 3,
+    q: "What human names did Android 17 and Android 18 go by before their conversion?",
+    a: ["Lapis and Lazuli", "Flint and Quartz", "Amber and Jade", "Onyx and Pearl"],
+    why: "Two halves of one stone: they were abducted and modified together.",
+  },
   /* ---------------------------------------------------------------
      SAGAS
   --------------------------------------------------------------- */
@@ -330,7 +398,7 @@ export const QUESTIONS = [
       "The Tournament of Power",
       "The Namek Cup",
     ],
-    why: "Tenkaichi Budokai in Japanese: « the strongest under the heavens » tournament.",
+    why: "Tenkaichi Budokai in Japanese: “the strongest under the heavens” tournament.",
   },
   {
     id: 'sa04', cat: 'sagas', diff: 1,
@@ -627,7 +695,75 @@ export const QUESTIONS = [
     a: ["Uub", "Gohan", "Vegeta", "Pan"],
     why: "Kid Buu's reincarnation, born human thanks to a wish Goku made himself.",
   },
+  {
+    id: "sa49", cat: "sagas", diff: 1,
+    q: "Was the manga ever split between Dragon Ball and Dragon Ball Z?",
+    a: ["No, the split came from television", "Yes, from volume 17", "Yes, from volume 1", "Yes, but only in Europe"],
+    why: "The manga is called Dragon Ball from first chapter to last; the “Z” is the anime's invention.",
+  },
 
+  {
+    id: "sa50", cat: "sagas", diff: 1,
+    q: "Which event closes the Dragon Ball manga?",
+    a: ["The 28th Tenkaichi Budokai", "Majin Buu's defeat", "The Tournament of Power", "Frieza's death"],
+    why: "Ten years after Buu, Goku walks out of the arena with Uub — and the manga stops there.",
+  },
+
+  {
+    id: "sa51", cat: "sagas", diff: 1,
+    q: "Where was the Tournament of Power told first?",
+    a: ["In the Dragon Ball Super anime", "In the Super manga", "In a film", "In a video game"],
+    why: "Toyotarō's manga adapted it afterwards, with notable differences.",
+  },
+
+  {
+    id: "sa52", cat: "sagas", diff: 2,
+    q: "After which arc did Akira Toriyama want to end the series?",
+    a: ["The Frieza arc", "The Saiyan arc", "The Cell arc", "The Buu arc"],
+    why: "The series' success pushed his planned ending back more than once.",
+  },
+
+  {
+    id: "sa53", cat: "sagas", diff: 2,
+    q: "What form did the first two arcs of Dragon Ball Super take first?",
+    a: ["Two cinema films", "Two video games", "Two novels", "Two TV specials"],
+    why: "The series picked them up and stretched them out, adding what the short format could not hold.",
+  },
+
+  {
+    id: "sa54", cat: "sagas", diff: 2,
+    q: "How many years separate the end of the original manga from the start of Dragon Ball Super?",
+    a: ["Twenty years", "Five years", "Ten years", "Thirty years"],
+    why: "The last chapter ran in 1995; the new series started in 2015.",
+  },
+
+  {
+    id: "sa55", cat: "sagas", diff: 2,
+    q: "Which Dragon Ball Super manga arc was never adapted into an animated series?",
+    a: ["The Moro arc", "The Zamasu arc", "The Tournament of Power arc", "The Champa arc"],
+    why: "The anime stopped at the end of its last tournament; the manga carried on without it.",
+  },
+
+  {
+    id: "sa56", cat: "sagas", diff: 3,
+    q: "How many chapters does the Majin Buu saga run to?",
+    a: ["99", "45", "130", "60"],
+    why: "From chapter 421 to chapter 519, the last of the manga.",
+  },
+
+  {
+    id: "sa57", cat: "sagas", diff: 3,
+    q: "Which volume of the original edition opens the Majin Buu saga?",
+    a: ["Volume 36", "Volume 29", "Volume 31", "Volume 40"],
+    why: "It fills the final seven volumes, from 36 to 42.",
+  },
+
+  {
+    id: "sa58", cat: "sagas", diff: 3,
+    q: "How many episodes does Dragon Ball Z run to?",
+    a: ["291", "153", "200", "360"],
+    why: "Seven seasons aired from 1989 to 1996, where the first series stopped at 153.",
+  },
   /* ---------------------------------------------------------------
      TECHNIQUES & TRANSFORMATIONS
   --------------------------------------------------------------- */
@@ -677,7 +813,7 @@ export const QUESTIONS = [
     id: 'te08', cat: 'techniques', diff: 2,
     q: "Which technique does Tien Shinhan launch by forming a triangle with his hands?",
     a: ["The Tri-Beam", "The Solar Flare", "The Destructo Disc", "The Dodon Ray"],
-    why: "It draws on his life energy: every shot shortens the user's lifespan.",
+    why: "Every shot shortens the user's own lifespan — the price is taken out of him.",
   },
   {
     id: 'te09', cat: 'techniques', diff: 2,
@@ -748,13 +884,13 @@ export const QUESTIONS = [
     id: 'te19', cat: 'techniques', diff: 3,
     q: "Which golden form does Frieza reveal in Resurrection 'F'?",
     a: ["Golden Frieza", "Black Frieza", "Meta-Cooler", "Ultimate Frieza"],
-    why: "Black Frieza only turns up much later, in the Super manga.",
+    why: "His first transformation earned through training rather than simply grown into.",
   },
   {
     id: 'te20', cat: 'techniques', diff: 3,
     q: "Which technique blinds the opponent with an intense flash of light?",
     a: ["The Solar Flare", "The Destructo Disc", "The Dodon Ray", "The Evil Containment Wave"],
-    why: "Literally « the fist of the sun »: Krillin uses it constantly.",
+    why: "Literally “the fist of the sun”: Krillin uses it constantly.",
   },
   {
     id: 'te21', cat: 'techniques', diff: 1,
@@ -889,7 +1025,7 @@ export const QUESTIONS = [
       "The Final Flash",
       "The Galick Gun",
     ],
-    why: "It blends Vegeta's Big Bang Attack with Goku's Kamehameha.",
+    why: "A portmanteau, like the warrior himself: each half brings its signature move.",
   },
   {
     id: 'te41', cat: 'techniques', diff: 3,
@@ -951,7 +1087,7 @@ export const QUESTIONS = [
     id: 'te47', cat: 'techniques', diff: 3,
     q: "Which warrior is born from the Potara fusion of Goku and Vegeta, against Super Buu?",
     a: ["Vegito", "Gogeta", "Gotenks", "Gohanks"],
-    why: "Gogeta comes from the Fusion Dance instead, never from the Potara.",
+    why: "Potara fusion was meant to be permanent — this is the one that ends up coming undone.",
   },
   {
     id: 'te48', cat: 'techniques', diff: 3,
@@ -964,7 +1100,75 @@ export const QUESTIONS = [
     ],
     why: "He then eats them, which remains his most expedient way of clearing a room.",
   },
+  {
+    id: "te49", cat: "techniques", diff: 1,
+    q: "What does “kame”, the first part of Kamehameha, mean?",
+    a: ["Turtle", "Light", "Fire", "Sky"],
+    why: "The attack belongs to the Turtle School — the name says where it comes from.",
+  },
 
+  {
+    id: "te50", cat: "techniques", diff: 1,
+    q: "What does “genki” mean, in the name Genki Dama?",
+    a: ["Life energy", "Anger", "Skylight", "Last breath"],
+    why: "Exactly what Goku borrows from every living thing around him.",
+  },
+
+  {
+    id: "te51", cat: "techniques", diff: 1,
+    q: "What practical reason did Toriyama give for the Super Saiyan's golden hair?",
+    a: ["Light hair needs far less ink", "Gold suggested the sun", "His editor wanted more colour", "It had to differ from Frieza"],
+    why: "On a weekly deadline, hours saved on inking mattered chapter after chapter.",
+  },
+
+  {
+    id: "te52", cat: "techniques", diff: 2,
+    q: "What does “Makankosappo”, the name of Piccolo's beam, mean?",
+    a: ["A ray that pierces demons", "The fist of heaven", "The dragon's lance", "The serpent's eye"],
+    why: "A name built for the attack he was saving for Goku — and that ended up in Raditz's back.",
+  },
+
+  {
+    id: "te53", cat: "techniques", diff: 2,
+    q: "What does the Japanese name for Ultra Instinct literally mean?",
+    a: ["The secret of selfishness", "The dragon's eye", "Perfect emptiness", "The way of heaven"],
+    why: "“Migatte no Gokui”: the body acts on its own account, without waiting for the mind.",
+  },
+
+  {
+    id: "te54", cat: "techniques", diff: 2,
+    q: "Which attack became the pose fans imitate most in photographs?",
+    a: ["The Kamehameha", "The Destructo Disc", "The Solar Flare", "The Makankosappo"],
+    why: "Hands cupped at the hip, knees bent: the stance travelled the world.",
+  },
+
+  {
+    id: "te55", cat: "techniques", diff: 2,
+    q: "Which transformation appears in no chapter of the manga?",
+    a: ["Super Saiyan 4", "Super Saiyan 2", "Super Saiyan 3", "Super Saiyan Blue"],
+    why: "It belongs to Dragon Ball GT, produced after serialisation had ended.",
+  },
+
+  {
+    id: "te56", cat: "techniques", diff: 3,
+    q: "Which character performs the very first Kamehameha in the series?",
+    a: ["Master Roshi", "Son Goku", "Krillin", "Yamcha"],
+    why: "The master shows it once, to put out a fire; Goku copies it straight away.",
+  },
+
+  {
+    id: "te57", cat: "techniques", diff: 3,
+    q: "What does “Kikoho”, the name of Tien's attack, mean?",
+    a: ["The ki-breath cannon", "The triangle of heaven", "The third eye", "The white crane"],
+    why: "The name describes the gesture: his hands form the cannon's mouth.",
+  },
+
+  {
+    id: "te58", cat: "techniques", diff: 3,
+    q: "In which year did the Super Saiyan first appear in the magazine?",
+    a: ["1991", "1987", "1994", "1996"],
+    why: "Seven years after the first chapter, at the heart of the Frieza arc.",
+  },
   /* ---------------------------------------------------------------
      POWER LEVELS
   --------------------------------------------------------------- */
@@ -1080,7 +1284,7 @@ export const QUESTIONS = [
     id: 'po19', cat: 'power', diff: 3,
     q: "In the original Japanese version, what figure does Vegeta call out for Goku before his scouter explodes?",
     a: ["Over 8,000", "Over 9,000", "Over 5,000", "Over 12,000"],
-    why: "The famous « It's over 9000! » comes from the English dub: the original says 8,000.",
+    why: "His scouter blows out on that figure — and the number the world remembers is not this one.",
   },
   {
     id: 'po20', cat: 'power', diff: 3,
@@ -1109,7 +1313,7 @@ export const QUESTIONS = [
     id: 'po23', cat: 'power', diff: 2,
     q: "What power level does Vegeta reach on Namek, after being healed?",
     a: ["24,000", "18,000", "30,000", "9,000"],
-    why: "The Zenkai at work: brushing death then recovering makes him markedly stronger.",
+    why: "Brush death, then heal: a Saiyan always leaves the medical bay stronger than he entered it.",
   },
   {
     id: 'po24', cat: 'power', diff: 2,
@@ -1291,7 +1495,75 @@ export const QUESTIONS = [
     a: ["18,000", "22,000", "23,000", "24,000"],
     why: "Exactly Vegeta's level before Earth — which is what Cui did not know.",
   },
-  /* ---------------------------------------------------------------
+  {
+    id: "po49", cat: "power", diff: 1,
+    q: "Why did Toriyama stop putting numbers on power levels?",
+    a: ["The figures had got out of hand", "Readers complained about them", "His editor forbade it", "Scouters took too long to draw"],
+    why: "After Frieza, every fight would have needed a bigger number than the last.",
+  },
+
+  {
+    id: "po50", cat: "power", diff: 1,
+    q: "From which point do scouters all but vanish?",
+    a: ["After the Frieza arc", "After the Saiyan arc", "After the Cell arc", "After the Buu arc"],
+    why: "The device fades out along with the numbers it existed to display.",
+  },
+
+  {
+    id: "po51", cat: "power", diff: 1,
+    q: "Where do the numbered power levels come from?",
+    a: ["The manga itself", "The anime", "The video games", "Fan magazines"],
+    why: "Scouters and figures are on Toriyama's own pages from Raditz's arrival onwards.",
+  },
+
+  {
+    id: "po52", cat: "power", diff: 2,
+    q: "Which Japanese word does the series use for “power level”?",
+    a: ["Sentōryoku", "Kiryoku", "Bujutsu", "Genkiryoku"],
+    why: "Literally fighting strength — the word the manga uses every time a figure is called out.",
+  },
+
+  {
+    id: "po53", cat: "power", diff: 2,
+    q: "What is the collection of official guidebooks published at the end of the manga called?",
+    a: ["Daizenshuu", "Databook Z", "Kanzenshuu", "Shonen Files"],
+    why: "Most of the figures the manga never gave come from there.",
+  },
+
+  {
+    id: "po54", cat: "power", diff: 2,
+    q: "Where does the famous “It's over 9000!” come from, given it is not in the original?",
+    a: ["The English dub of the anime", "The manga", "A video game", "An official guidebook"],
+    why: "The original figure is 8,000: one dub's slip became better known than the scene.",
+  },
+
+  {
+    id: "po55", cat: "power", diff: 2,
+    q: "Which magazine serialises the Dragon Ball Super manga?",
+    a: ["V-Jump", "Weekly Shōnen Jump", "Young Jump", "Shōnen Sunday"],
+    why: "A monthly from the same publisher, running one chapter at a time.",
+  },
+
+  {
+    id: "po56", cat: "power", diff: 3,
+    q: "In which year did scouters first appear in the magazine?",
+    a: ["1988", "1984", "1991", "1995"],
+    why: "With Raditz, four years after the series' first chapter.",
+  },
+
+  {
+    id: "po57", cat: "power", diff: 3,
+    q: "When were the Daizenshuu official guidebooks published?",
+    a: ["In 1995, as the manga ended", "In 1988", "In 2003", "In 2015"],
+    why: "Published just as serialisation closed, they take stock of eleven years of series.",
+  },
+
+  {
+    id: "po58", cat: "power", diff: 3,
+    q: "What replaces the scouter for the Z Fighters?",
+    a: ["Nothing: they read ki themselves", "A scouter repaired by Bulma", "A Capsule Corp detector", "A Namekian crystal"],
+    why: "Sensing ki makes the device pointless — and keeps you invisible to anyone wearing one.",
+  },  /* ---------------------------------------------------------------
      BEHIND THE SCENES
   --------------------------------------------------------------- */
   {
@@ -1328,7 +1600,7 @@ export const QUESTIONS = [
     id: 'co06', cat: 'coulisses', diff: 1,
     q: "What is the name of the studio Akira Toriyama founded?",
     a: ["Bird Studio", "Studio Ghibli", "Studio Pierrot", "Bones"],
-    why: "A nod to his own name: « tori » means bird in Japanese.",
+    why: "A nod to his own name: “tori” means bird in Japanese.",
   },
   {
     id: 'co07', cat: 'coulisses', diff: 1,
@@ -1340,25 +1612,25 @@ export const QUESTIONS = [
     id: 'co08', cat: 'coulisses', diff: 1,
     q: "In which year did the first chapter of Dragon Ball appear?",
     a: ["1984", "1979", "1990", "1995"],
-    why: "The series then held its slot in Weekly Shōnen Jump for eleven years.",
+    why: "The start of a run that would hold its magazine's cover for more than a decade.",
   },
   {
     id: 'co09', cat: 'coulisses', diff: 1,
     q: "Which vegetable is behind Kakarot, Goku's Saiyan name?",
     a: ["The carrot", "The radish", "The cabbage", "The asparagus"],
-    why: "Every Saiyan carries a vegetable name — a rule the author set himself.",
+    why: "Every Saiyan is named after something from the greengrocer's — a rule the author set himself.",
   },
   {
     id: 'co10', cat: 'coulisses', diff: 1,
-    q: "What does « yasai » mean, the Japanese word « Saiyan » is a scramble of?",
+    q: "What does “yasai” mean, the Japanese word “Saiyan” is a scramble of?",
     a: ["Vegetable", "Warrior", "Star", "Monkey"],
-    why: "Swap the syllables of « yasai » and you get « saiya ».",
+    why: "Swap the syllables of “yasai” and you get “saiya”.",
   },
   {
     id: 'co11', cat: 'coulisses', diff: 1,
     q: "Bulma's name comes from a piece of clothing. Which one?",
     a: ["Gym shorts", "A hat", "A scarf", "A pair of boots"],
-    why: "Her whole family is named after underwear, from her father down to her children.",
+    why: "Her whole family is named after what you wear underneath, from her father down to her children.",
   },
   {
     id: 'co12', cat: 'coulisses', diff: 1,
@@ -1382,7 +1654,7 @@ export const QUESTIONS = [
     id: 'co15', cat: 'coulisses', diff: 1,
     q: "Which Japanese publisher puts out Dragon Ball?",
     a: ["Shueisha", "Kodansha", "Shogakukan", "Kadokawa"],
-    why: "The house behind Weekly Shōnen Jump, where the series ran from start to finish.",
+    why: "The house behind the weekly where the series ran from start to finish.",
   },
   {
     id: 'co16', cat: 'coulisses', diff: 1,
@@ -1412,13 +1684,13 @@ export const QUESTIONS = [
     id: 'co20', cat: 'coulisses', diff: 2,
     q: "Which Japanese word is the Ginyu Force named after?",
     a: ["Milk", "Star", "Thunder", "Spice"],
-    why: "« Gyūnyū » means milk: every member is named after a dairy product.",
+    why: "“Gyūnyū” means milk: every member is named after a dairy product.",
   },
   {
     id: 'co21', cat: 'coulisses', diff: 2,
     q: "Namekian names are drawn from what?",
     a: ["Snails and slugs", "Wild flowers", "Spices", "Minerals"],
-    why: "« Namekuji » means slug; Dende comes from « denden-mushi », the snail.",
+    why: "“Namekuji” means slug; Dende comes from “denden-mushi”, the snail.",
   },
   {
     id: 'co22', cat: 'coulisses', diff: 2,
@@ -1436,18 +1708,18 @@ export const QUESTIONS = [
     id: 'co24', cat: 'coulisses', diff: 2,
     q: "Yamcha, Oolong and Puar are named after what?",
     a: ["Chinese tea", "Sake", "Pastries", "Soft drinks"],
-    why: "Oolong and pu-erh are teas; « yum cha » is drinking tea over dim sum.",
+    why: "Oolong and pu-erh are teas; “yum cha” is drinking tea over dim sum.",
   },
   {
     id: 'co25', cat: 'coulisses', diff: 2,
-    q: "What does the tournament's name, « Tenkaichi Budokai », mean?",
+    q: "What does the tournament's name, “Tenkaichi Budokai”, mean?",
     a: [
       "The martial arts gathering of the strongest under heaven",
       "The tournament of the seven balls",
       "The demon king's cup",
       "The arena of the gods",
     ],
-    why: "« Tenkaichi » means first under heaven: the title is right there in the name.",
+    why: "“Tenkaichi” means first under heaven: the title is right there in the name.",
   },
   {
     id: 'co26', cat: 'coulisses', diff: 2,
@@ -1471,13 +1743,13 @@ export const QUESTIONS = [
     id: 'co29', cat: 'coulisses', diff: 3,
     q: "Which vegetable gave Nappa his name?",
     a: ["Chinese cabbage", "The turnip", "The artichoke", "The leek"],
-    why: "« Nappa » is a leafy cabbage that is everywhere in Japanese cooking.",
+    why: "“Nappa” is a leafy cabbage that is everywhere in Japanese cooking.",
   },
   {
     id: 'co30', cat: 'coulisses', diff: 3,
     q: "And Raditz, Goku's older brother?",
     a: ["The radish", "The beetroot", "The lettuce", "The celery"],
-    why: "The vegetable rule holds for Goku's own family too.",
+    why: "The greengrocer's rule holds for Goku's own family too.",
   },
   {
     id: 'co31', cat: 'coulisses', diff: 3,
@@ -1489,13 +1761,13 @@ export const QUESTIONS = [
     id: 'co32', cat: 'coulisses', diff: 3,
     q: "Which dairy product is Jeice named after?",
     a: ["Cheese", "Butter", "Cream", "Yoghurt"],
-    why: "« Cheese », Japanese-style, like the rest of the Ginyu Force.",
+    why: "“Cheese”, Japanese-style, like the rest of the Ginyu Force.",
   },
   {
     id: 'co33', cat: 'coulisses', diff: 3,
     q: "And Burter, the fastest of the squad?",
     a: ["Butter", "Cheese", "Milk", "Cream"],
-    why: "« Batā », butter: Recoome comes from cream and Guldo from yoghurt.",
+    why: "“Batā”, butter: Recoome comes from cream and Guldo from yoghurt.",
   },
   {
     id: 'co34', cat: 'coulisses', diff: 3,
@@ -1505,13 +1777,13 @@ export const QUESTIONS = [
   },
   {
     id: 'co35', cat: 'coulisses', diff: 3,
-    q: "What does « Porunga », the name of Namek's dragon, mean?",
+    q: "What does “Porunga”, the name of Namek's dragon, mean?",
     a: ["God of dreams", "Guardian of the sky", "King of stars", "Golden serpent"],
     why: "A Namekian name, unlike Shenron's, which comes from Chinese.",
   },
   {
     id: 'co36', cat: 'coulisses', diff: 3,
-    q: "What was the « Z » in Dragon Ball Z meant to signal?",
+    q: "What was the “Z” in Dragon Ball Z meant to signal?",
     a: [
       "The end of the series, Z closing the alphabet",
       "The name of planet Zeta",
@@ -1592,4 +1864,72 @@ export const QUESTIONS = [
     a: ["Glénat", "Kana", "Pika", "Ki-oon"],
     why: "The first French edition appeared in the early 1990s, and the series never changed house.",
   },
-]
+  {
+    id: "co49", cat: "coulisses", diff: 1,
+    q: "Which way round is the original edition of the manga read?",
+    a: ["Right to left", "Left to right", "Top to bottom", "In alternating columns"],
+    why: "Japanese reading order, which Western editions took years to stop flipping.",
+  },
+
+  {
+    id: "co50", cat: "coulisses", diff: 1,
+    q: "Which of these manga was never serialised in Weekly Shōnen Jump?",
+    a: ["Attack on Titan", "One Piece", "Naruto", "Bleach"],
+    why: "It ran at a rival publisher, in a monthly from an entirely different catalogue.",
+  },
+
+  {
+    id: "co51", cat: "coulisses", diff: 1,
+    q: "In which year did Dragon Ball Super start airing?",
+    a: ["2015", "2009", "2012", "2018"],
+    why: "The first brand-new television series after almost twenty years away.",
+  },
+
+  {
+    id: "co52", cat: "coulisses", diff: 2,
+    q: "Which part of Japan did Akira Toriyama live in all his life?",
+    a: ["Aichi prefecture", "Tokyo", "Osaka", "Hokkaidō"],
+    why: "He always refused to move to Tokyo, sending his pages in from his home region.",
+  },
+
+  {
+    id: "co53", cat: "coulisses", diff: 2,
+    q: "Which programme introduced Dragon Ball to French viewers from 1988?",
+    a: ["Le Club Dorothée", "Récré A2", "Les Minikeums", "Téléchat"],
+    why: "A whole generation met the series there, long before the manga was translated.",
+  },
+
+  {
+    id: "co54", cat: "coulisses", diff: 2,
+    q: "What is the Japanese name of the large-format reissue sold elsewhere as the Perfect Edition?",
+    a: ["Kanzenban", "Bunkoban", "Aizoban", "Shinsoban"],
+    why: "Large format, restored colour pages and new covers drawn by the author.",
+  },
+
+  {
+    id: "co55", cat: "coulisses", diff: 2,
+    q: "Which French honour did Akira Toriyama receive in 2019?",
+    a: ["Chevalier des Arts et des Lettres", "The Légion d'honneur", "The Prix Goncourt", "An honorary César"],
+    why: "A rare distinction for a manga author, in the country that read him most after Japan.",
+  },
+
+  {
+    id: "co56", cat: "coulisses", diff: 3,
+    q: "What is the title of the manga's very first chapter?",
+    a: ["Bulma and Son Goku", "The hunt for seven balls", "The boy with a tail", "The magic cloud"],
+    why: "The two names in the title already announce the pair that starts the whole adventure.",
+  },
+
+  {
+    id: "co57", cat: "coulisses", diff: 3,
+    q: "How many years separate the end of Dragon Ball GT from the franchise's return to cinemas?",
+    a: ["About fifteen years", "Two years", "Five years", "Twenty-five years"],
+    why: "The series ended in 1997; a new feature film had to wait until 2013.",
+  },
+
+  {
+    id: "co58", cat: "coulisses", diff: 3,
+    q: "How old was Akira Toriyama when the first chapter came out?",
+    a: ["29", "22", "35", "42"],
+    why: "Born in April 1955, he already had four years of Dr. Slump behind him.",
+  },]

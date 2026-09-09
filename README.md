@@ -46,7 +46,7 @@ npm run dev
 src/
 ├── data/
 │   ├── categories.js      identité et accent des 5 catégories
-│   ├── questions.fr.js    240 questions, 5 catégories, 3 niveaux
+│   ├── questions.fr.js    290 questions, 5 catégories, 3 niveaux
 │   └── questions.en.js    la même banque en anglais
 ├── lib/
 │   ├── quiz.js            niveaux, barème, tirage d'une manche, mélange
@@ -65,6 +65,12 @@ src/
 │   ├── ui/                primitives réutilisables (Button, Panel, Countdown…)
 │   └── *.jsx              écrans et blocs métier (ScoreTable, ShareButton…)
 └── App.jsx                machine à états : accueil → quiz → résultat
+
+scripts/
+├── check-questions.mjs    banques, barème, parité FR/EN et dictionnaires
+├── check-fuites.mjs       explications qui citent la réponse d'une autre question
+├── check-share.mjs        aperçu du texte partagé et de l'échelle des rangs
+└── captures.mjs           régénère les captures du README depuis le site en ligne
 ```
 
 ## Fonctionnement
@@ -138,8 +144,16 @@ via `pushState` — le bouton précédent revient donc bien à la langue précé
 
 Les quatre premières portent sur la fiction. La cinquième porte sur l'œuvre
 elle-même : prépublication, tomes, étymologie des noms, autres travaux de
-l'auteur. C'est la seule dont les réponses se vérifient hors de l'histoire, et
-elle départage nettement le lecteur assidu du spectateur.
+l'auteur. Ses réponses se vérifient hors de l'histoire, et elle départage
+nettement le lecteur assidu du spectateur.
+
+**Chaque catégorie a sa part de coulisses.** Une dizaine de questions par
+catégorie traitent son terrain par l'envers du décor, sans quitter son thème :
+l'origine des noms et les doublages pour Personnages, les tomes et les
+adaptations pour Sagas, le sens des noms d'attaques pour Techniques, et pour
+Power levels la raison pour laquelle l'auteur a fini par abandonner les chiffres.
+Un joueur qui connaît la série par cœur peut donc encore se faire surprendre
+dans sa propre catégorie de prédilection.
 
 **Terminologie.** Les questions françaises suivent les graphies de l'édition
 française sous licence — « Majin Boo » et non « Buu », « Lunch » et non
@@ -166,15 +180,25 @@ l'exécution dans `lib/quiz.js`, ce qui rend le fichier relisible d'un coup d'œ
 `npm run check` vérifie ensuite l'unicité des identifiants, le nombre de
 propositions, l'absence de doublons et la bonne répartition des réponses.
 
+**Ne pas se déflorer soi-même.** Le feedback affiché après une réponse est lu
+attentivement : s'il cite mot pour mot la bonne réponse d'une autre question de
+la même catégorie, celle-ci est perdue pour le reste de la partie.
+`npm run check:fuites` liste ces mentions croisées. Il reste **hors de**
+`npm run check` à dessein : l'outil ne sait pas distinguer une divulgation
+d'une simple mention — « Akira Toriyama » revient partout sans rien gâcher,
+alors que nommer « le Black Freezer » dans une explication tuait la question qui
+le demandait. C'est un rapport à relire, pas un test à faire passer.
+
 ### Niveaux
 
 | Niveau | Questions | Composition visée | Recouvrement entre deux parties |
 | --- | --- | --- | --- |
-| Facile | 10 | 70 % faciles, 30 % moyennes | ~3,8 / 10 |
-| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,5 / 10 |
-| Difficile | 10 | 40 % moyennes, 60 % difficiles | ~3,1 / 10 |
+| Facile | 10 | 70 % faciles, 30 % moyennes | ~3,2 / 10 |
+| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~2,7 / 10 |
+| Difficile | 10 | 40 % moyennes, 60 % difficiles | ~2,6 / 10 |
 
-Chaque catégorie compte 48 questions : 16 faciles, 12 moyennes, 20 difficiles.
+Chaque catégorie compte 58 questions : 19 faciles, 16 moyennes, 23 difficiles —
+sauf Power levels, dont la matière se prête mieux au palier difficile (18 / 15 / 25).
 
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
@@ -190,8 +214,9 @@ questions, mais du vivier réellement atteint par son mélange. Deux règles suf
 - Au-delà de ce plancher, le recouvrement d'un palier vaut environ `q²/p`, où `q` est
   le quota tiré dans ce palier et `p` sa taille. Le mode facile tirant 7 questions
   faciles, passer de 8 à 16 faciles par catégorie a fait chuter son recouvrement de
-  6,8 à 3,8 sur 10. Le même calcul appliqué au palier difficile (6 tirées parmi 20,
-  plus 4 moyennes parmi 12) prévoyait 3,1 — c'est exactement la valeur mesurée.
+  6,8 à 3,8 sur 10. Le dernier élargissement (48 → 58 questions par catégorie) prévoyait
+  `49/19 + 9/16` = 3,14 en facile et `16/16 + 36/23` = 2,57 en difficile ; la mesure
+  donne 3,18 et 2,55. La formule n'a jamais menti de plus d'un dixième.
 
 Autrement dit, agrandir un palier n'a d'effet que sur les modes qui y puisent, et
 l'effet suit une courbe en `1/p` : les premiers ajouts rapportent beaucoup, les
@@ -215,8 +240,11 @@ joueurs à 5/10 n'ont pas fourni le même effort si l'un a répondu aux six ques
 difficiles et l'autre aux quatre moyennes. Sur une manche difficile type
 (6 × 1 000 + 4 × 500 = 8 000 points en jeu), le premier fait 5 000 points, soit
 63 % — rang Super Saiyan — quand le second fait 3 000 points, soit 38 % —
-rang Élève de la Tortue. `npm run check` mesure cet écart : à 5/10, le taux réel
-va de 38 % à 59 % selon les questions tombées.
+rang Élève de la Tortue. `npm run check` calcule cet écart à chaque exécution :
+à 5/10, le taux réel va de **38 % à 63 %** selon les questions tombées. Les bornes
+sont prises sur les cinq questions les plus chères et les cinq moins chères de la
+manche, et non tirées au sort — un chiffre qui bouge à chaque exécution ne vaut
+rien comme repère.
 
 Ce taux pondéré, et non plus le rapport de bonnes réponses, décide désormais du
 rang, de la puissance de combat et du record. Le nombre de bonnes réponses reste

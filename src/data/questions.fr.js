@@ -1,5 +1,5 @@
 /**
- * Banque de questions — 240 questions originales rédigées pour ce site.
+ * Banque de questions — 290 questions originales rédigées pour ce site.
  *
  * Convention d'écriture : `a[0]` est TOUJOURS la bonne réponse.
  * Les propositions sont mélangées à l'exécution (voir `src/lib/quiz.js`),
@@ -307,7 +307,75 @@ export const QUESTIONS = [
     a: ["Moro", "Babidi", "Bibidi", "Dabra"],
     why: "Antagoniste du manga Super, il avait été enfermé dix millions d'années plus tôt.",
   },
+  {
+    id: "pe49", cat: "personnages", diff: 1,
+    q: "Quelle particularité réunit Goku, Gohan et Goten dans la version japonaise ?",
+    a: ["Une même comédienne les double tous les trois", "Ils partagent une date de naissance", "Ils n'apparaissent jamais dans le même chapitre", "Ils ont chacun un scouter"],
+    why: "Masako Nozawa prête sa voix aux trois générations depuis 1986.",
+  },
 
+  {
+    id: "pe50", cat: "personnages", diff: 1,
+    q: "De quel mot anglais le nom de Vegeta est-il tiré ?",
+    a: ["Vegetable, le légume", "Victory, la victoire", "Veteran, le vétéran", "Vengeance"],
+    why: "La règle vaut pour tous les Saiyans — et leur planète porte le nom de son roi.",
+  },
+
+  {
+    id: "pe51", cat: "personnages", diff: 1,
+    q: "Quel personnage est né au cinéma et n'apparaît dans aucun chapitre du manga d'origine ?",
+    a: ["Broly", "Trunks", "C-18", "Dendé"],
+    why: "Créé pour un film en 1993, il n'entre dans la continuité officielle qu'en 2018.",
+  },
+
+  {
+    id: "pe52", cat: "personnages", diff: 2,
+    q: "Sous quel nom Mr Satan est-il connu dans une grande partie des versions occidentales ?",
+    a: ["Hercule", "Ajax", "Titan", "Goliath"],
+    why: "Son nom d'origine passait mal auprès de certains diffuseurs.",
+  },
+
+  {
+    id: "pe53", cat: "personnages", diff: 2,
+    q: "De quoi le nom japonais de Krilin, Kuririn, est-il composé ?",
+    a: ["De la châtaigne et de Shaolin", "Du riz et du dragon", "De la lune et du poing", "Du sel et de la mer"],
+    why: "« Kuri », la châtaigne, pour le crâne ; « rin », comme dans Shaolin, pour le moine.",
+  },
+
+  {
+    id: "pe54", cat: "personnages", diff: 2,
+    q: "Quel personnage l'ancien doublage français avait-il rebaptisé « Satan Petit Cœur » ?",
+    a: ["Piccolo", "Freezer", "Cell", "Vegeta"],
+    why: "Cette version francophone renommait largement les personnages ; le manga a rétabli les noms d'origine.",
+  },
+
+  {
+    id: "pe55", cat: "personnages", diff: 2,
+    q: "Quel personnage Toriyama voulait-il installer comme héros principal après l'arc Cell ?",
+    a: ["Son Gohan", "Trunks", "Vegeta", "Piccolo"],
+    why: "Il a fini par juger qu'il n'avait pas l'étoffe du rôle et a ramené Goku au premier plan.",
+  },
+
+  {
+    id: "pe56", cat: "personnages", diff: 3,
+    q: "D'où viennent les noms de Bibidi, Babidi et Boo ?",
+    a: ["D'une formule magique de conte", "D'instruments de musique", "De plats épicés", "De constellations"],
+    why: "« Bibbidi-Bobbidi-Boo », la formule de la fée marraine de Cendrillon.",
+  },
+
+  {
+    id: "pe57", cat: "personnages", diff: 3,
+    q: "De quel mot le prénom de Videl est-il l'anagramme ?",
+    a: ["Devil, le diable", "Video, la vidéo", "Livde, une plante", "Ledvi, une étoile"],
+    why: "Comme son père Mr Satan, elle porte un nom d'inspiration diabolique.",
+  },
+
+  {
+    id: "pe58", cat: "personnages", diff: 3,
+    q: "Quels prénoms humains C-17 et C-18 portaient-ils avant leur transformation ?",
+    a: ["Lapis et Lazuli", "Silex et Quartz", "Ambre et Jade", "Onyx et Perle"],
+    why: "Deux moitiés d'une même pierre : ils ont été enlevés puis modifiés ensemble.",
+  },
   /* ---------------------------------------------------------------
      SAGAS
   --------------------------------------------------------------- */
@@ -612,7 +680,75 @@ export const QUESTIONS = [
     a: ["Uub", "Gohan", "Vegeta", "Pan"],
     why: "La réincarnation de Kid Boo, née humaine grâce au vœu formulé par Goku lui-même.",
   },
+  {
+    id: "sa49", cat: "sagas", diff: 1,
+    q: "Le manga a-t-il été coupé en deux entre Dragon Ball et Dragon Ball Z ?",
+    a: ["Non, la coupure vient de la télévision", "Oui, à partir du tome 17", "Oui, dès le tome 1", "Oui, mais seulement en France"],
+    why: "Le manga s'appelle Dragon Ball du premier au dernier chapitre ; le « Z » est une invention de l'anime.",
+  },
 
+  {
+    id: "sa50", cat: "sagas", diff: 1,
+    q: "Quel événement referme le manga Dragon Ball ?",
+    a: ["Le 28e Tenkaichi Budokai", "La chute de Majin Boo", "Le Tournoi du Pouvoir", "La mort de Freezer"],
+    why: "Dix ans après Boo, Goku quitte l'arène avec Oob — et le manga s'arrête là.",
+  },
+
+  {
+    id: "sa51", cat: "sagas", diff: 1,
+    q: "Où le Tournoi du Pouvoir a-t-il été raconté en premier ?",
+    a: ["Dans l'anime Dragon Ball Super", "Dans le manga Super", "Dans un film", "Dans un jeu vidéo"],
+    why: "Le manga de Toyotarō l'a adapté ensuite, avec des différences notables.",
+  },
+
+  {
+    id: "sa52", cat: "sagas", diff: 2,
+    q: "Après quel arc Akira Toriyama souhaitait-il conclure la série ?",
+    a: ["L'arc Freezer", "L'arc des Saiyans", "L'arc Cell", "L'arc Boo"],
+    why: "Le succès de la série a repoussé plusieurs fois la fin qu'il avait prévue.",
+  },
+
+  {
+    id: "sa53", cat: "sagas", diff: 2,
+    q: "Sous quelle forme les deux premiers arcs de Dragon Ball Super ont-ils d'abord existé ?",
+    a: ["Deux films sortis au cinéma", "Deux jeux vidéo", "Deux romans", "Deux épisodes spéciaux"],
+    why: "La série les a repris et étirés, en ajoutant ce que le format court ne permettait pas.",
+  },
+
+  {
+    id: "sa54", cat: "sagas", diff: 2,
+    q: "Combien d'années séparent la fin du manga d'origine du début de Dragon Ball Super ?",
+    a: ["Vingt ans", "Cinq ans", "Dix ans", "Trente ans"],
+    why: "Le dernier chapitre paraît en 1995, la nouvelle série démarre en 2015.",
+  },
+
+  {
+    id: "sa55", cat: "sagas", diff: 2,
+    q: "Quel arc du manga Dragon Ball Super n'a jamais été adapté en série animée ?",
+    a: ["L'arc Moro", "L'arc Zamasu", "L'arc du Tournoi du Pouvoir", "L'arc Champa"],
+    why: "L'anime s'est arrêté à la fin de son dernier tournoi ; le manga a continué sans lui.",
+  },
+
+  {
+    id: "sa56", cat: "sagas", diff: 3,
+    q: "Combien de chapitres compte la saga de Majin Boo ?",
+    a: ["99", "45", "130", "60"],
+    why: "Du chapitre 421 au chapitre 519, le dernier du manga.",
+  },
+
+  {
+    id: "sa57", cat: "sagas", diff: 3,
+    q: "Dans quel tome de l'édition originale la saga de Majin Boo s'ouvre-t-elle ?",
+    a: ["Le tome 36", "Le tome 29", "Le tome 31", "Le tome 40"],
+    why: "Elle occupe les sept derniers volumes, du tome 36 au tome 42.",
+  },
+
+  {
+    id: "sa58", cat: "sagas", diff: 3,
+    q: "Combien d'épisodes compte la série Dragon Ball Z ?",
+    a: ["291", "153", "200", "360"],
+    why: "Sept saisons diffusées de 1989 à 1996, là où la première série s'arrêtait à 153.",
+  },
   /* ---------------------------------------------------------------
      TECHNIQUES & TRANSFORMATIONS
   --------------------------------------------------------------- */
@@ -662,7 +798,7 @@ export const QUESTIONS = [
     id: 'te08', cat: 'techniques', diff: 2,
     q: "Quelle technique de Ten Shin Han se lance en formant un triangle avec les mains ?",
     a: ["Le Kikoho", "Le Taiyoken", "Le Kienzan", "Le Dodonpa"],
-    why: "Elle puise dans l'énergie vitale : chaque tir abrège la vie de son utilisateur.",
+    why: "Chaque tir abrège la vie de son utilisateur — le prix est prélevé sur lui.",
   },
   {
     id: 'te09', cat: 'techniques', diff: 2,
@@ -728,7 +864,7 @@ export const QUESTIONS = [
     id: 'te19', cat: 'techniques', diff: 3,
     q: "Quelle forme dorée Freezer révèle-t-il dans La Résurrection de F ?",
     a: ["Le Golden Freezer", "Le Black Freezer", "Meta-Cooler", "Freezer Ultime"],
-    why: "Le Black Freezer, lui, n'apparaît que bien plus tard dans le manga Super.",
+    why: "Sa toute première transformation obtenue par l'entraînement, et non par la croissance.",
   },
   {
     id: 'te20', cat: 'techniques', diff: 3,
@@ -862,7 +998,7 @@ export const QUESTIONS = [
     id: 'te40', cat: 'techniques', diff: 3,
     q: "Quelle est l'attaque signature de Gogeta ?",
     a: ["Le Big Bang Kaméhaméha", "Le Final Kaméhaméha", "Le Final Flash", "Le Galick Gun"],
-    why: "Elle mêle le Big Bang Attack de Vegeta au Kaméhaméha de Goku.",
+    why: "Un nom-valise, à l'image du guerrier : chaque moitié y apporte son attaque fétiche.",
   },
   {
     id: 'te41', cat: 'techniques', diff: 3,
@@ -919,7 +1055,7 @@ export const QUESTIONS = [
     id: 'te47', cat: 'techniques', diff: 3,
     q: "Quel guerrier naît de la fusion Potara entre Goku et Vegeta, face à Super Boo ?",
     a: ["Vegetto", "Gogeta", "Gotenks", "Gohanks"],
-    why: "Gogeta naît lui de la danse de Metamor, jamais des Potaras.",
+    why: "Les Potaras devaient être définitifs — c'est la seule fusion qui finira par se défaire.",
   },
   {
     id: 'te48', cat: 'techniques', diff: 3,
@@ -927,7 +1063,75 @@ export const QUESTIONS = [
     a: ["Un rayon transformateur", "Le Mafuba", "Le Taiyoken", "Le Kienzan"],
     why: "Il les dévore ensuite, ce qui reste sa manière la plus expéditive de faire le vide.",
   },
+  {
+    id: "te49", cat: "techniques", diff: 1,
+    q: "Que désigne « kame », la première partie du mot Kaméhaméha ?",
+    a: ["La tortue", "La lumière", "Le feu", "Le ciel"],
+    why: "L'attaque est celle de l'école de la Tortue — le nom dit d'où elle vient.",
+  },
 
+  {
+    id: "te50", cat: "techniques", diff: 1,
+    q: "Que veut dire « genki », dans le nom du Genkidama ?",
+    a: ["L'énergie vitale", "La colère", "La lumière du ciel", "Le dernier souffle"],
+    why: "C'est exactement ce que Goku emprunte à tout ce qui vit alentour.",
+  },
+
+  {
+    id: "te51", cat: "techniques", diff: 1,
+    q: "Quelle raison pratique Toriyama a-t-il donnée aux cheveux dorés du Super Saiyan ?",
+    a: ["Des cheveux clairs demandent moins d'encre à noircir", "Le doré rappelait le soleil", "Son éditeur voulait plus de couleur", "Il fallait se démarquer de Freezer"],
+    why: "Une semaine de retard en moins sur un hebdomadaire, chapitre après chapitre.",
+  },
+
+  {
+    id: "te52", cat: "techniques", diff: 2,
+    q: "Que signifie « Makankosappo », le nom du rayon de Piccolo ?",
+    a: ["Un rayon qui transperce les démons", "Le poing du ciel", "La lance du dragon", "L'œil du serpent"],
+    why: "Un nom taillé pour l'attaque qu'il réservait à Goku, et qui a fini dans le dos de Raditz.",
+  },
+
+  {
+    id: "te53", cat: "techniques", diff: 2,
+    q: "Que veut dire littéralement le nom japonais de l'Ultra Instinct ?",
+    a: ["Le secret de l'égoïsme", "L'œil du dragon", "Le vide parfait", "La voie du ciel"],
+    why: "« Migatte no Gokui » : le corps agit pour son compte, sans attendre l'ordre de l'esprit.",
+  },
+
+  {
+    id: "te54", cat: "techniques", diff: 2,
+    q: "Quelle attaque de la série est devenue la pose la plus imitée en photo par les fans ?",
+    a: ["Le Kaméhaméha", "Le Kienzan", "Le Taiyoken", "Le Makankosappo"],
+    why: "Mains jointes sur le côté, jambes fléchies : la posture a fait le tour du monde.",
+  },
+
+  {
+    id: "te55", cat: "techniques", diff: 2,
+    q: "Quelle transformation n'apparaît dans aucun chapitre du manga ?",
+    a: ["Le Super Saiyan 4", "Le Super Saiyan 2", "Le Super Saiyan 3", "Le Super Saiyan Blue"],
+    why: "Elle est propre à Dragon Ball GT, série produite après la fin de la prépublication.",
+  },
+
+  {
+    id: "te56", cat: "techniques", diff: 3,
+    q: "Quel personnage exécute le tout premier Kaméhaméha de la série ?",
+    a: ["Kamé Sennin", "Son Goku", "Krilin", "Yamcha"],
+    why: "Le maître le montre une fois, pour éteindre un incendie ; Goku le reproduit dans la foulée.",
+  },
+
+  {
+    id: "te57", cat: "techniques", diff: 3,
+    q: "Que signifie « Kikoho », le nom de l'attaque de Ten Shin Han ?",
+    a: ["Le canon du souffle de ki", "Le triangle du ciel", "Le troisième œil", "La grue blanche"],
+    why: "Le nom décrit le geste : les mains dessinent l'embouchure du canon.",
+  },
+
+  {
+    id: "te58", cat: "techniques", diff: 3,
+    q: "En quelle année le Super Saiyan apparaît-il pour la première fois dans le magazine ?",
+    a: ["1991", "1987", "1994", "1996"],
+    why: "Sept ans après le premier chapitre, en plein cœur de l'arc Freezer.",
+  },
   /* ---------------------------------------------------------------
      POWER LEVELS
   --------------------------------------------------------------- */
@@ -1043,7 +1247,7 @@ export const QUESTIONS = [
     id: 'po19', cat: 'power', diff: 3,
     q: "En version originale, quel chiffre Vegeta annonce-t-il pour Goku avant que son scouter n'explose ?",
     a: ["Plus de 8 000", "Plus de 9 000", "Plus de 5 000", "Plus de 12 000"],
-    why: "Le célèbre « It's over 9000 ! » vient du doublage américain : l'original dit 8 000.",
+    why: "Son scouter explose sur ce chiffre — et le nombre que retiendra le monde entier n'est pas celui-là.",
   },
   {
     id: 'po20', cat: 'power', diff: 3,
@@ -1072,7 +1276,7 @@ export const QUESTIONS = [
     id: 'po23', cat: 'power', diff: 2,
     q: "Quelle puissance de combat Vegeta atteint-il sur Namek, après avoir été soigné ?",
     a: ["24 000", "18 000", "30 000", "9 000"],
-    why: "Le Zenkai en action : frôler la mort puis guérir le rend nettement plus fort.",
+    why: "Frôler la mort puis guérir : le Saiyan revient toujours plus fort de l'infirmerie.",
   },
   {
     id: 'po24', cat: 'power', diff: 2,
@@ -1249,7 +1453,75 @@ export const QUESTIONS = [
     a: ["18 000", "22 000", "23 000", "24 000"],
     why: "Exactement le niveau de Vegeta avant la Terre — ce que Cui ignorait.",
   },
-  /* ---------------------------------------------------------------
+  {
+    id: "po49", cat: "power", diff: 1,
+    q: "Pourquoi Toriyama a-t-il cessé de chiffrer les puissances de combat ?",
+    a: ["Les nombres devenaient ingérables", "Les lecteurs s'en plaignaient", "Son éditeur le lui a interdit", "Les scouters étaient trop longs à dessiner"],
+    why: "Après Freezer, chaque combat aurait demandé un chiffre plus gros que le précédent.",
+  },
+
+  {
+    id: "po50", cat: "power", diff: 1,
+    q: "À partir de quel moment les scouters disparaissent-ils presque entièrement ?",
+    a: ["Après l'arc Freezer", "Après l'arc des Saiyans", "Après l'arc Cell", "Après l'arc Boo"],
+    why: "L'appareil s'efface en même temps que les chiffres qu'il servait à afficher.",
+  },
+
+  {
+    id: "po51", cat: "power", diff: 1,
+    q: "D'où viennent les puissances de combat chiffrées ?",
+    a: ["Du manga lui-même", "De l'anime", "Des jeux vidéo", "Des magazines de fans"],
+    why: "Scouters et nombres sont dans les pages dessinées par Toriyama dès l'arrivée de Raditz.",
+  },
+
+  {
+    id: "po52", cat: "power", diff: 2,
+    q: "Quel mot japonais la série emploie-t-elle pour « puissance de combat » ?",
+    a: ["Sentôryoku", "Kiryoku", "Bujutsu", "Genkiryoku"],
+    why: "Littéralement la force au combat — le mot que le manga emploie chaque fois qu'un chiffre tombe.",
+  },
+
+  {
+    id: "po53", cat: "power", diff: 2,
+    q: "Comment s'appelle la collection de guides officiels parue à la fin du manga ?",
+    a: ["Daizenshuu", "Databook Z", "Kanzenshuu", "Shonen Files"],
+    why: "C'est de là que vient la plupart des chiffres que le manga n'a jamais donnés.",
+  },
+
+  {
+    id: "po54", cat: "power", diff: 2,
+    q: "D'où vient le fameux « It's over 9000 ! », absent de la version originale ?",
+    a: ["Du doublage anglais de l'anime", "Du manga", "D'un jeu vidéo", "D'un guide officiel"],
+    why: "Le chiffre d'origine est 8 000 : l'écart d'un doublage est devenu plus célèbre que la scène.",
+  },
+
+  {
+    id: "po55", cat: "power", diff: 2,
+    q: "Dans quel magazine le manga Dragon Ball Super est-il prépublié ?",
+    a: ["V-Jump", "Weekly Shōnen Jump", "Young Jump", "Shōnen Sunday"],
+    why: "Un mensuel de la même maison, où la série paraît un chapitre à la fois.",
+  },
+
+  {
+    id: "po56", cat: "power", diff: 3,
+    q: "En quelle année les scouters apparaissent-ils pour la première fois dans le magazine ?",
+    a: ["1988", "1984", "1991", "1995"],
+    why: "Avec Raditz, quatre ans après le premier chapitre de la série.",
+  },
+
+  {
+    id: "po57", cat: "power", diff: 3,
+    q: "Quand les guides officiels Daizenshuu ont-ils été publiés ?",
+    a: ["En 1995, à la fin du manga", "En 1988", "En 2003", "En 2015"],
+    why: "Publiés au moment où la prépublication s'achevait, ils font le bilan de onze ans de série.",
+  },
+
+  {
+    id: "po58", cat: "power", diff: 3,
+    q: "Qu'est-ce qui remplace le scouter chez les guerriers Z ?",
+    a: ["Rien : ils lisent le ki eux-mêmes", "Un scouter réparé par Bulma", "Un détecteur de la Capsule Corp", "Un cristal namek"],
+    why: "Sentir le ki rend l'appareil inutile — et permet de rester invisible à celui qui en porte un.",
+  },  /* ---------------------------------------------------------------
      COULISSES & CRÉATION
   --------------------------------------------------------------- */
   {
@@ -1298,7 +1570,7 @@ export const QUESTIONS = [
     id: 'co08', cat: 'coulisses', diff: 1,
     q: "En quelle année le premier chapitre de Dragon Ball a-t-il paru ?",
     a: ["1984", "1979", "1990", "1995"],
-    why: "La série s'installe alors dans le Weekly Shōnen Jump pour onze années.",
+    why: "Le début d'une série qui tiendra la couverture de son magazine pendant plus d'une décennie.",
   },
   {
     id: 'co09', cat: 'coulisses', diff: 1,
@@ -1340,7 +1612,7 @@ export const QUESTIONS = [
     id: 'co15', cat: 'coulisses', diff: 1,
     q: "Quel éditeur japonais publie Dragon Ball ?",
     a: ["Shueisha", "Kodansha", "Shogakukan", "Kadokawa"],
-    why: "La maison du Weekly Shōnen Jump, où la série est parue de bout en bout.",
+    why: "La maison qui édite l'hebdomadaire où la série est parue de bout en bout.",
   },
   {
     id: 'co16', cat: 'coulisses', diff: 1,
@@ -1550,5 +1822,73 @@ export const QUESTIONS = [
     a: ["Glénat", "Kana", "Pika", "Ki-oon"],
     why: "La première édition française paraît au début des années 1990, et la série n'a jamais changé de maison.",
   },
-]
+  {
+    id: "co49", cat: "coulisses", diff: 1,
+    q: "Dans quel sens se lit l'édition d'origine du manga ?",
+    a: ["De droite à gauche", "De gauche à droite", "De haut en bas", "En colonnes alternées"],
+    why: "Le sens de lecture japonais, que l'édition française a fini par respecter après des débuts inversés.",
+  },
+
+  {
+    id: "co50", cat: "coulisses", diff: 1,
+    q: "Lequel de ces mangas n'a jamais été prépublié dans le Weekly Shōnen Jump ?",
+    a: ["L'Attaque des Titans", "One Piece", "Naruto", "Bleach"],
+    why: "Il paraissait chez un éditeur concurrent, dans un mensuel d'un tout autre catalogue.",
+  },
+
+  {
+    id: "co51", cat: "coulisses", diff: 1,
+    q: "En quelle année Dragon Ball Super a-t-il commencé sa diffusion ?",
+    a: ["2015", "2009", "2012", "2018"],
+    why: "Première série télévisée inédite après presque vingt ans d'absence.",
+  },
+
+  {
+    id: "co52", cat: "coulisses", diff: 2,
+    q: "Dans quelle région du Japon Akira Toriyama a-t-il vécu toute sa vie ?",
+    a: ["La préfecture d'Aichi", "Tokyo", "Osaka", "Hokkaidō"],
+    why: "Il a toujours refusé de monter à Tokyo, et envoyait ses planches depuis sa région natale.",
+  },
+
+  {
+    id: "co53", cat: "coulisses", diff: 2,
+    q: "Quelle émission a fait connaître Dragon Ball au public français à partir de 1988 ?",
+    a: ["Le Club Dorothée", "Récré A2", "Les Minikeums", "Téléchat"],
+    why: "Une génération entière a découvert la série là, bien avant que le manga ne soit traduit.",
+  },
+
+  {
+    id: "co54", cat: "coulisses", diff: 2,
+    q: "Comment s'appelle, au Japon, l'édition grand format que la France publie sous le nom de Perfect Edition ?",
+    a: ["Kanzenban", "Bunkoban", "Aizoban", "Shinsoban"],
+    why: "Grand format, pages couleur restaurées et nouvelles couvertures signées de l'auteur.",
+  },
+
+  {
+    id: "co55", cat: "coulisses", diff: 2,
+    q: "Quelle distinction française Akira Toriyama a-t-il reçue en 2019 ?",
+    a: ["Chevalier des Arts et des Lettres", "La Légion d'honneur", "Le prix Goncourt", "Un César d'honneur"],
+    why: "Une reconnaissance rare pour un auteur de manga, dans le pays qui l'a le plus lu après le Japon.",
+  },
+
+  {
+    id: "co56", cat: "coulisses", diff: 3,
+    q: "Quel titre porte le tout premier chapitre du manga ?",
+    a: ["Bulma et Son Goku", "La quête des sept boules", "Le garçon à la queue", "Le nuage magique"],
+    why: "Les deux noms du titre disent déjà le duo qui lance toute l'aventure.",
+  },
+
+  {
+    id: "co57", cat: "coulisses", diff: 3,
+    q: "Combien d'années séparent la fin de Dragon Ball GT du retour de la licence au cinéma ?",
+    a: ["Environ quinze ans", "Deux ans", "Cinq ans", "Vingt-cinq ans"],
+    why: "La série s'arrête en 1997 ; il faut attendre 2013 pour un nouveau long métrage.",
+  },
+
+  {
+    id: "co58", cat: "coulisses", diff: 3,
+    q: "Quel âge avait Akira Toriyama quand le premier chapitre est paru ?",
+    a: ["29 ans", "22 ans", "35 ans", "42 ans"],
+    why: "Né en avril 1955, il avait déjà quatre ans de Dr Slump derrière lui.",
+  },]
 

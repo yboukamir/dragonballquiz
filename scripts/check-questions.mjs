@@ -1,7 +1,7 @@
 import { QUESTIONS as FR } from '../src/data/questions.fr.js'
 import { QUESTIONS as EN } from '../src/data/questions.en.js'
 import { CATEGORIES } from '../src/data/categories.js'
-import { buildRound, DIFFICULTIES, POINTS, scoreRound } from '../src/lib/quiz.js'
+import { buildRound, DIFFICULTIES, POINTS, pointsOf, scoreRound } from '../src/lib/quiz.js'
 import { ratioDe } from '../src/lib/ranks.js'
 import frStrings from '../src/i18n/fr.js'
 import enStrings from '../src/i18n/en.js'
@@ -121,13 +121,22 @@ console.log('\n=== Barème pondéré ===')
         err(`barème/${c.id}/${d.id} : le total en jeu dépend des réponses`)
       }
 
-      // Une manche à moitié réussie sert de témoin : son taux doit rester
-      // dans les bornes, quelle que soit la répartition des paliers tirés.
-      const moitie = scoreRound(round, round.map((_, i) => i % 2 === 0))
-      const r = ratioDe(moitie)
-      if (!(r > 0 && r < 1)) err(`barème/${c.id}/${d.id} : taux hors bornes (${r})`)
-      minRatio = Math.min(minRatio, r)
-      maxRatio = Math.max(maxRatio, r)
+      // Écart maximal du barème, à nombre de bonnes réponses égal. On ne
+      // tire pas au sort : les k meilleures et les k pires questions de la
+      // manche donnent les deux bornes exactes, donc un chiffre stable d'une
+      // exécution à l'autre — sans quoi le nombre affiché ici serait du bruit.
+      const valeurs = round.map(pointsOf).sort((a, b) => a - b)
+      const k = Math.floor(round.length / 2)
+      const somme = (liste) => liste.reduce((t, v) => t + v, 0)
+      const total = somme(valeurs)
+      const bas = somme(valeurs.slice(0, k)) / total
+      const haut = somme(valeurs.slice(-k)) / total
+
+      if (!(bas > 0 && haut < 1 && bas <= haut)) {
+        err(`barème/${c.id}/${d.id} : bornes incohérentes (${bas} … ${haut})`)
+      }
+      minRatio = Math.min(minRatio, bas)
+      maxRatio = Math.max(maxRatio, haut)
     }
   }
   console.log(
