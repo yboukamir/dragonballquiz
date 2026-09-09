@@ -3,6 +3,19 @@
 Quiz de fan bilingue sur l'univers Dragon Ball. Site statique, React + Tailwind CSS,
 sans backend : les meilleurs scores vivent dans le `localStorage` du visiteur.
 
+**[dragonballquiz.com](https://dragonballquiz.com/)** · [English version](https://dragonballquiz.com/en/)
+
+## Aperçu
+
+![Écran d'accueil : titre en lettrage manga, choix de catégorie et de niveau](docs/apercu-accueil.png)
+
+| En partie | Fin de partie |
+| --- | --- |
+| ![Écran de quiz : question, réponses et feedback avec explication](docs/apercu-quiz.png) | ![Écran de résultat : rang atteint, score et puissance de combat](docs/apercu-resultat.png) |
+
+Captures régénérables avec `node scripts/captures.mjs` (voir l'en-tête du fichier
+pour le prérequis).
+
 ## Stack
 
 - **React 19** (aucun routeur : une seule page, trois écrans pilotés par un état local)
@@ -25,6 +38,7 @@ npm run dev
 | `npm run lint` | oxlint |
 | `npm run check` | valide les deux banques, leur parité et celle des dictionnaires |
 | `npm run check:share` | affiche le texte de partage et les rangs, dans les deux langues |
+| `node scripts/captures.mjs` | régénère les captures du README (voir l'en-tête du fichier) |
 
 ## Structure
 
@@ -54,9 +68,9 @@ src/
 ### Langues
 
 Le site est bilingue français / anglais, avec **une URL par langue** :
-`https://dragonballquiz.com/` pour le français, `/en/` pour l anglais. Chacune est
+`https://dragonballquiz.com/` pour le français, `/en/` pour l'anglais. Chacune est
 une page HTML distincte, avec sa propre balise `lang`, son `title`, sa
-`description`, son `canonical` et les `hreflang` croisés — c est ce qui les rend
+`description`, son `canonical` et les `hreflang` croisés — c'est ce qui les rend
 indexables séparément.
 
 - `src/i18n/fr.js` et `en.js` : toutes les chaînes d'interface. Les valeurs qui
@@ -80,20 +94,20 @@ pour une seule banque, au lieu de 88 Ko si les deux étaient empilées.
   « undefined » à l'écran, sans erreur ni avertissement.
 
 Le sélecteur est présent sur les trois écrans. En pleine partie, changer de
-langue ramène à l accueil : la manche en cours porte des questions dans
-l ancienne langue, la poursuivre mélangerait les deux. Sur l écran de résultat
-en revanche, rien n est perdu — le score est déjà enregistré — donc l écran se
-contente de se retraduire, et le récapitulatif se referme puisqu il contient les
-questions telles qu elles ont été posées.
+langue ramène à l'accueil : la manche en cours porte des questions dans
+l'ancienne langue, la poursuivre mélangerait les deux. Sur l'écran de résultat
+en revanche, rien n'est perdu — le score est déjà enregistré — donc l'écran se
+contente de se retraduire, et le récapitulatif se referme puisqu'il contient les
+questions telles qu'elles ont été posées.
 
-**Comment la langue est décidée, et pourquoi dans cet ordre.** L URL fait foi.
-Un choix explicite enregistré lors d une visite précédente redirige vers la
+**Comment la langue est décidée, et pourquoi dans cet ordre.** L'URL fait foi.
+Un choix explicite enregistré lors d'une visite précédente redirige vers la
 langue correspondante ; à défaut, la page servie décide. La langue du navigateur
-n est **jamais** consultée.
+n'est **jamais** consultée.
 
 Ce dernier point est délibéré : Googlebot explore le plus souvent en
 `Accept-Language: en`. Le rediriger de `/` vers `/en/` empêcherait la version
-française d être indexée. Un robot n ayant pas de `localStorage`, se fier au seul
+française d'être indexée. Un robot n'ayant pas de `localStorage`, se fier au seul
 choix explicite rend la redirection invisible pour lui.
 
 Le prix à payer : un anglophone qui arrive pour la première fois sur `/` voit le
@@ -101,7 +115,7 @@ français, et doit cliquer sur EN. Le sélecteur est présent sur les trois écr
 en haut de page.
 
 Le sélecteur est fait de **vrais liens** `<a href>` vers `/` et `/en/` : un moteur
-doit pouvoir suivre le chemin vers l autre version, et un clic du milieu doit
+doit pouvoir suivre le chemin vers l'autre version, et un clic du milieu doit
 ouvrir un onglet. Le clic simple est intercepté pour basculer sans rechargement,
 via `pushState` — le bouton précédent revient donc bien à la langue précédente.
 
