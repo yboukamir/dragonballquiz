@@ -53,10 +53,11 @@ src/
 
 ### Langues
 
-Le site est bilingue français / anglais. La langue de départ suit le choix
-explicite du visiteur s'il en a fait un, sinon celle de son navigateur — un
-anglophone arrivant sur un domaine en `.com` ne devrait pas avoir à chercher le
-sélecteur, et un francophone non plus.
+Le site est bilingue français / anglais, avec **une URL par langue** :
+`https://dragonballquiz.com/` pour le français, `/en/` pour l anglais. Chacune est
+une page HTML distincte, avec sa propre balise `lang`, son `title`, sa
+`description`, son `canonical` et les `hreflang` croisés — c est ce qui les rend
+indexables séparément.
 
 - `src/i18n/fr.js` et `en.js` : toutes les chaînes d'interface. Les valeurs qui
   dépendent d'un nombre sont des **fonctions** et non des gabarits à trous :
@@ -85,11 +86,24 @@ en revanche, rien n est perdu — le score est déjà enregistré — donc l éc
 contente de se retraduire, et le récapitulatif se referme puisqu il contient les
 questions telles qu elles ont été posées.
 
-**Limite connue.** Les deux langues partagent une seule URL, et le HTML servi est
-en français : les moteurs de recherche n'indexeront donc que la version française.
-Un vrai référencement bilingue demanderait des URL distinctes (`/en/`) et des
-balises `hreflang`, ce qui suppose un pré-rendu — hors périmètre pour un site
-entièrement client.
+**Comment la langue est décidée, et pourquoi dans cet ordre.** L URL fait foi.
+Un choix explicite enregistré lors d une visite précédente redirige vers la
+langue correspondante ; à défaut, la page servie décide. La langue du navigateur
+n est **jamais** consultée.
+
+Ce dernier point est délibéré : Googlebot explore le plus souvent en
+`Accept-Language: en`. Le rediriger de `/` vers `/en/` empêcherait la version
+française d être indexée. Un robot n ayant pas de `localStorage`, se fier au seul
+choix explicite rend la redirection invisible pour lui.
+
+Le prix à payer : un anglophone qui arrive pour la première fois sur `/` voit le
+français, et doit cliquer sur EN. Le sélecteur est présent sur les trois écrans,
+en haut de page.
+
+Le sélecteur est fait de **vrais liens** `<a href>` vers `/` et `/en/` : un moteur
+doit pouvoir suivre le chemin vers l autre version, et un clic du milieu doit
+ouvrir un onglet. Le clic simple est intercepté pour basculer sans rechargement,
+via `pushState` — le bouton précédent revient donc bien à la langue précédente.
 
 ### Ajouter des questions
 
@@ -270,6 +284,7 @@ généralement de `www/`. En FTP/SFTP :
 
 ```
 dist/index.html      → www/index.html
+dist/en/index.html   → www/en/index.html
 dist/assets/         → www/assets/
 dist/.htaccess       → www/.htaccess
 dist/favicon.svg     → www/favicon.svg
@@ -286,8 +301,9 @@ lftp -c "open -u UTILISATEUR,MOTDEPASSE ftp.cluster0XX.hosting.ovh.net; mirror -
 Points d'attention :
 
 - `.htaccess` est un fichier caché — vérifier que le client FTP l'envoie bien.
-- `vite.config.js` utilise `base: './'`, donc le site fonctionne aussi depuis un
-  sous-dossier si besoin de le tester avant bascule.
+- `vite.config.js` utilise `base: '/'` : le site doit vivre à la racine du domaine.
+  Il sert deux pages à des profondeurs différentes (`/` et `/en/`) qui partagent
+  les mêmes assets, ce que des chemins relatifs rendraient impossible.
 - Aucune règle de réécriture n'est nécessaire : le site est une page unique.
 
 ## Droits d'auteur

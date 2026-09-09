@@ -6,31 +6,38 @@ export const LANGUES = { fr, en }
 export const CODES = Object.keys(LANGUES)
 export const STORAGE_KEY = 'dbq.lang.v1'
 
+/** Chemin canonique d'une langue. Le français vit à la racine. */
+export function cheminDe(code) {
+  return code === 'fr' ? '/' : `/${code}/`
+}
+
 /**
- * Langue de départ : le choix explicite du visiteur d'abord, sinon celle
- * de son navigateur. Un francophone qui arrive sur un domaine en .com ne
- * devrait pas avoir à chercher le sélecteur, et l'inverse est tout aussi
- * vrai — d'où la détection plutôt qu'un défaut arbitraire.
+ * Langue portée par l'URL. C'est la source de vérité : chaque langue a sa
+ * propre page, sa propre balise `lang` et sa propre description, ce qui la
+ * rend indexable séparément. Déduire la langue d'ailleurs ferait diverger
+ * ce qu'un robot lit dans le HTML de ce qu'il verrait à l'écran.
  */
-export function detecterLangue() {
+export function langueDepuisURL(pathname = window.location.pathname) {
+  const segment = pathname.split('/').filter(Boolean)[0]
+  return segment && LANGUES[segment] ? segment : 'fr'
+}
+
+/**
+ * Langue explicitement choisie lors d'une visite précédente, ou `null`.
+ *
+ * Volontairement distinct de la langue du navigateur : rediriger selon
+ * `Accept-Language` enverrait Googlebot, qui explore le plus souvent en
+ * anglais, de `/` vers `/en/` — et la version française ne serait jamais
+ * indexée. Un robot n'ayant pas de `localStorage`, se fier au seul choix
+ * explicite garde la redirection invisible pour eux.
+ */
+export function preferenceEnregistree() {
   try {
     const choisie = window.localStorage.getItem(STORAGE_KEY)
-    if (choisie && LANGUES[choisie]) return choisie
+    return choisie && LANGUES[choisie] ? choisie : null
   } catch {
-    /* stockage indisponible : on retombe sur la détection */
+    return null
   }
-
-  try {
-    const preferees = navigator.languages?.length ? navigator.languages : [navigator.language]
-    for (const etiquette of preferees) {
-      const code = String(etiquette).toLowerCase().split('-')[0]
-      if (LANGUES[code]) return code
-    }
-  } catch {
-    /* navigator indisponible */
-  }
-
-  return 'fr'
 }
 
 export const LangContext = createContext(null)
