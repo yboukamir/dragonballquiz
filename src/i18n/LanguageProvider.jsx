@@ -54,11 +54,14 @@ export default function LanguageProvider({ children }) {
   }, [])
 
   // Bouton précédent / suivant : l'URL change sans que React en soit averti.
+  // On enregistre aussi la préférence, car revenir sur la page française est
+  // un acte délibéré : sans cela, un rafraîchissement renverrait le visiteur
+  // vers la langue qu'il vient justement de quitter.
   useEffect(() => {
-    const surNavigation = () => setLangEtat(langueDepuisURL())
+    const surNavigation = () => setLang(langueDepuisURL(), { pousserHistorique: false })
     window.addEventListener('popstate', surNavigation)
     return () => window.removeEventListener('popstate', surNavigation)
-  }, [])
+  }, [setLang])
 
   const t = LANGUES[lang]
 
