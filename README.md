@@ -49,11 +49,13 @@ src/
 │   ├── questions.fr.js    240 questions, 5 catégories, 3 niveaux
 │   └── questions.en.js    la même banque en anglais
 ├── lib/
-│   ├── quiz.js            niveaux, tirage d'une manche, mélange
+│   ├── quiz.js            niveaux, barème, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
 │   ├── share.js           résumé partagé (Web Share natif, sinon presse-papier)
-│   ├── storage.js         meilleurs scores par mode (localStorage, migration v1→v2)
+│   ├── storage.js         meilleurs scores par mode (localStorage, migrations v1→v3)
 │   ├── history.js         journal des 20 dernières parties
+│   ├── labels.js          libellés d'un enregistrement, quelle que soit sa version
+│   ├── format.js          nombres formatés selon la langue
 │   └── accents.js         table des accents de couleur
 ├── i18n/                  dictionnaires fr / en + contexte de langue
 ├── hooks/
@@ -197,6 +199,36 @@ suivants de moins en moins.
 
 Le script de mesure tient en quelques lignes : jouer deux manches d'affilée et
 compter les identifiants communs, répété quelques centaines de fois.
+
+### Barème pondéré
+
+Une bonne réponse ne rapporte pas partout la même chose :
+
+| Palier de la question | Points |
+| --- | --- |
+| Facile | 300 |
+| Moyenne | 500 |
+| Difficile | 1 000 |
+
+Chaque manche mélange les paliers, ce qui rend le décompte brut trompeur : deux
+joueurs à 5/10 n'ont pas fourni le même effort si l'un a répondu aux six questions
+difficiles et l'autre aux quatre moyennes. Sur une manche difficile type
+(6 × 1 000 + 4 × 500 = 8 000 points en jeu), le premier fait 5 000 points, soit
+63 % — rang Super Saiyan — quand le second fait 3 000 points, soit 38 % —
+rang Élève de la Tortue. `npm run check` mesure cet écart : à 5/10, le taux réel
+va de 38 % à 59 % selon les questions tombées.
+
+Ce taux pondéré, et non plus le rapport de bonnes réponses, décide désormais du
+rang, de la puissance de combat et du record. Le nombre de bonnes réponses reste
+affiché partout : c'est ce qu'on annonce à un ami, les points disent ce que ça vaut.
+
+**Compatibilité.** Les records et les parties enregistrés avant le barème n'ont
+pas de points. Plutôt que de les effacer ou de leur en inventer, `ratioDe`
+retombe sur leur rapport brut et l'affichage sur leur fraction. Un joueur peut
+donc voir, un temps, des lignes calculées sur deux échelles ; la sienne se
+recale dès sa partie suivante. Le stockage est passé en `dbq.best.v3` pour cette
+raison : la forme n'a pas changé, mais le critère de comparaison si, et les deux
+ne se départagent pas.
 
 ### Mode chrono
 

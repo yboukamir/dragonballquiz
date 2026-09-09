@@ -24,7 +24,7 @@ function lire() {
   }
 }
 
-/** @returns {Array<{category, difficulty, chrono, score, total, date}>} du plus récent au plus ancien */
+/** @returns {Array<{category, difficulty, chrono, score, total, points, maxPoints, date}>} du plus récent au plus ancien */
 export function loadHistory() {
   return lire()
 }
@@ -38,6 +38,10 @@ export function pushGame(partie) {
     chrono: Boolean(partie.chrono),
     score: partie.score,
     total: partie.total,
+    // Ajoutés avec le barème pondéré. Les parties plus anciennes n'en ont
+    // pas : `ratioDe` retombe alors sur le rapport brut.
+    points: partie.points,
+    maxPoints: partie.maxPoints,
     date: new Date().toISOString(),
   }
 

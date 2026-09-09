@@ -43,6 +43,45 @@ export const DIFFICULTIES = [
 export const getDifficulty = (id) =>
   DIFFICULTIES.find((d) => d.id === id) ?? DIFFICULTIES[0]
 
+/**
+ * Barème : ce que rapporte une bonne réponse, selon le palier de la question.
+ *
+ * Une manche mélange toujours plusieurs paliers (voir `mix` ci-dessus).
+ * Compter chaque bonne réponse pour un point revenait donc à payer une
+ * évidence au prix d'un détail que presque personne ne connaît. Trois
+ * valeurs rondes suffisent : l'écart doit se sentir sans qu'on ait à
+ * calculer.
+ */
+export const POINTS = { 1: 300, 2: 500, 3: 1000 }
+
+export const pointsOf = (question) => POINTS[question?.diff] ?? POINTS[1]
+
+/**
+ * Bilan d'une manche : bonnes réponses d'un côté, points de l'autre.
+ *
+ * Les deux sont conservés. Le rapport `points / maxPoints` sert au rang et
+ * à la puissance de combat, mais « 8/10 » reste ce qu'on annonce à un ami :
+ * le remplacer par un total de points seul rendrait le score illisible.
+ *
+ * `results` fait foi sur le nombre de questions réellement jouées.
+ */
+export function scoreRound(round, results) {
+  let correct = 0
+  let points = 0
+  let maxPoints = 0
+
+  for (let i = 0; i < results.length; i++) {
+    const valeur = pointsOf(round?.[i])
+    maxPoints += valeur
+    if (results[i]) {
+      correct++
+      points += valeur
+    }
+  }
+
+  return { correct, total: results.length, points, maxPoints }
+}
+
 /** Regroupe une banque par catégorie, sans hypothèse sur la langue. */
 export function groupByCategory(questions) {
   const parCategorie = {}

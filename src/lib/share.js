@@ -1,4 +1,5 @@
-import { getRank, toPowerLevel, formatPowerLevel } from './ranks.js'
+import { getRank, ratioDe, toPowerLevel } from './ranks.js'
+import { formatNombre } from './format.js'
 
 export const SITE_URL = 'https://dragonballquiz.com'
 
@@ -10,10 +11,10 @@ export const SITE_URL = 'https://dragonballquiz.com'
  *   lien. Les concaténer ici le ferait apparaître deux fois.
  * - `full` d'un seul tenant pour le presse-papier, qui n'ajoute rien.
  */
-export function buildSharePayload({ categoryId, difficultyId, results, chrono = false, t }) {
-  const total = results.length
-  const score = results.filter(Boolean).length
-  const rang = t.rangs[getRank(score, total).id].label
+export function buildSharePayload({ categoryId, difficultyId, bilan, results, chrono = false, t }) {
+  const { correct, total, points, maxPoints } = bilan
+  const ratio = ratioDe(bilan)
+  const rang = t.rangs[getRank(ratio).id].label
   const grille = results.map((ok) => (ok ? '🟡' : '⬛')).join('')
 
   const niveau = t.niveaux[difficultyId].label.toLowerCase()
@@ -22,8 +23,9 @@ export function buildSharePayload({ categoryId, difficultyId, results, chrono = 
   const corps = [
     `⚡ ${t.partage.titre} — ${t.categories[categoryId].label} (${mode})`,
     grille,
-    t.partage.ligneScore(score, total, rang),
-    t.partage.lignePuissance(formatPowerLevel(toPowerLevel(score, total), t.locale)),
+    t.partage.ligneScore(correct, total, rang),
+    t.partage.lignePoints(formatNombre(points, t.locale), formatNombre(maxPoints, t.locale)),
+    t.partage.lignePuissance(formatNombre(toPowerLevel(ratio), t.locale)),
   ].join('\n')
 
   return {

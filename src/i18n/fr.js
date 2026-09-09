@@ -12,6 +12,9 @@ export default {
   locale: 'fr-FR',
   nom: 'Français',
 
+  // Suffixe partagé par le tableau des scores et l'historique.
+  unites: { points: 'pts' },
+
   meta: {
     title: 'Dragon Ball Quiz — teste ta puissance de combat',
     description: (n) =>
@@ -40,8 +43,8 @@ export default {
   },
 
   carte: {
-    record: (score, total, niveau) => `Record ${score}/${total} · ${niveau}`,
-    recordChrono: (score, total, niveau) => `⏱ ${score}/${total} · ${niveau}`,
+    record: (valeur, niveau) => `Record ${valeur} · ${niveau}`,
+    recordChrono: (valeur, niveau) => `⏱ ${valeur} · ${niveau}`,
     jamaisTente: 'Jamais tenté',
     jamaisTenteChrono: '⏱ Jamais tenté',
   },
@@ -92,6 +95,7 @@ export default {
     faux: 'Raté.',
     tempsEcoule: 'Temps écoulé.',
     bonneReponse: (r) => `La bonne réponse : ${r}.`,
+    pointsQuestion: (n) => `${n} pts`,
     suivante: 'Question suivante →',
     voirResultat: 'Voir le résultat →',
   },
@@ -99,6 +103,7 @@ export default {
   resultat: {
     rangAtteint: 'Rang atteint',
     score: 'Score',
+    points: 'Points',
     puissance: 'Puissance',
     nouveauRecord: '★ Nouveau record dans cette catégorie',
     rejouer: '↻ Rejouer',
@@ -120,6 +125,7 @@ export default {
     zoneTexte: 'Résumé de la partie à copier',
     titre: 'Dragon Ball Quiz',
     ligneScore: (score, total, rang) => `Score : ${score}/${total} · Rang : ${rang}`,
+    lignePoints: (p, max) => `Points : ${p} / ${max}`,
     lignePuissance: (p) => `Puissance de combat estimée : ${p}`,
     invitation: 'À toi de faire mieux',
     mentionChrono: 'chrono ⏱',

@@ -1,4 +1,5 @@
 import { DIFFICULTIES } from './quiz.js'
+import { formatNombre } from './format.js'
 import { LANGUES } from '../i18n'
 
 /**
@@ -31,4 +32,28 @@ export function labelNiveau(enregistrement, t) {
 
   const reconnu = parLibelle.get(String(stocke).toLowerCase())
   return reconnu ? t.niveaux[reconnu].label : stocke
+}
+
+/**
+ * Un enregistrement porte-t-il des points ?
+ *
+ * Les records et les parties d'avant le barème pondéré n'en ont pas. Le
+ * savoir en un seul endroit évite que chaque affichage improvise son
+ * propre repli — et qu'un « 0 pts » vienne effacer un vieux record.
+ */
+export const aDesPoints = (enregistrement) => typeof enregistrement?.points === 'number'
+
+/**
+ * Ce qui tient lieu de score dans un enregistrement, sous forme compacte :
+ * les points quand on les connaît, la fraction de bonnes réponses sinon.
+ *
+ * C'est bien le nombre à battre : depuis le barème, un record se départage
+ * sur les points, et afficher « 8/10 » comme objectif laisserait croire
+ * qu'un autre 8/10 suffit à le dépasser.
+ */
+export function valeurScore(enregistrement, t) {
+  if (aDesPoints(enregistrement)) {
+    return `${formatNombre(enregistrement.points, t.locale)} ${t.unites.points}`
+  }
+  return `${enregistrement.score}/${enregistrement.total}`
 }

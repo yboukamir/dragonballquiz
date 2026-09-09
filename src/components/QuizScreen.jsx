@@ -6,6 +6,8 @@ import Panel from './ui/Panel'
 import Badge from './ui/Badge'
 import Button from './ui/Button'
 import useCountdown from '../hooks/useCountdown'
+import { pointsOf } from '../lib/quiz'
+import { formatNombre } from '../lib/format'
 import { useLang } from '../i18n'
 import LanguageSwitch from './LanguageSwitch'
 
@@ -76,6 +78,9 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
             {t.categories[category.id].label}
           </Badge>
           <Badge tone={difficulty.accent}>{t.niveaux[difficulty.id].label}</Badge>
+          {/* Une manche mélange les paliers : sans cette valeur, rien ne
+              distingue à l'écran la question à 300 de celle à 1000. */}
+          <Badge tone="jade">{t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}</Badge>
           {chrono && (
             <Badge tone="crimson" solid>
               {t.quiz.badgeChrono}

@@ -7,7 +7,9 @@ import ShareButton from './ShareButton'
 import ScoreTable from './ScoreTable'
 import GameHistory from './GameHistory'
 import { accent } from '../lib/accents'
-import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
+import { getRank, ratioDe, toPowerLevel } from '../lib/ranks'
+import { scoreRound } from '../lib/quiz'
+import { formatNombre } from '../lib/format'
 import { buildSharePayload } from '../lib/share'
 import { useLang } from '../i18n'
 import LanguageSwitch from './LanguageSwitch'
@@ -37,6 +39,8 @@ export default function ResultScreen({
     setShowRecap(false)
   }
 
+  const bilan = useMemo(() => scoreRound(round, results), [round, results])
+
   // Identite stable : ShareButton interroge navigator.canShare dans un memo
   // qui depend de cet objet.
   const sharePayload = useMemo(
@@ -44,19 +48,20 @@ export default function ResultScreen({
       buildSharePayload({
         categoryId: category.id,
         difficultyId: difficulty.id,
+        bilan,
         results,
         chrono,
         t,
       }),
-    [category.id, difficulty.id, results, chrono, t],
+    [category.id, difficulty.id, bilan, results, chrono, t],
   )
 
-  const total = results.length
-  const score = results.filter(Boolean).length
-  const rank = getRank(score, total)
+  const { correct, total, points, maxPoints } = bilan
+  const ratio = ratioDe(bilan)
+  const rank = getRank(ratio)
   const rangLibelle = t.rangs[rank.id]
   const a = accent(rank.color)
-  const power = toPowerLevel(score, total)
+  const power = toPowerLevel(ratio)
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 py-8 sm:py-12">
@@ -99,14 +104,28 @@ export default function ResultScreen({
             {rangLibelle.tagline}
           </p>
 
+          {/* Trois mesures, de la plus concrète à la plus décorative :
+              ce qu'on a réussi, ce que ça vaut, ce que ça donne en ki. */}
           <div className="mt-2 flex flex-wrap items-stretch justify-center gap-3">
             <div className="min-w-32 border-[3px] border-ink bg-ink px-5 py-3 text-paper">
               <p className="font-label text-xs uppercase tracking-[0.16em] text-paper-dim">
                 {t.resultat.score}
               </p>
               <p className="font-display text-4xl leading-none text-ki">
-                {score}
+                {correct}
                 <span className="text-2xl text-paper-dim">/{total}</span>
+              </p>
+            </div>
+
+            <div className="min-w-32 border-[3px] border-ink bg-ink px-5 py-3 text-paper">
+              <p className="font-label text-xs uppercase tracking-[0.16em] text-paper-dim">
+                {t.resultat.points}
+              </p>
+              <p className="font-display text-4xl leading-none text-jade">
+                {formatNombre(points, t.locale)}
+                <span className="text-2xl text-paper-dim">
+                  /{formatNombre(maxPoints, t.locale)}
+                </span>
               </p>
             </div>
 
@@ -115,7 +134,7 @@ export default function ResultScreen({
                 {t.resultat.puissance}
               </p>
               <p className="font-display text-4xl leading-none text-orange">
-                {formatPowerLevel(power, t.locale)}
+                {formatNombre(power, t.locale)}
               </p>
             </div>
           </div>

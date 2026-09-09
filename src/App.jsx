@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CATEGORIES } from './data/categories'
-import { buildRound, getDifficulty } from './lib/quiz'
+import { buildRound, getDifficulty, scoreRound } from './lib/quiz'
 import { loadBestScores, saveScore, clearBestScores } from './lib/storage'
 import { loadHistory, pushGame, clearHistory } from './lib/history'
 import { useLang } from './i18n'
@@ -66,10 +66,14 @@ export default function App() {
   function finish(roundResults) {
     setResults(roundResults)
 
-    const score = roundResults.filter(Boolean).length
+    // Un seul calcul du bilan, partagé par le record, le journal et
+    // l'écran de résultat : deux comptages séparés finiraient par diverger.
+    const bilan = scoreRound(round, roundResults)
     const { all, updated } = saveScore(categoryId, {
-      score,
-      total: roundResults.length,
+      score: bilan.correct,
+      total: bilan.total,
+      points: bilan.points,
+      maxPoints: bilan.maxPoints,
       difficultyId,
       // Libellé conservé en repli : les records enregistrés avant le bilingue
       // n ont pas d identifiant, et doivent rester lisibles.
@@ -88,8 +92,10 @@ export default function App() {
         difficultyId,
         difficulty: t.niveaux[difficultyId].label,
         chrono: roundChrono,
-        score,
-        total: roundResults.length,
+        score: bilan.correct,
+        total: bilan.total,
+        points: bilan.points,
+        maxPoints: bilan.maxPoints,
       }),
     )
 

@@ -11,6 +11,9 @@ export default {
   code: 'en',
   htmlLang: 'en',
   locale: 'en-GB',
+
+  // Suffix shared by the score table and the history list.
+  unites: { points: 'pts' },
   nom: 'English',
 
   meta: {
@@ -41,8 +44,8 @@ export default {
   },
 
   carte: {
-    record: (score, total, niveau) => `Best ${score}/${total} · ${niveau}`,
-    recordChrono: (score, total, niveau) => `⏱ ${score}/${total} · ${niveau}`,
+    record: (valeur, niveau) => `Best ${valeur} · ${niveau}`,
+    recordChrono: (valeur, niveau) => `⏱ ${valeur} · ${niveau}`,
     jamaisTente: 'Never attempted',
     jamaisTenteChrono: '⏱ Never attempted',
   },
@@ -93,6 +96,7 @@ export default {
     faux: 'Missed it.',
     tempsEcoule: "Time's up.",
     bonneReponse: (r) => `The answer was: ${r}.`,
+    pointsQuestion: (n) => `${n} pts`,
     suivante: 'Next question →',
     voirResultat: 'See the result →',
   },
@@ -100,6 +104,7 @@ export default {
   resultat: {
     rangAtteint: 'Rank reached',
     score: 'Score',
+    points: 'Points',
     puissance: 'Power',
     nouveauRecord: '★ New record in this category',
     rejouer: '↻ Play again',
@@ -121,6 +126,7 @@ export default {
     zoneTexte: 'Game summary to copy',
     titre: 'Dragon Ball Quiz',
     ligneScore: (score, total, rang) => `Score: ${score}/${total} · Rank: ${rang}`,
+    lignePoints: (p, max) => `Points: ${p} / ${max}`,
     lignePuissance: (p) => `Estimated power level: ${p}`,
     invitation: 'Beat that',
     mentionChrono: 'timed ⏱',

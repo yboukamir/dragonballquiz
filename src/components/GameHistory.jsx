@@ -1,9 +1,10 @@
 import { CATEGORIES } from '../data/categories'
 import { formatWhen } from '../lib/history'
-import { getRank } from '../lib/ranks'
+import { getRank, ratioDe } from '../lib/ranks'
+import { formatNombre } from '../lib/format'
 import { accent } from '../lib/accents'
 import { useLang } from '../i18n'
-import { labelNiveau } from '../lib/labels'
+import { aDesPoints, labelNiveau } from '../lib/labels'
 
 const ACCENTS = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.accent]))
 
@@ -34,8 +35,8 @@ export default function GameHistory({ history }) {
 
       <ol className="divide-y-2 divide-paper/10">
         {parties.map((partie, i) => {
-          const pct = partie.total > 0 ? partie.score / partie.total : 0
-          const rang = t.rangs[getRank(partie.score, partie.total).id]
+          const pct = ratioDe(partie)
+          const rang = t.rangs[getRank(pct).id]
           const a = accent(ACCENTS[partie.category] ?? 'orange')
           const courante = i === 0
 
@@ -65,14 +66,24 @@ export default function GameHistory({ history }) {
                   {partie.chrono && <span className="text-crimson"> ⏱</span>}
                 </span>
                 <span className="block font-label text-xs uppercase tracking-wider text-smoke">
-                  {labelNiveau(partie, t)} · {formatWhen(partie.date, t.locale)}
+                  {partie.score}/{partie.total} · {labelNiveau(partie, t)} ·{' '}
+                  {formatWhen(partie.date, t.locale)}
                   {courante && <span className="text-ki"> · {t.historique.cettePartie}</span>}
                 </span>
               </span>
 
               <span className="shrink-0 text-right">
                 <span className="block font-display text-lg leading-none tabular-nums text-paper">
-                  {partie.score}/{partie.total}
+                  {aDesPoints(partie) ? (
+                    <>
+                      {formatNombre(partie.points, t.locale)}
+                      <span className="text-xs text-smoke"> {t.unites.points}</span>
+                    </>
+                  ) : (
+                    <>
+                      {partie.score}/{partie.total}
+                    </>
+                  )}
                 </span>
                 <span className={`block font-label text-[0.65rem] uppercase tracking-wider ${a.text}`}>
                   {rang.label}

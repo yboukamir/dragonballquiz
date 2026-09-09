@@ -1,7 +1,8 @@
 import { QUESTIONS as FR } from '../src/data/questions.fr.js'
 import { QUESTIONS as EN } from '../src/data/questions.en.js'
 import { CATEGORIES } from '../src/data/categories.js'
-import { buildRound, DIFFICULTIES } from '../src/lib/quiz.js'
+import { buildRound, DIFFICULTIES, POINTS, scoreRound } from '../src/lib/quiz.js'
+import { ratioDe } from '../src/lib/ranks.js'
 import frStrings from '../src/i18n/fr.js'
 import enStrings from '../src/i18n/en.js'
 
@@ -82,6 +83,56 @@ for (const [langue, banque] of Object.entries(BANQUES)) {
       }
     }
   }
+}
+
+/* ---------------------------------------------------------------------
+   Barème pondéré : un sans-faute doit valoir exactement le total en jeu,
+   un zéro pointé valoir zéro, et le taux rester borné entre les deux.
+   Une erreur ici fausserait silencieusement rangs, records et partages.
+--------------------------------------------------------------------- */
+console.log('\n=== Barème pondéré ===')
+{
+  for (const niveau of [1, 2, 3]) {
+    if (!Number.isInteger(POINTS[niveau]) || POINTS[niveau] <= 0) {
+      err(`barème : palier ${niveau} sans valeur exploitable`)
+    }
+  }
+  if (!(POINTS[1] < POINTS[2] && POINTS[2] < POINTS[3])) {
+    err('barème : les paliers ne sont pas strictement croissants')
+  }
+
+  let minRatio = 1
+  let maxRatio = 0
+  for (const c of CATEGORIES) {
+    for (const d of DIFFICULTIES) {
+      const round = buildRound(FR, c.id, d.id)
+
+      const parfait = scoreRound(round, round.map(() => true))
+      if (parfait.points !== parfait.maxPoints) {
+        err(`barème/${c.id}/${d.id} : un sans-faute ne vaut pas le total en jeu`)
+      }
+      if (ratioDe(parfait) !== 1) err(`barème/${c.id}/${d.id} : sans-faute hors barème`)
+
+      const nul = scoreRound(round, round.map(() => false))
+      if (nul.points !== 0 || ratioDe(nul) !== 0) {
+        err(`barème/${c.id}/${d.id} : un zéro pointé ne vaut pas zéro`)
+      }
+      if (nul.maxPoints !== parfait.maxPoints) {
+        err(`barème/${c.id}/${d.id} : le total en jeu dépend des réponses`)
+      }
+
+      // Une manche à moitié réussie sert de témoin : son taux doit rester
+      // dans les bornes, quelle que soit la répartition des paliers tirés.
+      const moitie = scoreRound(round, round.map((_, i) => i % 2 === 0))
+      const r = ratioDe(moitie)
+      if (!(r > 0 && r < 1)) err(`barème/${c.id}/${d.id} : taux hors bornes (${r})`)
+      minRatio = Math.min(minRatio, r)
+      maxRatio = Math.max(maxRatio, r)
+    }
+  }
+  console.log(
+    `  5/10 vaut entre ${Math.round(minRatio * 100)} % et ${Math.round(maxRatio * 100)} % selon les questions tirées`,
+  )
 }
 
 /* ---------------------------------------------------------------------

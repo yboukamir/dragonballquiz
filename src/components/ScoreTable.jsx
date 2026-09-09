@@ -1,7 +1,8 @@
 import { CATEGORIES } from '../data/categories'
-import { getRank } from '../lib/ranks'
+import { getRank, ratioDe } from '../lib/ranks'
+import { formatNombre } from '../lib/format'
 import { useLang } from '../i18n'
-import { labelNiveau } from '../lib/labels'
+import { aDesPoints, labelNiveau } from '../lib/labels'
 
 /**
  * Tableau des meilleurs scores : une ligne par catégorie, une colonne par
@@ -26,7 +27,10 @@ function Cellule({ record, courante, nouveau, t }) {
     )
   }
 
-  const rang = t.rangs[getRank(record.score, record.total).id]
+  const rang = t.rangs[getRank(ratioDe(record)).id]
+  // Les records d'avant le barème n'ont pas de points : on retombe alors
+  // sur la fraction, qui est ce qu'ils mesuraient réellement.
+  const pondere = aDesPoints(record)
 
   return (
     <td
@@ -37,7 +41,16 @@ function Cellule({ record, courante, nouveau, t }) {
     >
       <span className="block font-display text-lg leading-none tabular-nums">
         {nouveau && <span aria-label={t.tableau.nouveauRecord}>★ </span>}
-        {record.score}/{record.total}
+        {pondere ? (
+          <>
+            {formatNombre(record.points, t.locale)}
+            <span className="text-xs text-ink/50"> {t.unites.points}</span>
+          </>
+        ) : (
+          <>
+            {record.score}/{record.total}
+          </>
+        )}
       </span>
       <span className="mt-0.5 block font-label text-[0.65rem] uppercase leading-tight tracking-wider text-ink/60">
         {labelNiveau(record, t)} · {rang.label}
