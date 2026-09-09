@@ -78,9 +78,6 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
             {t.categories[category.id].label}
           </Badge>
           <Badge tone={difficulty.accent}>{t.niveaux[difficulty.id].label}</Badge>
-          {/* Une manche mélange les paliers : sans cette valeur, rien ne
-              distingue à l'écran la question à 300 de celle à 1000. */}
-          <Badge tone="jade">{t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}</Badge>
           {chrono && (
             <Badge tone="crimson" solid>
               {t.quiz.badgeChrono}
@@ -115,6 +112,10 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           className="speedlines pointer-events-none absolute inset-0 opacity-[0.07]"
           aria-hidden="true"
         />
+        <span className="relative mb-3 inline-block border-2 border-ink bg-jade px-2 py-0.5 font-label text-xs uppercase tracking-[0.14em] text-ink">
+          {t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}
+        </span>
+
         <h2 className="relative font-display text-2xl leading-[1.05] sm:text-4xl">
           {question.prompt}
         </h2>
