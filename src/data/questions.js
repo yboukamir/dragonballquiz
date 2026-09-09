@@ -1,5 +1,5 @@
 /**
- * Banque de questions — 120 questions originales rédigées pour ce site.
+ * Banque de questions — 152 questions originales rédigées pour ce site.
  *
  * Convention d'écriture : `a[0]` est TOUJOURS la bonne réponse.
  * Les propositions sont mélangées à l'exécution (voir `src/lib/quiz.js`),
@@ -225,6 +225,55 @@ export const QUESTIONS = [
     why: "Zamasu le tue pour s'emparer de sa Potara, dans l'univers 10.",
   },
 
+  {
+    id: 'pe31', cat: 'personnages', diff: 1,
+    q: "Quelle inventrice de génie part avec Goku à la recherche des Dragon Balls ?",
+    a: ["Bulma", "Chichi", "Launch", "Videl"],
+    why: "Sa famille dirige la Capsule Corporation, ce qui lui donne des moyens illimités.",
+  },
+  {
+    id: 'pe32', cat: 'personnages', diff: 1,
+    q: "Qui vit à Kame House, la maison rose bâtie sur une petite île ?",
+    a: ["Tortue Géniale", "Karin", "Mr Popo", "Kaio du Nord"],
+    why: "Krilin et C-18 finiront par s'y installer avec lui.",
+  },
+  {
+    id: 'pe33', cat: 'personnages', diff: 1,
+    q: "Quel cochon capable de se métamorphoser accompagne Bulma et Goku ?",
+    a: ["Oolong", "Puar", "Karin", "Yajirobé"],
+    why: "Il ne tient sa forme que cinq minutes, séquelle d'une école buissonnière.",
+  },
+  {
+    id: 'pe34', cat: 'personnages', diff: 1,
+    q: "Quel chat blanc, au sommet d'une tour immense, cultive les haricots magiques ?",
+    a: ["Karin", "Puar", "Mr Popo", "Oolong"],
+    why: "Sa tour se dresse juste sous le Palais céleste.",
+  },
+  {
+    id: 'pe35', cat: 'personnages', diff: 1,
+    q: "Qui assiste le Dieu de la Terre au Palais céleste ?",
+    a: ["Mr Popo", "Karin", "Dendé", "Yajirobé"],
+    why: "Il y entretient les jardins et veille sur la Salle de l'Esprit et du Temps.",
+  },
+  {
+    id: 'pe36', cat: 'personnages', diff: 1,
+    q: "Quel Saiyan chauve et massif débarque sur Terre aux côtés de Vegeta ?",
+    a: ["Nappa", "Raditz", "Turles", "Broly"],
+    why: "Vegeta l'élimine lui-même dès qu'il le juge devenu inutile.",
+  },
+  {
+    id: 'pe37', cat: 'personnages', diff: 1,
+    q: "Quelle créature rose est née de la magie du sorcier Bibidi ?",
+    a: ["Majin Buu", "Dabra", "Cell", "Yakon"],
+    why: "Bibidi l'avait scellée dans un cocon avant que son fils Babidi ne la réveille.",
+  },
+  {
+    id: 'pe38', cat: 'personnages', diff: 1,
+    q: "Quel petit compagnon au visage blanc ne quitte jamais Ten Shin Han ?",
+    a: ["Chaozu", "Puar", "Oolong", "Mr Popo"],
+    why: "Il se sacrifie contre Nappa en tentant de s'autodétruire.",
+  },
+
   /* ---------------------------------------------------------------
      SAGAS
   --------------------------------------------------------------- */
@@ -410,6 +459,65 @@ export const QUESTIONS = [
     why: "Frère jumeau de Beerus, il veut s'emparer de la Terre de l'univers 7 pour sa cuisine.",
   },
 
+  {
+    id: 'sa31', cat: 'sagas', diff: 1,
+    q: "Quelle planète les Saiyans habitaient-ils avant sa destruction ?",
+    a: ["La planète Vegeta", "Namek", "Sadala", "Yardrat"],
+    why: "Elle portait le nom de leur roi, après avoir été prise à ses habitants d'origine.",
+  },
+  {
+    id: 'sa32', cat: 'sagas', diff: 1,
+    q: "Quel est le tout premier adversaire de Dragon Ball Z, venu chercher Goku sur Terre ?",
+    a: ["Raditz", "Vegeta", "Nappa", "Freezer"],
+    why: "C'est lui qui révèle à Goku ses origines saiyanes.",
+  },
+  {
+    id: 'sa33', cat: 'sagas', diff: 1,
+    q: "À l'origine, combien de vœux Shenron exauce-t-il ?",
+    a: ["Un seul", "Deux", "Trois", "Sept"],
+    why: "Porunga, sur Namek, en accorde trois — d'où la course pour l'atteindre en premier.",
+  },
+  {
+    id: 'sa34', cat: 'sagas', diff: 1,
+    q: "Comment s'appelle l'entreprise dirigée par la famille de Bulma ?",
+    a: ["La Capsule Corporation", "Le Ruban Rouge", "La Ginyu Corp", "La Brief Company"],
+    why: "Son père, le Dr Brief, est l'inventeur des capsules Hoi-Poi.",
+  },
+  {
+    id: 'sa35', cat: 'sagas', diff: 1,
+    q: "Que contiennent les capsules Hoi-Poi ?",
+    a: [
+      "Des véhicules et des maisons miniaturisés",
+      "Des armes de l'armée du Ruban Rouge",
+      "Des médicaments de régénération",
+      "Des scouters de rechange",
+    ],
+    why: "On les lance au sol, et l'objet reprend sa taille réelle dans un nuage de fumée.",
+  },
+  {
+    id: 'sa36', cat: 'sagas', diff: 1,
+    q: "Sous quelle identité costumée Gohan combat-il le crime en ville ?",
+    a: ["Great Saiyaman", "Mr Satan", "Jackie Chun", "Le Grand Guerrier"],
+    why: "Un déguisement fourni par Bulma, que Videl perce à jour très vite.",
+  },
+  {
+    id: 'sa37', cat: 'sagas', diff: 1,
+    q: "Comment Goku permet-il à Piccolo d'abattre Raditz ?",
+    a: [
+      "Il le retient à mains nues et accepte de mourir avec lui",
+      "Il l'assomme d'un Kaméhaméha",
+      "Il le piège dans un récipient",
+      "Il le distrait pendant que Gohan attaque",
+    ],
+    why: "Le rayon perforant de Piccolo les traverse tous les deux.",
+  },
+  {
+    id: 'sa38', cat: 'sagas', diff: 1,
+    q: "Combien d'années s'écoulent entre la mort de Goku face à Cell et son retour au tournoi ?",
+    a: ["Sept ans", "Trois ans", "Cinq ans", "Dix ans"],
+    why: "Goten naît et grandit pendant cette absence, sans jamais connaître son père.",
+  },
+
   /* ---------------------------------------------------------------
      TECHNIQUES & TRANSFORMATIONS
   --------------------------------------------------------------- */
@@ -593,6 +701,60 @@ export const QUESTIONS = [
     q: "Quelle forme de Freezer, supérieure au Golden, apparaît dans l'arc Granolah du manga Super ?",
     a: ["Le Black Freezer", "Meta-Cooler", "Freezer Ultime", "Le Golden Freezer 2"],
     why: "Obtenue au prix de dix ans d'entraînement dans la Salle de l'Esprit et du Temps.",
+  },
+
+  {
+    id: 'te31', cat: 'techniques', diff: 1,
+    q: "De quelle couleur est l'aura d'un Super Saiyan ?",
+    a: ["Dorée", "Bleue", "Rouge", "Verte"],
+    why: "Elle accompagne les cheveux dressés et le regard qui vire au turquoise.",
+  },
+  {
+    id: 'te32', cat: 'techniques', diff: 1,
+    q: "Quelle fusion impose aux deux guerriers d'exécuter une danse parfaitement synchronisée ?",
+    a: ["La danse de Metamor", "Les Potaras", "L'absorption", "Le Kaio-ken"],
+    why: "Goku la rapporte du peuple de Metamor, croisé pendant son séjour dans l'au-delà.",
+  },
+  {
+    id: 'te33', cat: 'techniques', diff: 1,
+    q: "Que se passe-t-il si la danse de fusion est mal exécutée ?",
+    a: [
+      "La fusion réussit mais donne un guerrier ridicule et très faible",
+      "Rien du tout, il suffit de recommencer",
+      "La fusion devient définitive",
+      "Les deux guerriers perdent leurs pouvoirs",
+    ],
+    why: "Goten et Trunks en font deux fois l'expérience, pour le plus grand désespoir de Piccolo.",
+  },
+  {
+    id: 'te34', cat: 'techniques', diff: 1,
+    q: "Quelle partie du corps un Saiyan doit-il conserver pour se transformer en singe géant ?",
+    a: ["Sa queue", "Ses cheveux", "Ses yeux", "Ses mains"],
+    why: "La couper met fin à la transformation sur-le-champ.",
+  },
+  {
+    id: 'te35', cat: 'techniques', diff: 1,
+    q: "Combien de formes Freezer possède-t-il avant d'atteindre le Golden ?",
+    a: ["Quatre", "Trois", "Cinq", "Deux"],
+    why: "La quatrième, la plus épurée, est sa forme d'origine, longtemps bridée volontairement.",
+  },
+  {
+    id: 'te36', cat: 'techniques', diff: 1,
+    q: "Sur quoi Goku se déplace-t-il dans les airs avant de savoir voler ?",
+    a: ["Le Nuage Magique", "Le Bâton Magique", "Une capsule volante", "Le dos de Shenron"],
+    why: "Offert par Tortue Géniale, il ne porte que les cœurs purs.",
+  },
+  {
+    id: 'te37', cat: 'techniques', diff: 1,
+    q: "Quelle arme extensible Goku porte-t-il dans le dos, enfant ?",
+    a: ["Le Bâton Magique", "L'épée Z", "Un trident", "Le Nuage Magique"],
+    why: "Héritée de son grand-père adoptif, elle s'allonge à volonté sur commande.",
+  },
+  {
+    id: 'te38', cat: 'techniques', diff: 1,
+    q: "De quelle couleur sont les cheveux du Super Saiyan Blue ?",
+    a: ["Bleus", "Dorés", "Rouges", "Argentés"],
+    why: "Le rouge appartient au Super Saiyan God, l'argenté à l'Ultra Instinct.",
   },
 
   /* ---------------------------------------------------------------
@@ -782,6 +944,79 @@ export const QUESTIONS = [
     q: "Quelle puissance de combat Ten Shin Han affiche-t-il à l'arrivée des Saiyans ?",
     a: ["1 830", "1 480", "1 083", "2 400"],
     why: "Le plus élevé des combattants humains, Piccolo mis à part.",
+  },
+  {
+    id: 'po31', cat: 'power', diff: 1,
+    q: "Qui utilise des scouters dans la série ?",
+    a: ["Les soldats de l'armée de Freezer", "Les Nameks", "Les Kaioshins", "Les humains"],
+    why: "Les guerriers Z, eux, apprennent à sentir le ki sans le moindre appareil.",
+  },
+  {
+    id: 'po32', cat: 'power', diff: 1,
+    q: "Comment un combattant peut-il tromper un scouter ?",
+    a: [
+      "En abaissant volontairement son ki",
+      "En se déplaçant très vite",
+      "En se cachant derrière un obstacle",
+      "En criant très fort",
+    ],
+    why: "L'appareil ne lit que l'énergie émise : un ki masqué le rend aveugle.",
+  },
+  {
+    id: 'po33', cat: 'power', diff: 1,
+    q: "Où poussent les haricots magiques qui rendent toute son énergie à un blessé ?",
+    a: [
+      "Au sommet de la tour de Karin",
+      "Sur la planète Namek",
+      "Dans les jardins du Palais céleste",
+      "Derrière Kame House",
+    ],
+    why: "Karin les rationne sévèrement : il en pousse très peu à la fois.",
+  },
+  {
+    id: 'po34', cat: 'power', diff: 1,
+    q: "Que multiplie le Kaio-ken ?",
+    a: [
+      "La puissance de combat",
+      "La taille du combattant",
+      "La durée d'une transformation",
+      "La portée des attaques",
+    ],
+    why: "Multiplicateur au choix du combattant — mais le corps encaisse la facture.",
+  },
+  {
+    id: 'po35', cat: 'power', diff: 1,
+    q: "De quelle couleur est l'aura du Kaio-ken ?",
+    a: ["Rouge", "Bleue", "Dorée", "Verte"],
+    why: "D'où le contraste saisissant quand Goku le superpose au Super Saiyan Blue.",
+  },
+  {
+    id: 'po36', cat: 'power', diff: 1,
+    q: "Quelle particularité rend l'entraînement chez Kaio du Nord si éprouvant ?",
+    a: [
+      "Sa planète a une gravité dix fois supérieure à la Terre",
+      "L'air y est irrespirable",
+      "Le froid y est extrême",
+      "Le temps y passe cent fois plus vite",
+    ],
+    why: "Goku peine d'abord à simplement tenir debout, avant d'attraper le singe Bubbles.",
+  },
+  {
+    id: 'po37', cat: 'power', diff: 1,
+    q: "Comment Goku s'entraîne-t-il durant son voyage vers Namek ?",
+    a: [
+      "En augmentant la gravité de son vaisseau",
+      "Dans la Salle de l'Esprit et du Temps",
+      "Au sommet de la tour de Karin",
+      "En combattant des robots",
+    ],
+    why: "Il y monte jusqu'à cent fois la gravité terrestre, au bord de la rupture.",
+  },
+  {
+    id: 'po38', cat: 'power', diff: 1,
+    q: "Quel appareil ennemi Bulma parvient-elle à réparer pour les guerriers Z ?",
+    a: ["Un scouter", "Un vaisseau de Freezer", "Une cuve de régénération", "Une Potara"],
+    why: "Elle en traduit même le langage, ce qui permet de suivre les communications ennemies.",
   },
 ]
 

@@ -30,7 +30,7 @@ npm run dev
 
 ```
 src/
-├── data/questions.js      120 questions, 4 catégories, 3 niveaux
+├── data/questions.js      152 questions, 4 catégories, 3 niveaux
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
@@ -65,23 +65,28 @@ propositions, l'absence de doublons et la bonne répartition des réponses.
 
 | Niveau | Questions | Composition visée | Recouvrement entre deux parties |
 | --- | --- | --- | --- |
-| Facile | 10 | 70 % faciles, 30 % moyennes | ~6,8 / 10 |
-| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,9 / 10 |
+| Facile | 10 | 70 % faciles, 30 % moyennes | ~3,7 / 10 |
+| Moyen | 10 | 20 % faciles, 60 % moyennes, 20 % difficiles | ~3,6 / 10 |
 | Difficile | 10 | 40 % moyennes, 60 % difficiles | ~4,9 / 10 |
 
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
 
-**Pourquoi 10 questions partout.** La taille d'une manche est bornée par le
-vivier dans lequel elle puise : tirer `n` questions parmi `v` impose au minimum
-`2n − v` questions communes entre deux parties consécutives. Le mode difficile
-ne puise que dans les paliers moyen et difficile, soit 22 questions par
-catégorie ; à 15 questions par manche, 8 revenaient donc systématiquement.
+**Dimensionner la banque.** La variété d'un mode ne dépend pas du nombre total de
+questions, mais du vivier réellement atteint par son mélange. Deux règles suffisent
+à raisonner :
 
-Le mode facile reste le moins varié (~6,8 sur 10) : il tire 7 questions faciles
-parmi les 8 que compte chaque catégorie. Le corriger demande soit d'écrire
-davantage de questions faciles, soit d'ouvrir son mélange vers le palier moyen —
-au prix d'un mode d'entrée sensiblement moins accessible.
+- Tirer `n` questions parmi `v` impose au minimum `2n − v` questions communes entre
+  deux parties consécutives. C'est pour cette raison que le mode difficile est passé
+  de 15 à 10 questions : il ne puise que dans les paliers moyen et difficile, soit
+  22 questions par catégorie, ce qui condamnait 8 questions à revenir à chaque fois.
+- Au-delà de ce plancher, le recouvrement d'un palier vaut environ `q²/p`, où `q` est
+  le quota tiré dans ce palier et `p` sa taille. Le mode facile tirant 7 questions
+  faciles, passer de 8 à 16 faciles par catégorie a fait chuter son recouvrement de
+  6,8 à 3,7 sur 10.
+
+Le script de mesure tient en quelques lignes : jouer deux manches d'affilée et
+compter les identifiants communs, répété quelques centaines de fois.
 
 ### Partage du score
 
