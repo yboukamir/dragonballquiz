@@ -1,0 +1,9 @@
+# Fins de ligne normalisees en LF dans le depot : le site est deploye sur un
+# Apache Linux, et cela evite le bruit de diff entre postes Windows et macOS.
+* text=auto eol=lf
+
+# Fichiers binaires : aucune conversion.
+*.png binary
+*.jpg binary
+*.webp binary
+*.woff2 binary

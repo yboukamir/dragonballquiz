@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Design tokens — palette "encre & ki"
+   Volontairement loin du degrade violet/bleu generique : on part d'un
+   noir d'encre chaud, de papier creme, et de trois energies vives
+   (orange de gi, jaune de ki, cobalt) heritees de la palette shonen.
+------------------------------------------------------------------ */
+@theme {
+  --color-void: #08070c;
+  --color-ink: #0f0e14;
+  --color-ink-soft: #1b1922;
+  --color-smoke: #45414f;
+
+  --color-paper: #fff7e8;
+  --color-paper-dim: #efe2ca;
+
+  --color-orange: #ff6b00;
+  --color-ember: #e23a0e;
+  --color-ki: #ffc61a;
+  --color-cobalt: #1d4fd8;
+  --color-sky: #35a7ff;
+  --color-crimson: #e01b3c;
+  --color-jade: #2fbf71;
+
+  --font-display: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+
+  --shadow-ink: 5px 5px 0 0 var(--color-ink);
+  --shadow-ink-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-ink-lg: 8px 8px 0 0 var(--color-ink);
+
+  --animate-burst: burst 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+  --animate-rise: rise 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-charge: charge 1.6s ease-in-out infinite;
+  --animate-drift: drift 26s linear infinite;
+}
+
+@keyframes burst {
+  0% { transform: scale(0.7) rotate(-4deg); opacity: 0; }
+  60% { transform: scale(1.04) rotate(1deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes rise {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+@keyframes charge {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 240px 240px; }
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    /* Trame de demi-teinte : le "papier" imprime, pas un degrade. */
+    background-image:
+      radial-gradient(rgba(255, 247, 232, 0.05) 1px, transparent 1.2px),
+      radial-gradient(circle at 50% 0%, rgba(255, 107, 0, 0.16), transparent 60%);
+    background-size: 14px 14px, 100% 780px;
+    background-repeat: repeat, no-repeat;
+    background-attachment: scroll, fixed;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  button { font-family: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ki);
+    outline-offset: 3px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilitaires de composition manga
+------------------------------------------------------------------ */
+@utility ink-panel {
+  border: 3px solid var(--color-ink);
+  box-shadow: var(--shadow-ink);
+}
+
+/* Lignes de vitesse : trame radiale d'action, remplace tout degrade. */
+@utility speedlines {
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 247, 232, 0.13) 0deg 1.1deg,
+    transparent 1.1deg 4deg
+  );
+}
+
+@utility halftone {
+  background-image: radial-gradient(currentColor 1.4px, transparent 1.5px);
+  background-size: 8px 8px;
+}
+
+/* Titre "encre" : contour epais facon lettrage de couverture. */
+@utility title-ink {
+  -webkit-text-stroke: 3px var(--color-ink);
+  paint-order: stroke fill;
+}
+
+@utility tap-safe {
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
