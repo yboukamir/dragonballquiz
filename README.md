@@ -65,6 +65,11 @@ src/
 └── App.jsx                machine à états : accueil → quiz → résultat
 ```
 
+## Fonctionnement
+
+Les sections qui suivent documentent les décisions de conception plutôt que le
+code : ce qui a été arbitré, et pourquoi dans ce sens.
+
 ### Langues
 
 Le site est bilingue français / anglais, avec **une URL par langue** :
