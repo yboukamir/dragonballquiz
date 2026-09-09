@@ -39,14 +39,15 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [screen, roundKey])
 
-  // Changer de langue en pleine partie afficherait des questions dans une
-  // langue et des réponses déjà données dans l'autre : on revient à l'accueil.
+  // Une manche en cours porte des questions dans l'ancienne langue : la
+  // poursuivre mélangerait les deux, on revient donc à l'accueil. Les autres
+  // écrans se contentent de se retraduire — le score est déjà enregistré.
   // Réinitialisation pendant le rendu plutôt que dans un effet, pour éviter
   // le rendu intermédiaire où le quiz s'afficherait dans les deux langues.
   const [langPrecedente, setLangPrecedente] = useState(lang)
   if (lang !== langPrecedente) {
     setLangPrecedente(lang)
-    setScreen('home')
+    if (screen === 'quiz') setScreen('home')
   }
 
   const category = CATEGORIES.find((c) => c.id === categoryId) ?? null

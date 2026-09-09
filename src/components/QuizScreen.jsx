@@ -7,6 +7,7 @@ import Badge from './ui/Badge'
 import Button from './ui/Button'
 import useCountdown from '../hooks/useCountdown'
 import { useLang } from '../i18n'
+import LanguageSwitch from './LanguageSwitch'
 
 /** Valeur de `picked` quand le temps s'est écoulé sans réponse. */
 const TEMPS_ECOULE = -1
@@ -82,13 +83,18 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           )}
         </div>
 
-        <button
-          type="button"
-          onClick={onQuit}
-          className="font-label text-sm uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
-        >
-          {t.quiz.abandonner}
-        </button>
+        {/* Placé auprès d Abandonner : changer de langue interrompt aussi la
+            manche, autant regrouper les actions qui font quitter la partie. */}
+        <div className="flex items-center gap-3">
+          <LanguageSwitch />
+          <button
+            type="button"
+            onClick={onQuit}
+            className="font-label text-sm uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
+          >
+            {t.quiz.abandonner}
+          </button>
+        </div>
       </header>
 
       <ProgressBar current={index} total={round.length} results={results} />

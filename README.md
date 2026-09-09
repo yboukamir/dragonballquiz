@@ -78,6 +78,13 @@ pour une seule banque, au lieu de 88 Ko si les deux étaient empilées.
 - mêmes clés dans les deux dictionnaires, une clé oubliée produisant sinon un
   « undefined » à l'écran, sans erreur ni avertissement.
 
+Le sélecteur est présent sur les trois écrans. En pleine partie, changer de
+langue ramène à l accueil : la manche en cours porte des questions dans
+l ancienne langue, la poursuivre mélangerait les deux. Sur l écran de résultat
+en revanche, rien n est perdu — le score est déjà enregistré — donc l écran se
+contente de se retraduire, et le récapitulatif se referme puisqu il contient les
+questions telles qu elles ont été posées.
+
 **Limite connue.** Les deux langues partagent une seule URL, et le HTML servi est
 en français : les moteurs de recherche n'indexeront donc que la version française.
 Un vrai référencement bilingue demanderait des URL distinctes (`/en/`) et des

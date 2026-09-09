@@ -10,6 +10,7 @@ import { accent } from '../lib/accents'
 import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
 import { buildSharePayload } from '../lib/share'
 import { useLang } from '../i18n'
+import LanguageSwitch from './LanguageSwitch'
 
 export default function ResultScreen({
   category,
@@ -25,6 +26,16 @@ export default function ResultScreen({
 }) {
   const { t } = useLang()
   const [showRecap, setShowRecap] = useState(false)
+
+  // Le récapitulatif contient les questions telles qu'elles ont été posées,
+  // donc dans la langue de la partie. C'est exact, mais l'afficher d'office
+  // après un changement de langue ressemblerait à un oubli de traduction :
+  // on le referme, libre au joueur de le rouvrir.
+  const [langueRecap, setLangueRecap] = useState(t.code)
+  if (t.code !== langueRecap) {
+    setLangueRecap(t.code)
+    setShowRecap(false)
+  }
 
   // Identite stable : ShareButton interroge navigator.canShare dans un memo
   // qui depend de cet objet.
@@ -49,6 +60,10 @@ export default function ResultScreen({
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 py-8 sm:py-12">
+      <div className="flex justify-end">
+        <LanguageSwitch />
+      </div>
+
       <Panel className="overflow-hidden p-6 text-center sm:p-10">
         <span
           className="speedlines pointer-events-none absolute inset-0 opacity-10"
