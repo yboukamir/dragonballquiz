@@ -1,5 +1,6 @@
-import { CATEGORIES } from '../data/questions'
+import { CATEGORIES } from '../data/categories'
 import { getRank } from '../lib/ranks'
+import { useLang } from '../i18n'
 
 /**
  * Tableau des meilleurs scores : une ligne par catégorie, une colonne par
@@ -10,7 +11,7 @@ import { getRank } from '../lib/ranks'
  * La case qui vient d'être jouée est mise en évidence, et signalée d'une
  * étoile si elle constitue un nouveau record.
  */
-function Cellule({ record, courante, nouveau }) {
+function Cellule({ record, courante, nouveau, t }) {
   if (!record) {
     return (
       <td
@@ -24,7 +25,7 @@ function Cellule({ record, courante, nouveau }) {
     )
   }
 
-  const rang = getRank(record.score, record.total)
+  const rang = t.rangs[getRank(record.score, record.total).id]
 
   return (
     <td
@@ -34,7 +35,7 @@ function Cellule({ record, courante, nouveau }) {
       ].join(' ')}
     >
       <span className="block font-display text-lg leading-none tabular-nums">
-        {nouveau && <span aria-label="nouveau record">★ </span>}
+        {nouveau && <span aria-label={t.tableau.nouveauRecord}>★ </span>}
         {record.score}/{record.total}
       </span>
       <span className="mt-0.5 block font-label text-[0.65rem] uppercase leading-tight tracking-wider text-ink/60">
@@ -45,6 +46,7 @@ function Cellule({ record, courante, nouveau }) {
 }
 
 export default function ScoreTable({ bestScores, categoryId, chrono, isRecord }) {
+  const { t } = useLang()
   const joues = CATEGORIES.filter(
     (c) => bestScores[c.id]?.normal || bestScores[c.id]?.chrono,
   ).length
@@ -52,10 +54,9 @@ export default function ScoreTable({ bestScores, categoryId, chrono, isRecord })
   return (
     <section className="border-[3px] border-ink bg-paper text-ink shadow-[6px_6px_0_0_var(--color-void)]">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-ink px-4 py-3">
-        <h2 className="font-display text-2xl leading-none">Tableau des scores</h2>
+        <h2 className="font-display text-2xl leading-none">{t.tableau.titre}</h2>
         <p className="font-label text-xs uppercase tracking-[0.14em] text-ink/60">
-          {joues} catégorie{joues > 1 ? 's' : ''} sur {CATEGORIES.length} entamée
-          {joues > 1 ? 's' : ''}
+          {t.tableau.entamees(joues, CATEGORIES.length)}
         </p>
       </div>
 
@@ -64,7 +65,7 @@ export default function ScoreTable({ bestScores, categoryId, chrono, isRecord })
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <caption className="sr-only">
-            Meilleurs scores par catégorie et par mode de jeu
+            {t.tableau.legende}
           </caption>
           <thead>
             <tr>
@@ -72,19 +73,19 @@ export default function ScoreTable({ bestScores, categoryId, chrono, isRecord })
                 scope="col"
                 className="border-2 border-ink bg-ink px-3 py-2 text-left font-label text-xs uppercase tracking-[0.12em] text-paper"
               >
-                Catégorie
+                {t.tableau.colCategorie}
               </th>
               <th
                 scope="col"
                 className="border-2 border-ink bg-ink px-2 py-2 font-label text-xs uppercase tracking-[0.12em] text-paper"
               >
-                Classique
+                {t.tableau.colClassique}
               </th>
               <th
                 scope="col"
                 className="border-2 border-ink bg-ink px-2 py-2 font-label text-xs uppercase tracking-[0.12em] text-paper"
               >
-                ⏱ Chrono
+                {t.tableau.colChrono}
               </th>
             </tr>
           </thead>
@@ -103,15 +104,17 @@ export default function ScoreTable({ bestScores, categoryId, chrono, isRecord })
                       estCourante ? 'bg-ki/25' : '',
                     ].join(' ')}
                   >
-                    {c.label}
+                    {t.categories[c.id].label}
                   </th>
 
                   <Cellule
+                    t={t}
                     record={best.normal}
                     courante={estCourante && !chrono}
                     nouveau={estCourante && !chrono && isRecord}
                   />
                   <Cellule
+                    t={t}
                     record={best.chrono}
                     courante={estCourante && chrono}
                     nouveau={estCourante && chrono && isRecord}

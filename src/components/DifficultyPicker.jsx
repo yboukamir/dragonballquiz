@@ -1,18 +1,22 @@
 import { DIFFICULTIES } from '../lib/quiz'
 import { accent } from '../lib/accents'
+import { useLang } from '../i18n'
 
 /** Choix du niveau : trois paliers, un seul actif à la fois. */
 export default function DifficultyPicker({ value, onChange }) {
+  const { t } = useLang()
+
   return (
     <fieldset className="border-0 p-0">
       <legend className="mb-3 font-label text-sm uppercase tracking-[0.18em] text-paper-dim">
-        Niveau de difficulté
+        {t.accueil.legendeNiveau}
       </legend>
 
       <div className="grid gap-3 sm:grid-cols-3">
         {DIFFICULTIES.map((d) => {
           const a = accent(d.accent)
           const active = value === d.id
+          const libelle = t.niveaux[d.id]
 
           return (
             <button
@@ -29,13 +33,13 @@ export default function DifficultyPicker({ value, onChange }) {
               ].join(' ')}
             >
               <span className="flex w-full items-baseline justify-between gap-2">
-                <span className="font-display text-xl leading-none">{d.label}</span>
+                <span className="font-display text-xl leading-none">{libelle.label}</span>
                 <span className="font-label text-xs uppercase tracking-widest opacity-80">
-                  {d.subtitle}
+                  {libelle.sousTitre(d.count)}
                 </span>
               </span>
               <span className={`font-body text-xs ${active ? 'opacity-80' : 'text-paper-dim/70'}`}>
-                {d.blurb}
+                {libelle.blurb}
               </span>
             </button>
           )

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { CATEGORIES } from './data/questions'
+import { CATEGORIES } from './data/categories'
 import { buildRound, getDifficulty } from './lib/quiz'
 import { loadBestScores, saveScore, clearBestScores } from './lib/storage'
 import { loadHistory, pushGame, clearHistory } from './lib/history'
+import { useLang } from './i18n'
+import useQuestionBank from './hooks/useQuestionBank'
 import HomeScreen from './components/HomeScreen'
 import QuizScreen from './components/QuizScreen'
 import ResultScreen from './components/ResultScreen'
@@ -14,6 +16,9 @@ import Footer from './components/Footer'
  * (pas de règle de réécriture à configurer côté hébergeur).
  */
 export default function App() {
+  const { lang, t } = useLang()
+  const { questions, ready } = useQuestionBank(lang)
+
   const [screen, setScreen] = useState('home')
   const [categoryId, setCategoryId] = useState(null)
   const [difficultyId, setDifficultyId] = useState('moyen')
@@ -34,12 +39,22 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [screen, roundKey])
 
+  // Changer de langue en pleine partie afficherait des questions dans une
+  // langue et des réponses déjà données dans l'autre : on revient à l'accueil.
+  // Réinitialisation pendant le rendu plutôt que dans un effet, pour éviter
+  // le rendu intermédiaire où le quiz s'afficherait dans les deux langues.
+  const [langPrecedente, setLangPrecedente] = useState(lang)
+  if (lang !== langPrecedente) {
+    setLangPrecedente(lang)
+    setScreen('home')
+  }
+
   const category = CATEGORIES.find((c) => c.id === categoryId) ?? null
   const difficulty = getDifficulty(difficultyId)
 
   function start(id = categoryId) {
-    if (!id) return
-    setRound(buildRound(id, difficultyId))
+    if (!id || !ready) return
+    setRound(buildRound(questions, id, difficultyId))
     setRoundChrono(chrono)
     setRoundKey((k) => k + 1)
     setResults([])
@@ -50,10 +65,13 @@ export default function App() {
   function finish(roundResults) {
     setResults(roundResults)
 
+    const score = roundResults.filter(Boolean).length
     const { all, updated } = saveScore(categoryId, {
-      score: roundResults.filter(Boolean).length,
+      score,
       total: roundResults.length,
-      difficulty: difficulty.label,
+      // Le libellé est figé dans la langue de la partie : traduire un record
+      // a posteriori supposerait de stocker un identifiant, pas un texte.
+      difficulty: t.niveaux[difficultyId].label,
       chrono: roundChrono,
     })
 
@@ -65,12 +83,13 @@ export default function App() {
     setHistory(
       pushGame({
         category: categoryId,
-        difficulty: difficulty.label,
+        difficulty: t.niveaux[difficultyId].label,
         chrono: roundChrono,
-        score: roundResults.filter(Boolean).length,
+        score,
         total: roundResults.length,
       }),
     )
+
     setScreen('result')
   }
 
@@ -85,10 +104,12 @@ export default function App() {
           <HomeScreen
             category={categoryId}
             difficulty={difficultyId}
+            chrono={chrono}
             bestScores={bestScores}
+            questionCount={questions?.length ?? 0}
+            ready={ready}
             onSelectCategory={setCategoryId}
             onSelectDifficulty={setDifficultyId}
-            chrono={chrono}
             onToggleChrono={setChrono}
             onStart={() => start()}
             onReset={() => {

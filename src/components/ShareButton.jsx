@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Button from './ui/Button'
+import { useLang } from '../i18n'
 
 /**
  * Partage du score, par ordre de préférence :
@@ -54,6 +55,7 @@ async function copierTexte(texte) {
 }
 
 export default function ShareButton({ payload, className = '' }) {
+  const { t } = useLang()
   const [status, setStatus] = useState('idle')
   const replRef = useRef(null)
 
@@ -94,8 +96,8 @@ export default function ShareButton({ payload, className = '' }) {
   }
 
   const libelle = {
-    shared: '✔ Partagé !',
-    copied: '✔ Copié !',
+    shared: t.partage.partage,
+    copied: t.partage.copie,
   }
 
   return (
@@ -106,7 +108,7 @@ export default function ShareButton({ payload, className = '' }) {
         className="w-full"
         onClick={partageNatif ? partager : copier}
       >
-        {libelle[status] ?? (partageNatif ? '↗ Partager mon score' : '⧉ Copier mon score')}
+        {libelle[status] ?? (partageNatif ? t.partage.partager : t.partage.copier)}
       </Button>
 
       {/* Sur mobile, la feuille native ne remplace pas toujours le besoin
@@ -117,15 +119,14 @@ export default function ShareButton({ payload, className = '' }) {
           onClick={copier}
           className="mt-2 w-full font-label text-xs uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
         >
-          ou copier le texte
+          {t.partage.ouCopier}
         </button>
       )}
 
       <p aria-live="polite" className="mt-2 min-h-5 text-center font-body text-xs text-paper-dim">
-        {status === 'shared' && 'Résumé envoyé à l’application choisie.'}
-        {status === 'copied' && 'Le résumé est dans ton presse-papier, colle-le où tu veux.'}
-        {status === 'failed' &&
-          'Ton navigateur a bloqué la copie — le texte est sélectionné, fais Ctrl+C (ou ⌘+C).'}
+        {status === 'shared' && t.partage.messagePartage}
+        {status === 'copied' && t.partage.messageCopie}
+        {status === 'failed' && t.partage.messageEchec}
       </p>
 
       {status === 'failed' && (
@@ -134,7 +135,7 @@ export default function ShareButton({ payload, className = '' }) {
           readOnly
           rows={6}
           value={payload.full}
-          aria-label="Résumé de la partie à copier"
+          aria-label={t.partage.zoneTexte}
           className="w-full resize-none border-[3px] border-paper/30 bg-ink-soft p-3 font-body text-sm text-paper"
         />
       )}

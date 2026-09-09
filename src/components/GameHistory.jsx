@@ -1,9 +1,9 @@
-import { CATEGORIES } from '../data/questions'
+import { CATEGORIES } from '../data/categories'
 import { formatWhen } from '../lib/history'
 import { getRank } from '../lib/ranks'
 import { accent } from '../lib/accents'
+import { useLang } from '../i18n'
 
-const LIBELLES = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.label]))
 const ACCENTS = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.accent]))
 
 /**
@@ -15,6 +15,7 @@ const ACCENTS = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.accent]))
 const A_AFFICHER = 6
 
 export default function GameHistory({ history }) {
+  const { t } = useLang()
   if (!history || history.length === 0) return null
 
   const parties = history.slice(0, A_AFFICHER)
@@ -22,10 +23,10 @@ export default function GameHistory({ history }) {
   return (
     <section className="border-[3px] border-paper/25 bg-ink-soft">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-paper/25 px-4 py-3">
-        <h2 className="font-display text-2xl leading-none text-paper">Dernières parties</h2>
+        <h2 className="font-display text-2xl leading-none text-paper">{t.historique.titre}</h2>
         {history.length > A_AFFICHER && (
           <p className="font-label text-xs uppercase tracking-[0.14em] text-smoke">
-            {parties.length} sur {history.length} conservées
+            {t.historique.conservees(parties.length, history.length)}
           </p>
         )}
       </div>
@@ -33,7 +34,7 @@ export default function GameHistory({ history }) {
       <ol className="divide-y-2 divide-paper/10">
         {parties.map((partie, i) => {
           const pct = partie.total > 0 ? partie.score / partie.total : 0
-          const rang = getRank(partie.score, partie.total)
+          const rang = t.rangs[getRank(partie.score, partie.total).id]
           const a = accent(ACCENTS[partie.category] ?? 'orange')
           const courante = i === 0
 
@@ -59,12 +60,12 @@ export default function GameHistory({ history }) {
 
               <span className="min-w-0 flex-1">
                 <span className="block truncate font-body text-sm font-semibold text-paper">
-                  {LIBELLES[partie.category] ?? partie.category}
+                  {t.categories[partie.category]?.label ?? partie.category}
                   {partie.chrono && <span className="text-crimson"> ⏱</span>}
                 </span>
                 <span className="block font-label text-xs uppercase tracking-wider text-smoke">
-                  {partie.difficulty} · {formatWhen(partie.date)}
-                  {courante && <span className="text-ki"> · cette partie</span>}
+                  {partie.difficulty} · {formatWhen(partie.date, t.locale)}
+                  {courante && <span className="text-ki"> · {t.historique.cettePartie}</span>}
                 </span>
               </span>
 

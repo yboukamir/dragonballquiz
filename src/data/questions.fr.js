@@ -8,36 +8,9 @@
  * diff : 1 = facile · 2 = moyen · 3 = difficile
  * why  : explication affichée dans le feedback après la réponse.
  *
- * Pour ajouter une traduction plus tard : dupliquer `q` / `a` / `why` en
- * `q_en` / `a_en` / `why_en` et brancher un sélecteur dans `lib/quiz.js`.
+ * La version anglaise vit dans `questions.en.js`, avec les mêmes
+ * identifiants et les mêmes niveaux : les deux banques sont interchangeables.
  */
-
-export const CATEGORIES = [
-  {
-    id: 'personnages',
-    label: 'Personnages',
-    tagline: 'Qui est qui dans la galaxie',
-    accent: 'orange',
-  },
-  {
-    id: 'sagas',
-    label: 'Sagas',
-    tagline: 'Des Saiyans au Tournoi du Pouvoir',
-    accent: 'cobalt',
-  },
-  {
-    id: 'techniques',
-    label: 'Techniques & transformations',
-    tagline: 'Kaméhaméha, Potaras, Ultra Instinct',
-    accent: 'ki',
-  },
-  {
-    id: 'power',
-    label: 'Power levels',
-    tagline: 'Scouters, multiplicateurs et chiffres cultes',
-    accent: 'crimson',
-  },
-]
 
 export const QUESTIONS = [
   /* ---------------------------------------------------------------
@@ -1278,7 +1251,3 @@ export const QUESTIONS = [
   },
 ]
 
-export const QUESTIONS_BY_CATEGORY = CATEGORIES.reduce((acc, c) => {
-  acc[c.id] = QUESTIONS.filter((q) => q.cat === c.id)
-  return acc
-}, {})

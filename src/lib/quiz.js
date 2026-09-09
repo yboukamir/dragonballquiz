@@ -1,7 +1,9 @@
-import { QUESTIONS_BY_CATEGORY } from '../data/questions.js'
-
 /**
- * Niveaux de difficulté.
+ * Niveaux de difficulté et tirage d'une manche.
+ *
+ * Aucun libellé ici : ils dépendent de la langue et vivent dans
+ * `src/i18n/`. Ce fichier ne décrit que des règles de jeu, identiques
+ * quelle que soit la banque de questions utilisée.
  *
  * `mix` décrit la répartition souhaitée entre questions faciles (1),
  * moyennes (2) et difficiles (3). Si la banque ne contient pas assez de
@@ -11,9 +13,6 @@ import { QUESTIONS_BY_CATEGORY } from '../data/questions.js'
 export const DIFFICULTIES = [
   {
     id: 'facile',
-    label: 'Facile',
-    subtitle: '10 questions',
-    blurb: 'Les bases de la série. Idéal pour chauffer.',
     count: 10,
     mix: { 1: 0.7, 2: 0.3, 3: 0 },
     accent: 'jade',
@@ -24,9 +23,6 @@ export const DIFFICULTIES = [
   },
   {
     id: 'moyen',
-    label: 'Moyen',
-    subtitle: '10 questions',
-    blurb: 'Il faut avoir suivi les arcs jusqu’au bout.',
     count: 10,
     mix: { 1: 0.2, 2: 0.6, 3: 0.2 },
     accent: 'orange',
@@ -34,12 +30,9 @@ export const DIFFICULTIES = [
   },
   {
     id: 'difficile',
-    label: 'Difficile',
-    subtitle: '10 questions',
-    blurb: 'Chiffres exacts, seconds rôles, détails de films.',
     // 10 et non 15 : tirer 15 questions dans le vivier moyen+difficile
-    // (22 questions) imposait au minimum 8 questions communes entre deux
-    // parties consécutives. À 10, ce plancher tombe à zéro.
+    // imposait un minimum de questions communes entre deux parties
+    // consécutives. À 10, ce plancher tombe à zéro.
     count: 10,
     mix: { 1: 0, 2: 0.4, 3: 0.6 },
     accent: 'crimson',
@@ -49,6 +42,15 @@ export const DIFFICULTIES = [
 
 export const getDifficulty = (id) =>
   DIFFICULTIES.find((d) => d.id === id) ?? DIFFICULTIES[0]
+
+/** Regroupe une banque par catégorie, sans hypothèse sur la langue. */
+export function groupByCategory(questions) {
+  const parCategorie = {}
+  for (const q of questions) {
+    ;(parCategorie[q.cat] ??= []).push(q)
+  }
+  return parCategorie
+}
 
 /** Mélange de Fisher-Yates, sur une copie du tableau. */
 export function shuffle(list) {
@@ -64,12 +66,12 @@ export function shuffle(list) {
  * Construit une manche : tire les questions selon la difficulté, mélange
  * leur ordre, puis mélange les 4 propositions de chacune.
  *
- * Dans `data/questions.js`, la bonne réponse est toujours `a[0]` : c'est
- * ici, et seulement ici, que sa position réelle est décidée.
+ * Dans les fichiers de données, la bonne réponse est toujours `a[0]` :
+ * c'est ici, et seulement ici, que sa position réelle est décidée.
  */
-export function buildRound(categoryId, difficultyId) {
+export function buildRound(questions, categoryId, difficultyId) {
   const difficulty = getDifficulty(difficultyId)
-  const pool = QUESTIONS_BY_CATEGORY[categoryId] ?? []
+  const pool = (questions ?? []).filter((q) => q.cat === categoryId)
   const picked = pickQuestions(pool, difficulty)
 
   return shuffle(picked).map((question) => {

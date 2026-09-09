@@ -1,58 +1,18 @@
 /**
  * Rangs attribués en fin de partie, du plus faible au plus fort.
- * `min` est le pourcentage de bonnes réponses à partir duquel le rang
- * est atteint. Les libellés sont des clins d'œil, pas des citations.
+ *
+ * `min` est le pourcentage de bonnes réponses à partir duquel le rang est
+ * atteint. Les libellés dépendent de la langue et vivent dans
+ * `src/i18n/` : ici on ne garde que le seuil et la couleur.
  */
 export const RANKS = [
-  {
-    id: 'terrien',
-    label: 'Terrien lambda',
-    min: 0,
-    tagline: 'Le fermier au fusil a fait mieux. Et il n’avait qu’une puissance de 5.',
-    color: 'smoke',
-  },
-  {
-    id: 'eleve',
-    label: 'Élève de la Tortue',
-    min: 20,
-    tagline: 'Tu as porté la carapace, mais tu n’as pas encore fini le premier tour de l’île.',
-    color: 'sky',
-  },
-  {
-    id: 'guerrier-z',
-    label: 'Guerrier Z',
-    min: 40,
-    tagline: 'Solide. Tu tiens la ligne de front, même si Nappa te fait encore peur.',
-    color: 'cobalt',
-  },
-  {
-    id: 'super-saiyan',
-    label: 'Super Saiyan',
-    min: 60,
-    tagline: 'La légende est réveillée. Les cheveux tiennent tout seuls, désormais.',
-    color: 'ki',
-  },
-  {
-    id: 'blue',
-    label: 'Super Saiyan Blue',
-    min: 75,
-    tagline: 'Maîtrise divine du ki. Et un score qui commence à faire du bruit.',
-    color: 'sky',
-  },
-  {
-    id: 'ultra-instinct',
-    label: 'Ultra Instinct',
-    min: 90,
-    tagline: 'Tu réponds avant même d’avoir lu la question. Le corps agit seul.',
-    color: 'orange',
-  },
-  {
-    id: 'zeno',
-    label: 'Zeno en personne',
-    min: 100,
-    tagline: 'Sans faute. À ce niveau-là, tu n’es plus un joueur, tu es l’arbitre.',
-    color: 'crimson',
-  },
+  { id: 'terrien', min: 0, color: 'smoke' },
+  { id: 'eleve', min: 20, color: 'sky' },
+  { id: 'guerrier-z', min: 40, color: 'cobalt' },
+  { id: 'super-saiyan', min: 60, color: 'ki' },
+  { id: 'blue', min: 75, color: 'sky' },
+  { id: 'ultra-instinct', min: 90, color: 'orange' },
+  { id: 'zeno', min: 100, color: 'crimson' },
 ]
 
 export function getRank(score, total) {
@@ -76,5 +36,5 @@ export function toPowerLevel(score, total) {
   return Math.round(raw / 1000) * 1000
 }
 
-export const formatPowerLevel = (value) =>
-  new Intl.NumberFormat('fr-FR').format(value)
+export const formatPowerLevel = (value, locale = 'fr-FR') =>
+  new Intl.NumberFormat(locale).format(value)

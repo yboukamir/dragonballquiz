@@ -1,10 +1,13 @@
 import { accent } from '../lib/accents'
+import { useLang } from '../i18n'
 import Badge from './ui/Badge'
 
 /** Carte de sélection d'une catégorie, avec rappel du record personnel. */
 export default function CategoryCard({ category, best, chrono, selected, onSelect }) {
+  const { t } = useLang()
   const a = accent(category.accent)
   const record = chrono ? best?.chrono : best?.normal
+  const libelle = t.categories[category.id]
 
   return (
     <button
@@ -31,12 +34,12 @@ export default function CategoryCard({ category, best, chrono, selected, onSelec
       />
 
       <span className="pl-3 font-display text-2xl leading-none sm:text-3xl">
-        {category.label}
+        {libelle.label}
       </span>
       <span
         className={`pl-3 font-body text-sm ${selected ? 'text-ink/70' : 'text-paper-dim/80'}`}
       >
-        {category.tagline}
+        {libelle.tagline}
       </span>
 
       {/* Chaque mode a son propre record — un score au chronomètre ne se
@@ -46,11 +49,14 @@ export default function CategoryCard({ category, best, chrono, selected, onSelec
       <span className="mt-2 pl-3">
         {record ? (
           <Badge tone={chrono ? 'crimson' : selected ? category.accent : 'ki'}>
-            {chrono ? '⏱ ' : 'Record '}
-            {record.score}/{record.total} · {record.difficulty}
+            {chrono
+              ? t.carte.recordChrono(record.score, record.total, record.difficulty)
+              : t.carte.record(record.score, record.total, record.difficulty)}
           </Badge>
         ) : (
-          <Badge tone="smoke">{chrono ? '⏱ Jamais tenté' : 'Jamais tenté'}</Badge>
+          <Badge tone="smoke">
+            {chrono ? t.carte.jamaisTenteChrono : t.carte.jamaisTente}
+          </Badge>
         )}
       </span>
     </button>

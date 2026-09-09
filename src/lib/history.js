@@ -58,21 +58,34 @@ export function clearHistory() {
   return []
 }
 
-const relatif = new Intl.RelativeTimeFormat('fr', { numeric: 'auto' })
-const dateCourte = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' })
+// Les formateurs sont mis en cache par locale : en instancier un a
+// chaque ligne affichee serait couteux pour rien.
+const formateurs = new Map()
+function pourLocale(locale) {
+  if (!formateurs.has(locale)) {
+    formateurs.set(locale, {
+      relatif: new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }),
+      dateCourte: new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' }),
+    })
+  }
+  return formateurs.get(locale)
+}
 
 /**
  * « à l'instant », « il y a 5 min », « hier », puis une date au-delà d'une
  * semaine — au-delà, l'écart en jours ne dit plus rien d'utile.
  */
-export function formatWhen(iso) {
+export function formatWhen(iso, locale = 'fr-FR') {
   const quand = new Date(iso)
   if (Number.isNaN(quand.getTime())) return ''
 
   const secondes = Math.round((quand.getTime() - Date.now()) / 1000)
   const absolu = Math.abs(secondes)
 
-  if (absolu < 45) return "à l'instant"
+  const { relatif, dateCourte } = pourLocale(locale)
+
+  // « il y a moins d'une minute » est plus juste que « il y a 0 minute ».
+  if (absolu < 45) return relatif.format(0, 'second')
   if (absolu < 3600) return relatif.format(Math.round(secondes / 60), 'minute')
   if (absolu < 86400) return relatif.format(Math.round(secondes / 3600), 'hour')
   if (absolu < 7 * 86400) return relatif.format(Math.round(secondes / 86400), 'day')

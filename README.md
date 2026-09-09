@@ -1,6 +1,6 @@
 # dragonballquiz.com
 
-Quiz de fan sur l'univers Dragon Ball. Site statique, React + Tailwind CSS,
+Quiz de fan bilingue sur l'univers Dragon Ball. Site statique, React + Tailwind CSS,
 sans backend : les meilleurs scores vivent dans le `localStorage` du visiteur.
 
 ## Stack
@@ -23,14 +23,17 @@ npm run dev
 | `npm run build` | build de production dans `dist/` |
 | `npm run preview` | sert le build de production en local |
 | `npm run lint` | oxlint |
-| `npm run check` | valide la banque de questions et le tirage des manches |
-| `npm run check:share` | affiche le texte de partage et la grille des rangs |
+| `npm run check` | valide les deux banques, leur parité et celle des dictionnaires |
+| `npm run check:share` | affiche le texte de partage et les rangs, dans les deux langues |
 
 ## Structure
 
 ```
 src/
-├── data/questions.js      192 questions, 4 catégories, 3 niveaux
+├── data/
+│   ├── categories.js      identité et accent des 4 catégories
+│   ├── questions.fr.js    192 questions, 4 catégories, 3 niveaux
+│   └── questions.en.js    la même banque en anglais
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
@@ -38,16 +41,52 @@ src/
 │   ├── storage.js         meilleurs scores par mode (localStorage, migration v1→v2)
 │   ├── history.js         journal des 20 dernières parties
 │   └── accents.js         table des accents de couleur
-├── hooks/useCountdown.js  compte à rebours du mode chrono
+├── i18n/                  dictionnaires fr / en + contexte de langue
+├── hooks/
+│   ├── useCountdown.js    compte à rebours du mode chrono
+│   └── useQuestionBank.js chargement à la demande de la banque
 ├── components/
 │   ├── ui/                primitives réutilisables (Button, Panel, Countdown…)
 │   └── *.jsx              écrans et blocs métier (ScoreTable, ShareButton…)
 └── App.jsx                machine à états : accueil → quiz → résultat
 ```
 
+### Langues
+
+Le site est bilingue français / anglais. La langue de départ suit le choix
+explicite du visiteur s'il en a fait un, sinon celle de son navigateur — un
+anglophone arrivant sur un domaine en `.com` ne devrait pas avoir à chercher le
+sélecteur, et un francophone non plus.
+
+- `src/i18n/fr.js` et `en.js` : toutes les chaînes d'interface. Les valeurs qui
+  dépendent d'un nombre sont des **fonctions** et non des gabarits à trous :
+  l'accord en nombre n'obéit pas aux mêmes règles d'une langue à l'autre, et une
+  fonction laisse chaque traduction décider.
+- `src/data/questions.fr.js` et `questions.en.js` : les deux banques, mêmes
+  identifiants et mêmes niveaux.
+
+Les banques sont **chargées à la demande** (`useQuestionBank`), donc un visiteur
+ne télécharge jamais la langue qu'il ne lit pas : environ 73 Ko de code plus 14 Ko
+pour une seule banque, au lieu de 88 Ko si les deux étaient empilées.
+
+`npm run check` vérifie trois pariés qu'aucun test manuel n'attraperait :
+
+- mêmes identifiants, mêmes catégories et mêmes niveaux entre les deux banques —
+  sans quoi un joueur qui change de langue verrait ses records porter sur un jeu
+  différent ;
+- aucun énoncé laissé en français dans la banque anglaise ;
+- mêmes clés dans les deux dictionnaires, une clé oubliée produisant sinon un
+  « undefined » à l'écran, sans erreur ni avertissement.
+
+**Limite connue.** Les deux langues partagent une seule URL, et le HTML servi est
+en français : les moteurs de recherche n'indexeront donc que la version française.
+Un vrai référencement bilingue demanderait des URL distinctes (`/en/`) et des
+balises `hreflang`, ce qui suppose un pré-rendu — hors périmètre pour un site
+entièrement client.
+
 ### Ajouter des questions
 
-Tout se passe dans `src/data/questions.js`. Une entrée ressemble à ceci :
+Tout se passe dans `src/data/questions.fr.js` et `questions.en.js`, une entrée dans chaque. Elles ressemblent à ceci :
 
 ```js
 {

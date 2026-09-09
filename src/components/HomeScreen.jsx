@@ -1,7 +1,9 @@
-import { CATEGORIES, QUESTIONS } from '../data/questions'
+import { CATEGORIES } from '../data/categories'
 import { getDifficulty } from '../lib/quiz'
+import { useLang } from '../i18n'
 import CategoryCard from './CategoryCard'
 import DifficultyPicker from './DifficultyPicker'
+import LanguageSwitch from './LanguageSwitch'
 import Button from './ui/Button'
 import Toggle from './ui/Toggle'
 import KiOrb from './ui/KiOrb'
@@ -11,12 +13,15 @@ export default function HomeScreen({
   difficulty,
   chrono,
   bestScores,
+  questionCount,
+  ready,
   onSelectCategory,
   onSelectDifficulty,
   onToggleChrono,
   onStart,
   onReset,
 }) {
+  const { t } = useLang()
   const hasRecords = Object.keys(bestScores).length > 0
   const niveau = getDifficulty(difficulty)
 
@@ -29,9 +34,12 @@ export default function HomeScreen({
           tone="var(--color-orange)"
         />
 
-        <p className="font-label text-sm uppercase tracking-[0.3em] text-ki">
-          Quiz de fan · 100 % gratuit
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="font-label text-sm uppercase tracking-[0.3em] text-ki">
+            {t.accueil.surtitre}
+          </p>
+          <LanguageSwitch />
+        </div>
 
         <h1 className="mt-2 font-display leading-[0.82]">
           <span className="block text-5xl text-paper sm:text-8xl">Dragon Ball</span>
@@ -41,16 +49,14 @@ export default function HomeScreen({
         </h1>
 
         <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-          {QUESTIONS.length} questions originales réparties en 4 catégories et 3
-          niveaux. Réponds vite, gagne ton rang, et va défier tes amis avec ta
-          puissance de combat.
+          {ready ? t.accueil.accroche(questionCount) : t.accueil.chargement}
         </p>
       </header>
 
       {/* --------------------------------------------------- Catégories */}
       <section aria-labelledby="cat-title" className="flex flex-col gap-4">
         <h2 id="cat-title" className="font-display text-3xl text-paper sm:text-4xl">
-          <span className="text-ki">1.</span> Choisis ton terrain
+          <span className="text-ki">1.</span> {t.accueil.etapeCategorie}
         </h2>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -70,15 +76,15 @@ export default function HomeScreen({
       {/* --------------------------------------------------- Difficulté */}
       <section aria-labelledby="diff-title" className="flex flex-col gap-4">
         <h2 id="diff-title" className="font-display text-3xl text-paper sm:text-4xl">
-          <span className="text-ki">2.</span> Choisis ton niveau
+          <span className="text-ki">2.</span> {t.accueil.etapeNiveau}
         </h2>
         <DifficultyPicker value={difficulty} onChange={onSelectDifficulty} />
 
         <Toggle
           checked={chrono}
           onChange={onToggleChrono}
-          label="⏱ Mode chrono"
-          description={`${niveau.seconds} secondes par question. Passé le délai, la question est perdue.`}
+          label={t.accueil.chronoLabel}
+          description={t.accueil.chronoDescription(niveau.seconds)}
         />
       </section>
 
@@ -88,10 +94,10 @@ export default function HomeScreen({
           size="lg"
           variant="ki"
           onClick={onStart}
-          disabled={!category}
+          disabled={!category || !ready}
           className="w-full sm:w-auto sm:px-16"
         >
-          {category ? 'Commencer le combat →' : 'Choisis une catégorie'}
+          {category ? t.accueil.commencer : t.accueil.choisirCategorie}
         </Button>
 
         {hasRecords && (
@@ -100,7 +106,7 @@ export default function HomeScreen({
             onClick={onReset}
             className="font-label text-xs uppercase tracking-[0.14em] text-smoke underline decoration-2 underline-offset-4 hover:text-crimson tap-safe"
           >
-            Effacer mes records et mon historique
+            {t.accueil.effacer}
           </button>
         )}
       </section>

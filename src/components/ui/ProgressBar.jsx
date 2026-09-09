@@ -1,19 +1,20 @@
+import { useLang } from '../../i18n'
+
 /**
  * Jauge de ki : un segment par question, rempli au fur et à mesure.
  * Le rendu segmenté (plutôt qu'une barre continue) rend la progression
- * lisible d'un coup d'œil sur mobile, même à 15 questions.
+ * lisible d'un coup d'œil sur mobile.
  */
 export default function ProgressBar({ current, total, results = [] }) {
+  const { t } = useLang()
+  const bonnes = results.filter(Boolean).length
+  const numero = Math.min(current + 1, total)
+
   return (
     <div className="w-full">
       <div className="mb-2 flex items-end justify-between font-label uppercase tracking-[0.14em]">
-        <span className="text-sm text-paper-dim">
-          Question <span className="text-ki">{Math.min(current + 1, total)}</span> / {total}
-        </span>
-        <span className="text-sm text-paper-dim">
-          {results.filter(Boolean).length} bonne
-          {results.filter(Boolean).length > 1 ? 's' : ''}
-        </span>
+        <span className="text-sm text-paper-dim">{t.quiz.questionSur(numero, total)}</span>
+        <span className="text-sm text-paper-dim">{t.quiz.bonnes(bonnes)}</span>
       </div>
 
       <div
@@ -22,7 +23,7 @@ export default function ProgressBar({ current, total, results = [] }) {
         aria-valuemin={0}
         aria-valuemax={total}
         aria-valuenow={Math.min(current, total)}
-        aria-label={`Progression : question ${Math.min(current + 1, total)} sur ${total}`}
+        aria-label={t.quiz.progression(numero, total)}
       >
         {Array.from({ length: total }, (_, i) => {
           const answered = i < results.length

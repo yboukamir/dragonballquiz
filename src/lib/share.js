@@ -10,27 +10,26 @@ export const SITE_URL = 'https://dragonballquiz.com'
  *   lien. Les concaténer ici le ferait apparaître deux fois.
  * - `full` d'un seul tenant pour le presse-papier, qui n'ajoute rien.
  */
-export function buildSharePayload({ category, difficulty, results, chrono = false }) {
+export function buildSharePayload({ categoryId, difficultyId, results, chrono = false, t }) {
   const total = results.length
   const score = results.filter(Boolean).length
-  const rank = getRank(score, total)
-  const grid = results.map((ok) => (ok ? '🟡' : '⬛')).join('')
-  const mode = chrono ? `${difficulty.label.toLowerCase()}, chrono ⏱` : difficulty.label.toLowerCase()
+  const rang = t.rangs[getRank(score, total).id].label
+  const grille = results.map((ok) => (ok ? '🟡' : '⬛')).join('')
+
+  const niveau = t.niveaux[difficultyId].label.toLowerCase()
+  const mode = chrono ? `${niveau}, ${t.partage.mentionChrono}` : niveau
 
   const corps = [
-    `⚡ Dragon Ball Quiz — ${category.label} (${mode})`,
-    grid,
-    `Score : ${score}/${total} · Rang : ${rank.label}`,
-    `Puissance de combat estimée : ${formatPowerLevel(toPowerLevel(score, total))}`,
+    `⚡ ${t.partage.titre} — ${t.categories[categoryId].label} (${mode})`,
+    grille,
+    t.partage.ligneScore(score, total, rang),
+    t.partage.lignePuissance(formatPowerLevel(toPowerLevel(score, total), t.locale)),
   ].join('\n')
 
   return {
-    title: 'Dragon Ball Quiz',
-    text: `${corps}\n\nÀ toi de faire mieux :`,
+    title: t.partage.titre,
+    text: `${corps}\n\n${t.partage.invitation} :`,
     url: SITE_URL,
-    full: `${corps}\n\nÀ toi de faire mieux → ${SITE_URL}`,
+    full: `${corps}\n\n${t.partage.invitation} → ${SITE_URL}`,
   }
 }
-
-/** Résumé d'un seul tenant, pour le presse-papier. */
-export const buildShareText = (partie) => buildSharePayload(partie).full

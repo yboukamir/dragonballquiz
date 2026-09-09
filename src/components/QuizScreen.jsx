@@ -6,11 +6,13 @@ import Panel from './ui/Panel'
 import Badge from './ui/Badge'
 import Button from './ui/Button'
 import useCountdown from '../hooks/useCountdown'
+import { useLang } from '../i18n'
 
 /** Valeur de `picked` quand le temps s'est écoulé sans réponse. */
 const TEMPS_ECOULE = -1
 
 export default function QuizScreen({ round, category, difficulty, chrono, onFinish, onQuit }) {
+  const { t } = useLang()
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState(null)
   const [results, setResults] = useState([])
@@ -70,12 +72,12 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone={category.accent} solid>
-            {category.label}
+            {t.categories[category.id].label}
           </Badge>
-          <Badge tone={difficulty.accent}>{difficulty.label}</Badge>
+          <Badge tone={difficulty.accent}>{t.niveaux[difficulty.id].label}</Badge>
           {chrono && (
             <Badge tone="crimson" solid>
-              ⏱ Chrono
+              {t.quiz.badgeChrono}
             </Badge>
           )}
         </div>
@@ -85,7 +87,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           onClick={onQuit}
           className="font-label text-sm uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
         >
-          Abandonner
+          {t.quiz.abandonner}
         </button>
       </header>
 
@@ -107,7 +109,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
         </h2>
       </Panel>
 
-      <div className="grid gap-3" role="group" aria-label="Propositions de réponse">
+      <div className="grid gap-3" role="group" aria-label={t.quiz.propositions}>
         {question.answers.map((answer, i) => (
           <AnswerButton
             key={answer.label}
@@ -130,16 +132,16 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           >
             <p className="font-display text-xl sm:text-2xl">
               {isCorrect ? (
-                <span className="text-jade">Dans le mille.</span>
+                <span className="text-jade">{t.quiz.juste}</span>
               ) : picked === TEMPS_ECOULE ? (
-                <span className="text-crimson">Temps écoulé.</span>
+                <span className="text-crimson">{t.quiz.tempsEcoule}</span>
               ) : (
-                <span className="text-crimson">Raté.</span>
+                <span className="text-crimson">{t.quiz.faux}</span>
               )}{' '}
               <span className="text-paper">
                 {isCorrect
                   ? ''
-                  : `La bonne réponse : ${question.answers[question.correctIndex].label}.`}
+                  : t.quiz.bonneReponse(question.answers[question.correctIndex].label)}
               </span>
             </p>
 
@@ -154,7 +156,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
               size="md"
               className="mt-4 w-full sm:w-auto"
             >
-              {index + 1 >= round.length ? 'Voir le résultat →' : 'Question suivante →'}
+              {index + 1 >= round.length ? t.quiz.voirResultat : t.quiz.suivante}
             </Button>
           </Panel>
         )}

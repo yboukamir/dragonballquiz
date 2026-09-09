@@ -9,6 +9,7 @@ import GameHistory from './GameHistory'
 import { accent } from '../lib/accents'
 import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
 import { buildSharePayload } from '../lib/share'
+import { useLang } from '../i18n'
 
 export default function ResultScreen({
   category,
@@ -22,18 +23,27 @@ export default function ResultScreen({
   onReplay,
   onHome,
 }) {
+  const { t } = useLang()
   const [showRecap, setShowRecap] = useState(false)
 
-  // Identite stable : ShareButton interroge navigator.canShare dans un effet
+  // Identite stable : ShareButton interroge navigator.canShare dans un memo
   // qui depend de cet objet.
   const sharePayload = useMemo(
-    () => buildSharePayload({ category, difficulty, results, chrono }),
-    [category, difficulty, results, chrono],
+    () =>
+      buildSharePayload({
+        categoryId: category.id,
+        difficultyId: difficulty.id,
+        results,
+        chrono,
+        t,
+      }),
+    [category.id, difficulty.id, results, chrono, t],
   )
 
   const total = results.length
   const score = results.filter(Boolean).length
   const rank = getRank(score, total)
+  const rangLibelle = t.rangs[rank.id]
   const a = accent(rank.color)
   const power = toPowerLevel(score, total)
 
@@ -53,29 +63,31 @@ export default function ResultScreen({
         <div className="relative flex flex-col items-center gap-3">
           <span className="flex flex-wrap justify-center gap-2">
             <Badge tone={category.accent} solid>
-              {category.label} · {difficulty.label}
+              {t.categories[category.id].label} · {t.niveaux[difficulty.id].label}
             </Badge>
             {chrono && (
               <Badge tone="crimson" solid>
-                ⏱ Chrono
+                {t.quiz.badgeChrono}
               </Badge>
             )}
           </span>
 
           <p className="font-label text-sm uppercase tracking-[0.2em] text-ink/60">
-            Rang atteint
+            {t.resultat.rangAtteint}
           </p>
 
           <h1 className={`title-ink font-display text-5xl leading-[0.9] sm:text-7xl ${a.text}`}>
-            {rank.label}
+            {rangLibelle.label}
           </h1>
 
-          <p className="max-w-md font-body text-sm text-ink/75 sm:text-base">{rank.tagline}</p>
+          <p className="max-w-md font-body text-sm text-ink/75 sm:text-base">
+            {rangLibelle.tagline}
+          </p>
 
           <div className="mt-2 flex flex-wrap items-stretch justify-center gap-3">
             <div className="min-w-32 border-[3px] border-ink bg-ink px-5 py-3 text-paper">
               <p className="font-label text-xs uppercase tracking-[0.16em] text-paper-dim">
-                Score
+                {t.resultat.score}
               </p>
               <p className="font-display text-4xl leading-none text-ki">
                 {score}
@@ -85,17 +97,17 @@ export default function ResultScreen({
 
             <div className="min-w-32 border-[3px] border-ink bg-ink px-5 py-3 text-paper">
               <p className="font-label text-xs uppercase tracking-[0.16em] text-paper-dim">
-                Puissance
+                {t.resultat.puissance}
               </p>
               <p className="font-display text-4xl leading-none text-orange">
-                {formatPowerLevel(power)}
+                {formatPowerLevel(power, t.locale)}
               </p>
             </div>
           </div>
 
           {isRecord && (
             <p className="animate-burst mt-1 border-2 border-ink bg-ki px-3 py-1 font-label text-sm font-bold uppercase tracking-[0.12em] text-ink">
-              ★ Nouveau record dans cette catégorie
+              {t.resultat.nouveauRecord}
             </p>
           )}
         </div>
@@ -103,10 +115,10 @@ export default function ResultScreen({
 
       <div className="grid gap-3 sm:grid-cols-2">
         <Button variant="orange" size="lg" onClick={onReplay} className="w-full">
-          ↻ Rejouer
+          {t.resultat.rejouer}
         </Button>
         <Button variant="ink" size="lg" onClick={onHome} className="w-full">
-          Changer de catégorie
+          {t.resultat.changerCategorie}
         </Button>
       </div>
 
@@ -128,7 +140,7 @@ export default function ResultScreen({
           aria-expanded={showRecap}
           className="w-full border-[3px] border-paper/25 bg-ink-soft px-4 py-3 font-label text-sm uppercase tracking-[0.14em] text-paper-dim transition-colors hover:text-ki tap-safe"
         >
-          {showRecap ? '▲ Masquer le détail' : `▼ Revoir les ${total} questions`}
+          {showRecap ? t.resultat.masquerQuestions : t.resultat.voirQuestions(total)}
         </button>
 
         {showRecap && (
