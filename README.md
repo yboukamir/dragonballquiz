@@ -74,6 +74,29 @@ plus proches du niveau visé plutôt que d'échouer.
 
 ## Déploiement sur OVH
 
+### Automatique (GitHub Actions)
+
+Chaque push sur `main` déclenche `.github/workflows/deploy.yml` : validation de la
+banque de questions, lint, build, puis publication de `dist/` en FTPS dans `www/`.
+Le workflow se termine par une vérification HTTP du site en ligne — un upload
+partiel ou un mauvais répertoire distant fait échouer le job au lieu de passer
+inaperçu. Il est aussi déclenchable à la main (*Actions → Déploiement OVH → Run
+workflow*), sans commit.
+
+Trois secrets sont à définir dans **Settings → Secrets and variables → Actions** :
+
+| Secret | Valeur |
+| --- | --- |
+| `OVH_FTP_HOST` | `ftp.clusterXXX.hosting.ovh.net` (visible dans l'espace client OVH) |
+| `OVH_FTP_USER` | l'utilisateur FTP de l'hébergement |
+| `OVH_FTP_PASSWORD` | son mot de passe |
+
+L'action tierce qui réalise l'envoi est épinglée sur un **SHA de commit** et non sur
+un tag : elle reçoit le mot de passe FTP, et un tag peut être redéplacé vers du code
+malveillant. Pour la mettre à jour, remplacer le SHA par celui de la nouvelle version.
+
+### Manuel
+
 Le build produit un site entièrement statique, à copier tel quel.
 
 ```bash

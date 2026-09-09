@@ -1,0 +1,77 @@
+name: Deploiement OVH
+
+# Chaque push sur main reconstruit le site et le publie sur l'hebergement.
+# Le declenchement manuel permet de republier sans commit (bouton "Run workflow").
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Deux deploiements simultanes corrompraient l'etat de synchro FTP.
+concurrency:
+  group: deploiement-ovh
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deployer:
+    name: Construire et publier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Installer les dependances
+        run: npm ci
+
+      # Garde-fous : un depot casse ne doit jamais atteindre la production.
+      - name: Valider la banque de questions
+        run: npm run check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Construire le site
+        run: npm run build
+
+      # Action tierce epinglee sur un SHA de commit et non sur un tag : elle
+      # recoit le mot de passe FTP, et un tag peut etre deplace vers du code
+      # malveillant. SHA correspondant a la version v4.4.0.
+      - name: Publier dist/ sur OVH
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ./www/
+          # Journal detaille sans jamais afficher les identifiants.
+          log-level: standard
+
+      # Verification post-deploiement : sans elle, un echec silencieux
+      # (mauvais repertoire distant, upload partiel) passerait inapercu.
+      - name: Verifier que le site repond
+        run: |
+          for tentative in 1 2 3 4 5; do
+            echo "Tentative $tentative..."
+            code=$(curl -sS -o page.html -w '%{http_code}' --max-time 20 http://dragonballquiz.com/ || echo 000)
+            if [ "$code" = "200" ] && grep -q "Dragon Ball Quiz" page.html; then
+              echo "Site en ligne et contenu attendu present."
+              exit 0
+            fi
+            echo "Reponse HTTP $code, nouvelle tentative dans 15 s."
+            sleep 15
+          done
+          echo "::error::Le site ne repond pas correctement apres le deploiement."
+          exit 1
