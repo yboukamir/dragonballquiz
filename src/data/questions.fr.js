@@ -1,5 +1,5 @@
 /**
- * Banque de questions — 192 questions originales rédigées pour ce site.
+ * Banque de questions — 240 questions originales rédigées pour ce site.
  *
  * Convention d'écriture : `a[0]` est TOUJOURS la bonne réponse.
  * Les propositions sont mélangées à l'exécution (voir `src/lib/quiz.js`),
@@ -25,7 +25,7 @@ export const QUESTIONS = [
   {
     id: 'pe02', cat: 'personnages', diff: 1,
     q: "Qui est l'épouse de Son Goku ?",
-    a: ["Chichi", "Bulma", "Videl", "Launch"],
+    a: ["Chichi", "Bulma", "Videl", "Lunch"],
     why: "Fille du Gyumao, elle lui arrache une promesse de mariage lors d'un Tenkaichi Budokai.",
   },
   {
@@ -163,7 +163,7 @@ export const QUESTIONS = [
   },
   {
     id: 'pe25', cat: 'personnages', diff: 2,
-    q: "Quel scientifique conçoit les androïdes pour se venger de Goku ?",
+    q: "Quel scientifique conçoit les cyborgs pour se venger de Goku ?",
     a: ["Le Dr Gero", "Le Dr Brief", "Babidi", "Bulma"],
     why: "Ancien de l'Armée du Ruban Rouge, il se transforme lui-même en C-20.",
   },
@@ -201,7 +201,7 @@ export const QUESTIONS = [
   {
     id: 'pe31', cat: 'personnages', diff: 1,
     q: "Quelle inventrice de génie part avec Goku à la recherche des Dragon Balls ?",
-    a: ["Bulma", "Chichi", "Launch", "Videl"],
+    a: ["Bulma", "Chichi", "Lunch", "Videl"],
     why: "Sa famille dirige la Capsule Corporation, ce qui lui donne des moyens illimités.",
   },
   {
@@ -224,7 +224,7 @@ export const QUESTIONS = [
   },
   {
     id: 'pe35', cat: 'personnages', diff: 1,
-    q: "Qui assiste le Dieu de la Terre au Palais céleste ?",
+    q: "Qui assiste le Tout-Puissant, le Dieu de la Terre, au Palais céleste ?",
     a: ["Mr Popo", "Karin", "Dendé", "Yajirobé"],
     why: "Il y entretient les jardins et veille sur la Salle de l'Esprit et du Temps.",
   },
@@ -237,7 +237,7 @@ export const QUESTIONS = [
   {
     id: 'pe37', cat: 'personnages', diff: 1,
     q: "Quelle créature rose est née de la magie du sorcier Bibidi ?",
-    a: ["Majin Buu", "Dabra", "Cell", "Yakon"],
+    a: ["Majin Boo", "Dabra", "Cell", "Yakon"],
     why: "Bibidi l'avait scellée dans un cocon avant que son fils Babidi ne la réveille.",
   },
   {
@@ -285,9 +285,9 @@ export const QUESTIONS = [
   },
   {
     id: 'pe45', cat: 'personnages', diff: 3,
-    q: "Quel Kaioshin, seul rescapé de son rang, combat aux côtés des guerriers Z contre Buu ?",
+    q: "Quel Kaioshin, seul rescapé de son rang, combat aux côtés des guerriers Z contre Boo ?",
     a: ["Shin", "Gowasu", "Kibito", "Le Vieux Kaioshin"],
-    why: "Kaioshin de l'Est, il est le dernier survivant du massacre commis par Majin Buu.",
+    why: "Kaioshin de l'Est, il est le dernier survivant du massacre commis par Majin Boo.",
   },
   {
     id: 'pe46', cat: 'personnages', diff: 3,
@@ -355,7 +355,7 @@ export const QUESTIONS = [
   },
   {
     id: 'sa08', cat: 'sagas', diff: 2,
-    q: "Quels androïdes Cell doit-il absorber pour atteindre sa forme parfaite ?",
+    q: "Quels cyborgs Cell doit-il absorber pour atteindre sa forme parfaite ?",
     a: ["C-17 et C-18", "C-16 et C-17", "C-19 et C-20", "C-18 et C-16"],
     why: "C-16 n'entre pas dans sa conception : il est de fabrication purement mécanique.",
   },
@@ -373,13 +373,13 @@ export const QUESTIONS = [
   },
   {
     id: 'sa11', cat: 'sagas', diff: 2,
-    q: "Quel sorcier orchestre le réveil de Majin Buu ?",
+    q: "Quel sorcier orchestre le réveil de Majin Boo ?",
     a: ["Babidi", "Bibidi", "Dabra", "Yakon"],
     why: "Dabra, roi du monde des démons, n'est que son homme de main.",
   },
   {
     id: 'sa12', cat: 'sagas', diff: 2,
-    q: "Qui a créé Majin Buu à l'origine ?",
+    q: "Qui a créé Majin Boo à l'origine ?",
     a: ["Bibidi", "Babidi", "Dabra", "Le Grand Kaioshin"],
     why: "Bibidi est le père de Babidi : le fils ne fait que réveiller la créature.",
   },
@@ -387,7 +387,7 @@ export const QUESTIONS = [
     id: 'sa13', cat: 'sagas', diff: 2,
     q: "Quelle organisation, dirigée par le Commandant Red, affronte Goku enfant ?",
     a: ["L'Armée du Ruban Rouge", "L'armée de Freezer", "La Patrouille Galactique", "Le Commando Ginyu"],
-    why: "Le Dr Gero en est un rescapé : les androïdes seront sa vengeance.",
+    why: "Le Dr Gero en est un rescapé : les cyborgs seront sa vengeance.",
   },
   {
     id: 'sa14', cat: 'sagas', diff: 2,
@@ -397,7 +397,7 @@ export const QUESTIONS = [
   },
   {
     id: 'sa15', cat: 'sagas', diff: 3,
-    q: "Quel jeune Namek devient le nouveau Dieu de la Terre après l'arc Freezer ?",
+    q: "Quel jeune Namek devient le nouveau Tout-Puissant après l'arc Freezer ?",
     a: ["Dendé", "Nail", "Cargo", "Muri"],
     why: "Il crée de nouvelles Dragon Balls terrestres, nettement plus puissantes.",
   },
@@ -427,7 +427,7 @@ export const QUESTIONS = [
   },
   {
     id: 'sa20', cat: 'sagas', diff: 3,
-    q: "Quel androïde tente de s'autodétruire pour éliminer Cell, sans savoir que sa bombe a été retirée ?",
+    q: "Quel cyborg tente de s'autodétruire pour éliminer Cell, sans savoir que sa bombe a été retirée ?",
     a: ["C-16", "C-17", "C-18", "C-19"],
     why: "Bulma l'avait désamorcée pendant les réparations : le sacrifice échoue.",
   },
@@ -482,8 +482,8 @@ export const QUESTIONS = [
   },
   {
     id: 'sa29', cat: 'sagas', diff: 3,
-    q: "Quelle forme de Majin Buu absorbe Gotenks et Piccolo ?",
-    a: ["Super Buu", "Kid Buu", "Buu le gros", "Majin Buu originel"],
+    q: "Quelle forme de Majin Boo absorbe Gotenks et Piccolo ?",
+    a: ["Super Boo", "Kid Boo", "Boo le gros", "Majin Boo originel"],
     why: "Chaque absorption modifie sa silhouette et décuple son intelligence.",
   },
   {
@@ -579,8 +579,8 @@ export const QUESTIONS = [
   {
     id: 'sa43', cat: 'sagas', diff: 3,
     q: "Quel ancien ennemi est ressuscité pour compléter l'équipe de l'univers 7 ?",
-    a: ["Freezer", "Cell", "Majin Buu", "Cooler"],
-    why: "Buu devait y participer, mais s'endort profondément à la veille du tournoi.",
+    a: ["Freezer", "Cell", "Majin Boo", "Cooler"],
+    why: "Boo devait y participer, mais s'endort profondément à la veille du tournoi.",
   },
   {
     id: 'sa44', cat: 'sagas', diff: 3,
@@ -610,7 +610,7 @@ export const QUESTIONS = [
     id: 'sa48', cat: 'sagas', diff: 3,
     q: "Avec qui Goku part-il s'entraîner à la toute fin de Dragon Ball Z ?",
     a: ["Uub", "Gohan", "Vegeta", "Pan"],
-    why: "La réincarnation de Kid Buu, née humaine grâce au vœu formulé par Goku lui-même.",
+    why: "La réincarnation de Kid Boo, née humaine grâce au vœu formulé par Goku lui-même.",
   },
 
   /* ---------------------------------------------------------------
@@ -745,7 +745,7 @@ export const QUESTIONS = [
   },
   {
     id: 'te22', cat: 'techniques', diff: 1,
-    q: "Quelle forme aux cheveux dorés descendant jusqu'aux reins, et sans sourcils, apparaît contre Majin Buu ?",
+    q: "Quelle forme aux cheveux dorés descendant jusqu'aux reins, et sans sourcils, apparaît contre Majin Boo ?",
     a: ["Le Super Saiyan 3", "Le Super Saiyan 2", "Le Super Saiyan God", "Le Super Saiyan Blue"],
     why: "Sa consommation d'énergie est telle qu'elle est intenable plus de quelques minutes.",
   },
@@ -917,13 +917,13 @@ export const QUESTIONS = [
   },
   {
     id: 'te47', cat: 'techniques', diff: 3,
-    q: "Quel guerrier naît de la fusion Potara entre Goku et Vegeta, face à Super Buu ?",
+    q: "Quel guerrier naît de la fusion Potara entre Goku et Vegeta, face à Super Boo ?",
     a: ["Vegetto", "Gogeta", "Gotenks", "Gohanks"],
     why: "Gogeta naît lui de la danse de Metamor, jamais des Potaras.",
   },
   {
     id: 'te48', cat: 'techniques', diff: 3,
-    q: "Quelle capacité de Majin Buu transforme ses adversaires en friandises ?",
+    q: "Quelle capacité de Majin Boo transforme ses adversaires en friandises ?",
     a: ["Un rayon transformateur", "Le Mafuba", "Le Taiyoken", "Le Kienzan"],
     why: "Il les dévore ensuite, ce qui reste sa manière la plus expéditive de faire le vide.",
   },
@@ -1248,6 +1248,307 @@ export const QUESTIONS = [
     q: "Quelle puissance de combat Cui, l'ancien rival de Vegeta, possède-t-il ?",
     a: ["18 000", "22 000", "23 000", "24 000"],
     why: "Exactement le niveau de Vegeta avant la Terre — ce que Cui ignorait.",
+  },
+  /* ---------------------------------------------------------------
+     COULISSES & CRÉATION
+  --------------------------------------------------------------- */
+  {
+    id: 'co01', cat: 'coulisses', diff: 1,
+    q: "Qui a créé et dessiné le manga Dragon Ball ?",
+    a: ["Akira Toriyama", "Eiichirō Oda", "Masashi Kishimoto", "Yoshihiro Togashi"],
+    why: "Il lance la série en 1984 et la dessine seul jusqu'à sa conclusion, onze ans plus tard.",
+  },
+  {
+    id: 'co02', cat: 'coulisses', diff: 1,
+    q: "Dans quel magazine Dragon Ball a-t-il été prépublié chapitre par chapitre ?",
+    a: ["Weekly Shōnen Jump", "Weekly Shōnen Magazine", "Weekly Shōnen Sunday", "Young Jump"],
+    why: "L'hebdomadaire phare de l'éditeur Shueisha, où la série paraît une semaine sur l'autre.",
+  },
+  {
+    id: 'co03', cat: 'coulisses', diff: 1,
+    q: "Quel roman classique chinois a inspiré les premières aventures de Goku ?",
+    a: ["Le Voyage en Occident", "Au bord de l'eau", "Les Trois Royaumes", "Le Rêve dans le pavillon rouge"],
+    why: "Son Goku est la lecture japonaise de Sun Wukong, le roi des singes du roman.",
+  },
+  {
+    id: 'co04', cat: 'coulisses', diff: 1,
+    q: "Quel manga à succès d'Akira Toriyama a précédé Dragon Ball ?",
+    a: ["Dr Slump", "Sand Land", "Blue Dragon", "Cowa !"],
+    why: "Les aventures d'Arale, publiées de 1980 à 1984, juste avant le premier chapitre de Dragon Ball.",
+  },
+  {
+    id: 'co05', cat: 'coulisses', diff: 1,
+    q: "Combien de tomes compte l'édition originale du manga ?",
+    a: ["42", "34", "28", "50"],
+    why: "Quarante-deux volumes, du premier chapitre à la toute dernière page.",
+  },
+  {
+    id: 'co06', cat: 'coulisses', diff: 1,
+    q: "Comment s'appelle le studio fondé par Akira Toriyama ?",
+    a: ["Bird Studio", "Studio Ghibli", "Studio Pierrot", "Bones"],
+    why: "Un clin d'œil à son nom : « tori » veut dire oiseau en japonais.",
+  },
+  {
+    id: 'co07', cat: 'coulisses', diff: 1,
+    q: "Quel studio d'animation a produit la série télévisée Dragon Ball ?",
+    a: ["Toei Animation", "Madhouse", "Sunrise", "Studio Pierrot"],
+    why: "L'anime démarre en 1986, deux ans seulement après le lancement du manga.",
+  },
+  {
+    id: 'co08', cat: 'coulisses', diff: 1,
+    q: "En quelle année le premier chapitre de Dragon Ball a-t-il paru ?",
+    a: ["1984", "1979", "1990", "1995"],
+    why: "La série s'installe alors dans le Weekly Shōnen Jump pour onze années.",
+  },
+  {
+    id: 'co09', cat: 'coulisses', diff: 1,
+    q: "De quel légume le nom saiyan de Goku, Kakarot, s'inspire-t-il ?",
+    a: ["La carotte", "Le radis", "Le chou", "L'asperge"],
+    why: "Tous les Saiyans portent un nom de légume : c'est la règle que s'est fixée l'auteur.",
+  },
+  {
+    id: 'co10', cat: 'coulisses', diff: 1,
+    q: "Que signifie « yasai », le mot japonais dont « Saiyan » est l'anagramme ?",
+    a: ["Légume", "Guerrier", "Étoile", "Singe"],
+    why: "« Yasai » devient « saiya » par inversion des syllabes — le verlan japonais.",
+  },
+  {
+    id: 'co11', cat: 'coulisses', diff: 1,
+    q: "Le prénom de Bulma vient d'une pièce de vêtement. Laquelle ?",
+    a: ["Un short de sport", "Un chapeau", "Une écharpe", "Une paire de bottes"],
+    why: "Toute sa famille porte des noms de sous-vêtements, de son père jusqu'à ses enfants.",
+  },
+  {
+    id: 'co12', cat: 'coulisses', diff: 1,
+    q: "Qui dessine le manga Dragon Ball Super ?",
+    a: ["Toyotarō", "Akira Toriyama", "Tite Kubo", "Hiro Mashima"],
+    why: "Ancien dessinateur amateur repéré par l'éditeur ; Toriyama en supervisait le scénario.",
+  },
+  {
+    id: 'co13', cat: 'coulisses', diff: 1,
+    q: "Quelle série animée adapte la seconde moitié du manga, à partir de 1989 ?",
+    a: ["Dragon Ball Z", "Dragon Ball GT", "Dragon Ball Kai", "Dragon Ball Daima"],
+    why: "Elle reprend le récit à l'arrivée de Raditz et le suit jusqu'à la fin du manga.",
+  },
+  {
+    id: 'co14', cat: 'coulisses', diff: 1,
+    q: "Quelle série animée de 1996 n'est tirée d'aucun chapitre du manga ?",
+    a: ["Dragon Ball GT", "Dragon Ball Z", "Dragon Ball Kai", "Dragon Ball Super"],
+    why: "Un scénario original écrit par la Toei après la fin de la prépublication.",
+  },
+  {
+    id: 'co15', cat: 'coulisses', diff: 1,
+    q: "Quel éditeur japonais publie Dragon Ball ?",
+    a: ["Shueisha", "Kodansha", "Shogakukan", "Kadokawa"],
+    why: "La maison du Weekly Shōnen Jump, où la série est parue de bout en bout.",
+  },
+  {
+    id: 'co16', cat: 'coulisses', diff: 1,
+    q: "En quelle année Akira Toriyama s'est-il éteint ?",
+    a: ["2024", "2015", "2019", "2021"],
+    why: "Disparu le 1er mars 2024, à 68 ans, quarante ans après le premier chapitre.",
+  },
+  {
+    id: 'co17', cat: 'coulisses', diff: 2,
+    q: "Combien de chapitres compte le manga Dragon Ball ?",
+    a: ["519", "302", "420", "640"],
+    why: "Cinq cent dix-neuf chapitres hebdomadaires, sans presque aucune interruption.",
+  },
+  {
+    id: 'co18', cat: 'coulisses', diff: 2,
+    q: "Combien de tomes compte la Perfect Edition du manga ?",
+    a: ["34", "42", "28", "46"],
+    why: "La réédition grand format resserre les 42 tomes d'origine en 34 volumes.",
+  },
+  {
+    id: 'co19', cat: 'coulisses', diff: 2,
+    q: "Qui a soufflé à Akira Toriyama le nom du Kaméhaméha ?",
+    a: ["Sa femme", "Son éditeur", "Son fils", "Un lecteur"],
+    why: "L'auteur séchait sur le nom de l'attaque ; elle lui a proposé celui-là, il l'a gardé.",
+  },
+  {
+    id: 'co20', cat: 'coulisses', diff: 2,
+    q: "De quel mot japonais le nom du commando Ginyu est-il tiré ?",
+    a: ["Lait", "Étoile", "Tonnerre", "Épice"],
+    why: "« Gyūnyū » veut dire lait : chaque membre porte un nom de produit laitier.",
+  },
+  {
+    id: 'co21', cat: 'coulisses', diff: 2,
+    q: "Les habitants de Namek portent des noms inspirés de quoi ?",
+    a: ["Escargots et limaces", "Fleurs des champs", "Épices", "Minéraux"],
+    why: "« Namekuji » veut dire limace ; Dendé vient de « denden-mushi », l'escargot.",
+  },
+  {
+    id: 'co22', cat: 'coulisses', diff: 2,
+    q: "De quoi le nom de Piccolo s'inspire-t-il ?",
+    a: ["D'un instrument de musique", "D'un plat italien", "D'un oiseau", "D'une étoile"],
+    why: "Sa lignée suit la même règle : Tambourine, Cymbal, Drum et Piano.",
+  },
+  {
+    id: 'co23', cat: 'coulisses', diff: 2,
+    q: "Quel éditeur a accompagné les débuts de Toriyama et l'a poussé vers Dragon Ball ?",
+    a: ["Kazuhiko Torishima", "Masakazu Katsura", "Yoshihiro Togashi", "Hisashi Sasaki"],
+    why: "Déjà son éditeur sur Dr Slump, il est resté célèbre pour ses refus à répétition.",
+  },
+  {
+    id: 'co24', cat: 'coulisses', diff: 2,
+    q: "De quel univers culinaire viennent les noms de Yamcha, Oolong et Puerh ?",
+    a: ["Le thé chinois", "Le saké", "Les pâtisseries", "Les sodas"],
+    why: "Oolong et pu-erh sont deux thés ; « yamcha » désigne le fait d'en boire avec des dim sum.",
+  },
+  {
+    id: 'co25', cat: 'coulisses', diff: 2,
+    q: "Que signifie le nom du tournoi, le « Tenkaichi Budokai » ?",
+    a: [
+      "Les arts martiaux du plus fort sous le ciel",
+      "Le tournoi des sept boules",
+      "La coupe du roi démon",
+      "L'arène des dieux",
+    ],
+    why: "« Tenkaichi » veut dire premier sous le ciel : le titre est dans le nom.",
+  },
+  {
+    id: 'co26', cat: 'coulisses', diff: 2,
+    q: "En quelle année la prépublication du manga s'est-elle achevée ?",
+    a: ["1995", "1992", "1997", "2000"],
+    why: "Onze ans de parution hebdomadaire, refermés sur le tournoi qui clôt la série.",
+  },
+  {
+    id: 'co27', cat: 'coulisses', diff: 2,
+    q: "Pour quelle série de jeux vidéo Toriyama a-t-il dessiné les personnages ?",
+    a: ["Dragon Quest", "Final Fantasy", "The Legend of Zelda", "Street Fighter"],
+    why: "Un travail commencé en 1986 et poursuivi sur presque tous les épisodes suivants.",
+  },
+  {
+    id: 'co28', cat: 'coulisses', diff: 2,
+    q: "Quel manga de Toriyama suit un jeune démon dans un désert privé d'eau ?",
+    a: ["Sand Land", "Blue Dragon", "Kajika", "Neko Majin"],
+    why: "Publié en 2000, il a été adapté en film d'animation puis en série.",
+  },
+  {
+    id: 'co29', cat: 'coulisses', diff: 3,
+    q: "Quel légume a donné son nom à Nappa ?",
+    a: ["Le chou chinois", "Le navet", "L'artichaut", "Le poireau"],
+    why: "Le « nappa » est un chou pommé très courant dans la cuisine japonaise.",
+  },
+  {
+    id: 'co30', cat: 'coulisses', diff: 3,
+    q: "Et celui du frère aîné de Goku, Raditz ?",
+    a: ["Le radis", "La betterave", "La laitue", "Le céleri"],
+    why: "« Radish » en anglais : la règle des légumes vaut aussi pour la famille de Goku.",
+  },
+  {
+    id: 'co31', cat: 'coulisses', diff: 3,
+    q: "Quel légume se cache derrière le nom de Broly ?",
+    a: ["Le brocoli", "Le poireau", "Le haricot", "L'endive"],
+    why: "Son père Paragus complète la fratrie végétale : son nom vient de l'asperge.",
+  },
+  {
+    id: 'co32', cat: 'coulisses', diff: 3,
+    q: "Quel produit laitier se cache derrière le nom de Jeece ?",
+    a: ["Le fromage", "Le beurre", "La crème", "Le yaourt"],
+    why: "« Cheese », prononcé à la japonaise, comme tout le commando Ginyu.",
+  },
+  {
+    id: 'co33', cat: 'coulisses', diff: 3,
+    q: "Et derrière celui de Butta, le plus rapide du commando ?",
+    a: ["Le beurre", "Le fromage", "Le lait", "La crème"],
+    why: "« Batā », le beurre : Reacom vient de la crème et Guldo du yaourt.",
+  },
+  {
+    id: 'co34', cat: 'coulisses', diff: 3,
+    q: "Quel vêtement a donné son nom à Trunks ?",
+    a: ["Le caleçon", "La chaussette", "Le gant", "Le bonnet"],
+    why: "Sa sœur Bra suit la même logique — la famille Brief au grand complet.",
+  },
+  {
+    id: 'co35', cat: 'coulisses', diff: 3,
+    q: "Que signifie « Porunga », le nom du dragon de Namek ?",
+    a: ["Le dieu des rêves", "Le gardien du ciel", "Le roi des étoiles", "Le serpent d'or"],
+    why: "Un nom en langue namek, à l'inverse de Shenron qui vient du chinois.",
+  },
+  {
+    id: 'co36', cat: 'coulisses', diff: 3,
+    q: "Que devait annoncer le « Z » de Dragon Ball Z ?",
+    a: [
+      "La fin de la série, Z fermant l'alphabet",
+      "Le nom de la planète Zeta",
+      "Le mot japonais pour puissance",
+      "La zone d'entraînement des Saiyans",
+    ],
+    why: "L'auteur voulait alors conclure : la suite en a décidé autrement, pendant sept ans.",
+  },
+  {
+    id: 'co37', cat: 'coulisses', diff: 3,
+    q: "Sous quelle forme Akira Toriyama se représentait-il dans ses pages bonus ?",
+    a: ["Un petit robot masqué", "Un oiseau", "Un chat", "Un samouraï"],
+    why: "Un robot au masque à gaz, sa signature dans les marges de ses mangas.",
+  },
+  {
+    id: 'co38', cat: 'coulisses', diff: 3,
+    q: "Quel remontage de 2009 resserre l'anime sur le déroulé exact du manga ?",
+    a: ["Dragon Ball Kai", "Dragon Ball GT", "Dragon Ball Super", "Dragon Ball Daima"],
+    why: "Les épisodes de remplissage disparaissent et l'image est retravaillée.",
+  },
+  {
+    id: 'co39', cat: 'coulisses', diff: 3,
+    q: "Quelle série de 2024 fête les quarante ans de la licence en rajeunissant les héros ?",
+    a: ["Dragon Ball Daima", "Dragon Ball Super", "Dragon Ball Heroes", "Dragon Ball GT"],
+    why: "Akira Toriyama a travaillé sur son scénario et ses personnages avant sa disparition.",
+  },
+  {
+    id: 'co40', cat: 'coulisses', diff: 3,
+    q: "Quel manga de Toriyama se déroule dans le même univers, autour d'un patrouilleur galactique ?",
+    a: ["Jaco the Galactic Patrolman", "Sand Land", "Cowa !", "Kajika"],
+    why: "On y croise la sœur aînée de Bulma : le lien avec Dragon Ball est explicite.",
+  },
+  {
+    id: 'co41', cat: 'coulisses', diff: 3,
+    q: "Pour quel jeu de rôle de 1995 Toriyama a-t-il dessiné les personnages avec le créateur de Dragon Quest ?",
+    a: ["Chrono Trigger", "Secret of Mana", "Terranigma", "Illusion of Time"],
+    why: "Un trio d'auteurs réuni pour l'occasion, avec Yuji Horii au scénario.",
+  },
+  {
+    id: 'co42', cat: 'coulisses', diff: 3,
+    q: "À quoi renvoie le nom de Chichi en japonais ?",
+    a: ["Au lait", "Au feu", "À la montagne", "Au vent"],
+    why: "Elle est la fille du Roi Gyumao, littéralement le « roi démon vache » : le thème est familial.",
+  },
+  {
+    id: 'co43', cat: 'coulisses', diff: 3,
+    q: "Quelle héroïne d'un autre manga de Toriyama croise Goku au fil de sa quête ?",
+    a: ["Arale", "Ranma", "Lum", "Nausicaä"],
+    why: "Le Village Pingouin surgit en pleine traque du Général Blue, le temps d'un détour.",
+  },
+  {
+    id: 'co44', cat: 'coulisses', diff: 3,
+    q: "De quel appareil le nom de Freezer s'inspire-t-il ?",
+    a: ["Le congélateur", "Le four", "Le lave-linge", "Le grille-pain"],
+    why: "Sa famille file la métaphore du froid : Cooler, King Cold et jusqu'à son ancêtre Chilled.",
+  },
+  {
+    id: 'co45', cat: 'coulisses', diff: 3,
+    q: "En mémoire de qui Goku a-t-il baptisé son fils aîné ?",
+    a: ["Son grand-père adoptif", "Son maître Kamé Sennin", "Son père Bardock", "Le Tout-Puissant"],
+    why: "Le vieil homme qui l'a recueilli portait déjà le nom de Son Gohan.",
+  },
+  {
+    id: 'co46', cat: 'coulisses', diff: 3,
+    q: "Quel plat a donné son nom à Chaozu ?",
+    a: ["Le ravioli chinois", "La soupe de nouilles", "Le canard laqué", "Le riz sauté"],
+    why: "Son inséparable Tenshinhan doit le sien à un bol de riz garni d'omelette au crabe.",
+  },
+  {
+    id: 'co47', cat: 'coulisses', diff: 3,
+    q: "Combien de temps sépare la fin du manga de celle de sa première adaptation animée ?",
+    a: ["Environ un an", "Cinq ans", "Dix ans", "Aucun : elles s'arrêtent le même mois"],
+    why: "Le manga se referme en 1995, l'anime poursuit sa diffusion jusqu'en 1996.",
+  },
+  {
+    id: 'co48', cat: 'coulisses', diff: 3,
+    q: "Quel éditeur publie historiquement le manga en France ?",
+    a: ["Glénat", "Kana", "Pika", "Ki-oon"],
+    why: "La première édition française paraît au début des années 1990, et la série n'a jamais changé de maison.",
   },
 ]
 

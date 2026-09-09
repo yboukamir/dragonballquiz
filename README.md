@@ -45,8 +45,8 @@ npm run dev
 ```
 src/
 ├── data/
-│   ├── categories.js      identité et accent des 4 catégories
-│   ├── questions.fr.js    192 questions, 4 catégories, 3 niveaux
+│   ├── categories.js      identité et accent des 5 catégories
+│   ├── questions.fr.js    240 questions, 5 catégories, 3 niveaux
 │   └── questions.en.js    la même banque en anglais
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
@@ -123,6 +123,28 @@ Le sélecteur est fait de **vrais liens** `<a href>` vers `/` et `/en/` : un mot
 doit pouvoir suivre le chemin vers l'autre version, et un clic du milieu doit
 ouvrir un onglet. Le clic simple est intercepté pour basculer sans rechargement,
 via `pushState` — le bouton précédent revient donc bien à la langue précédente.
+
+### Catégories
+
+| Catégorie | Terrain |
+| --- | --- |
+| Personnages | Qui est qui dans la galaxie |
+| Sagas | Des Saiyans au Tournoi du Pouvoir |
+| Techniques & transformations | Kaméhaméha, Potaras, Ultra Instinct |
+| Power levels | Scouters, multiplicateurs et chiffres cultes |
+| Coulisses & création | Toriyama, le Jump, l'origine des noms |
+
+Les quatre premières portent sur la fiction. La cinquième porte sur l'œuvre
+elle-même : prépublication, tomes, étymologie des noms, autres travaux de
+l'auteur. C'est la seule dont les réponses se vérifient hors de l'histoire, et
+elle départage nettement le lecteur assidu du spectateur.
+
+**Terminologie.** Les questions françaises suivent les graphies de l'édition
+française sous licence — « Majin Boo » et non « Buu », « Lunch » et non
+« Launch », « cyborgs » et non « androïdes », « le Tout-Puissant » pour le dieu
+de la Terre. La banque anglaise garde les graphies de l'édition anglophone
+(« Majin Buu », « Frieza », « Chi-Chi ») : ce sont deux banques indépendantes,
+pas une traduction mot à mot.
 
 ### Ajouter des questions
 

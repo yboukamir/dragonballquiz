@@ -10,6 +10,7 @@ export const CATEGORIES = [
   { id: 'sagas', accent: 'cobalt' },
   { id: 'techniques', accent: 'ki' },
   { id: 'power', accent: 'crimson' },
+  { id: 'coulisses', accent: 'sky' },
 ]
 
 export const CATEGORY_IDS = CATEGORIES.map((c) => c.id)

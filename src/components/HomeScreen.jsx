@@ -49,7 +49,7 @@ export default function HomeScreen({
         </h1>
 
         <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-          {ready ? t.accueil.accroche(questionCount) : t.accueil.chargement}
+          {ready ? t.accueil.accroche(questionCount, CATEGORIES.length) : t.accueil.chargement}
         </p>
       </header>
 
@@ -60,10 +60,13 @@ export default function HomeScreen({
         </h2>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          {CATEGORIES.map((c) => (
+          {CATEGORIES.map((c, i) => (
             <CategoryCard
               key={c.id}
               category={c}
+              // Sur deux colonnes, un nombre impair de catégories laisserait
+              // la dernière carte seule à gauche : on l'étale sur la ligne.
+              wide={CATEGORIES.length % 2 === 1 && i === CATEGORIES.length - 1}
               best={bestScores[c.id]}
               chrono={chrono}
               selected={category === c.id}

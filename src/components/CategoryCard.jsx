@@ -4,7 +4,7 @@ import { labelNiveau } from '../lib/labels'
 import Badge from './ui/Badge'
 
 /** Carte de sélection d'une catégorie, avec rappel du record personnel. */
-export default function CategoryCard({ category, best, chrono, selected, onSelect }) {
+export default function CategoryCard({ category, best, chrono, selected, wide, onSelect }) {
   const { t } = useLang()
   const a = accent(category.accent)
   const record = chrono ? best?.chrono : best?.normal
@@ -17,6 +17,7 @@ export default function CategoryCard({ category, best, chrono, selected, onSelec
       aria-pressed={selected}
       className={[
         'group relative flex w-full flex-col items-start gap-1 overflow-hidden',
+        wide ? 'sm:col-span-2' : '',
         'border-[3px] border-ink p-4 text-left transition-all duration-150 tap-safe sm:p-5',
         selected
           ? 'bg-paper text-ink -translate-y-1 shadow-[7px_7px_0_0_var(--color-void)]'

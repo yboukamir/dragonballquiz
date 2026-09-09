@@ -1,5 +1,5 @@
 /**
- * English question bank — 192 original questions.
+ * English question bank — 240 original questions.
  *
  * Same ids, same categories and same difficulty levels as
  * `questions.fr.js`: the two banks are interchangeable, and `npm run check`
@@ -1290,5 +1290,306 @@ export const QUESTIONS = [
     q: "What power level does Cui, Vegeta's old rival, have?",
     a: ["18,000", "22,000", "23,000", "24,000"],
     why: "Exactly Vegeta's level before Earth — which is what Cui did not know.",
+  },
+  /* ---------------------------------------------------------------
+     BEHIND THE SCENES
+  --------------------------------------------------------------- */
+  {
+    id: 'co01', cat: 'coulisses', diff: 1,
+    q: "Who created and drew the Dragon Ball manga?",
+    a: ["Akira Toriyama", "Eiichirō Oda", "Masashi Kishimoto", "Yoshihiro Togashi"],
+    why: "He launched the series in 1984 and drew it on his own until it ended eleven years later.",
+  },
+  {
+    id: 'co02', cat: 'coulisses', diff: 1,
+    q: "Which magazine serialised Dragon Ball chapter by chapter?",
+    a: ["Weekly Shōnen Jump", "Weekly Shōnen Magazine", "Weekly Shōnen Sunday", "Young Jump"],
+    why: "Shueisha's flagship weekly, where a new chapter appeared almost every week.",
+  },
+  {
+    id: 'co03', cat: 'coulisses', diff: 1,
+    q: "Which Chinese classic inspired Goku's earliest adventures?",
+    a: ["Journey to the West", "Water Margin", "Romance of the Three Kingdoms", "Dream of the Red Chamber"],
+    why: "Son Goku is the Japanese reading of Sun Wukong, the novel's Monkey King.",
+  },
+  {
+    id: 'co04', cat: 'coulisses', diff: 1,
+    q: "Which earlier Toriyama hit came just before Dragon Ball?",
+    a: ["Dr. Slump", "Sand Land", "Blue Dragon", "Cowa!"],
+    why: "Arale's adventures ran from 1980 to 1984, right up to Dragon Ball's first chapter.",
+  },
+  {
+    id: 'co05', cat: 'coulisses', diff: 1,
+    q: "How many volumes does the original edition of the manga run to?",
+    a: ["42", "34", "28", "50"],
+    why: "Forty-two volumes, from the opening chapter to the very last page.",
+  },
+  {
+    id: 'co06', cat: 'coulisses', diff: 1,
+    q: "What is the name of the studio Akira Toriyama founded?",
+    a: ["Bird Studio", "Studio Ghibli", "Studio Pierrot", "Bones"],
+    why: "A nod to his own name: « tori » means bird in Japanese.",
+  },
+  {
+    id: 'co07', cat: 'coulisses', diff: 1,
+    q: "Which animation studio produced the Dragon Ball television series?",
+    a: ["Toei Animation", "Madhouse", "Sunrise", "Studio Pierrot"],
+    why: "The anime started in 1986, only two years after the manga launched.",
+  },
+  {
+    id: 'co08', cat: 'coulisses', diff: 1,
+    q: "In which year did the first chapter of Dragon Ball appear?",
+    a: ["1984", "1979", "1990", "1995"],
+    why: "The series then held its slot in Weekly Shōnen Jump for eleven years.",
+  },
+  {
+    id: 'co09', cat: 'coulisses', diff: 1,
+    q: "Which vegetable is behind Kakarot, Goku's Saiyan name?",
+    a: ["The carrot", "The radish", "The cabbage", "The asparagus"],
+    why: "Every Saiyan carries a vegetable name — a rule the author set himself.",
+  },
+  {
+    id: 'co10', cat: 'coulisses', diff: 1,
+    q: "What does « yasai » mean, the Japanese word « Saiyan » is a scramble of?",
+    a: ["Vegetable", "Warrior", "Star", "Monkey"],
+    why: "Swap the syllables of « yasai » and you get « saiya ».",
+  },
+  {
+    id: 'co11', cat: 'coulisses', diff: 1,
+    q: "Bulma's name comes from a piece of clothing. Which one?",
+    a: ["Gym shorts", "A hat", "A scarf", "A pair of boots"],
+    why: "Her whole family is named after underwear, from her father down to her children.",
+  },
+  {
+    id: 'co12', cat: 'coulisses', diff: 1,
+    q: "Who draws the Dragon Ball Super manga?",
+    a: ["Toyotarō", "Akira Toriyama", "Tite Kubo", "Hiro Mashima"],
+    why: "A former fan artist spotted by the editors; Toriyama oversaw the story.",
+  },
+  {
+    id: 'co13', cat: 'coulisses', diff: 1,
+    q: "Which animated series adapts the second half of the manga, from 1989?",
+    a: ["Dragon Ball Z", "Dragon Ball GT", "Dragon Ball Kai", "Dragon Ball Daima"],
+    why: "It picks the story up at Raditz's arrival and follows it to the manga's end.",
+  },
+  {
+    id: 'co14', cat: 'coulisses', diff: 1,
+    q: "Which 1996 series is not adapted from any manga chapter?",
+    a: ["Dragon Ball GT", "Dragon Ball Z", "Dragon Ball Kai", "Dragon Ball Super"],
+    why: "An original story written at Toei after serialisation had ended.",
+  },
+  {
+    id: 'co15', cat: 'coulisses', diff: 1,
+    q: "Which Japanese publisher puts out Dragon Ball?",
+    a: ["Shueisha", "Kodansha", "Shogakukan", "Kadokawa"],
+    why: "The house behind Weekly Shōnen Jump, where the series ran from start to finish.",
+  },
+  {
+    id: 'co16', cat: 'coulisses', diff: 1,
+    q: "In which year did Akira Toriyama pass away?",
+    a: ["2024", "2015", "2019", "2021"],
+    why: "He died on 1 March 2024, aged 68, forty years after the first chapter.",
+  },
+  {
+    id: 'co17', cat: 'coulisses', diff: 2,
+    q: "How many chapters does the Dragon Ball manga contain?",
+    a: ["519", "302", "420", "640"],
+    why: "Five hundred and nineteen weekly chapters, with barely a break.",
+  },
+  {
+    id: 'co18', cat: 'coulisses', diff: 2,
+    q: "How many volumes does the Perfect Edition of the manga run to?",
+    a: ["34", "42", "28", "46"],
+    why: "The large-format reissue packs the original 42 volumes into 34.",
+  },
+  {
+    id: 'co19', cat: 'coulisses', diff: 2,
+    q: "Who suggested the name Kamehameha to Akira Toriyama?",
+    a: ["His wife", "His editor", "His son", "A reader"],
+    why: "He was stuck on what to call the attack; she offered that one, and it stuck.",
+  },
+  {
+    id: 'co20', cat: 'coulisses', diff: 2,
+    q: "Which Japanese word is the Ginyu Force named after?",
+    a: ["Milk", "Star", "Thunder", "Spice"],
+    why: "« Gyūnyū » means milk: every member is named after a dairy product.",
+  },
+  {
+    id: 'co21', cat: 'coulisses', diff: 2,
+    q: "Namekian names are drawn from what?",
+    a: ["Snails and slugs", "Wild flowers", "Spices", "Minerals"],
+    why: "« Namekuji » means slug; Dende comes from « denden-mushi », the snail.",
+  },
+  {
+    id: 'co22', cat: 'coulisses', diff: 2,
+    q: "What is Piccolo's name taken from?",
+    a: ["A musical instrument", "An Italian dish", "A bird", "A star"],
+    why: "His line follows the same rule: Tambourine, Cymbal, Drum and Piano.",
+  },
+  {
+    id: 'co23', cat: 'coulisses', diff: 2,
+    q: "Which editor guided Toriyama's early career and pushed him towards Dragon Ball?",
+    a: ["Kazuhiko Torishima", "Masakazu Katsura", "Yoshihiro Togashi", "Hisashi Sasaki"],
+    why: "Already his editor on Dr. Slump, he is remembered for rejecting draft after draft.",
+  },
+  {
+    id: 'co24', cat: 'coulisses', diff: 2,
+    q: "Yamcha, Oolong and Puar are named after what?",
+    a: ["Chinese tea", "Sake", "Pastries", "Soft drinks"],
+    why: "Oolong and pu-erh are teas; « yum cha » is drinking tea over dim sum.",
+  },
+  {
+    id: 'co25', cat: 'coulisses', diff: 2,
+    q: "What does the tournament's name, « Tenkaichi Budokai », mean?",
+    a: [
+      "The martial arts gathering of the strongest under heaven",
+      "The tournament of the seven balls",
+      "The demon king's cup",
+      "The arena of the gods",
+    ],
+    why: "« Tenkaichi » means first under heaven: the title is right there in the name.",
+  },
+  {
+    id: 'co26', cat: 'coulisses', diff: 2,
+    q: "In which year did serialisation of the manga come to an end?",
+    a: ["1995", "1992", "1997", "2000"],
+    why: "Eleven years of weekly chapters, closed out on the tournament that ends the series.",
+  },
+  {
+    id: 'co27', cat: 'coulisses', diff: 2,
+    q: "Which video game series did Toriyama design the characters for?",
+    a: ["Dragon Quest", "Final Fantasy", "The Legend of Zelda", "Street Fighter"],
+    why: "Work that began in 1986 and carried on across nearly every instalment since.",
+  },
+  {
+    id: 'co28', cat: 'coulisses', diff: 2,
+    q: "Which Toriyama manga follows a young demon across a waterless desert?",
+    a: ["Sand Land", "Blue Dragon", "Kajika", "Neko Majin"],
+    why: "Published in 2000, later adapted into an animated film and a series.",
+  },
+  {
+    id: 'co29', cat: 'coulisses', diff: 3,
+    q: "Which vegetable gave Nappa his name?",
+    a: ["Chinese cabbage", "The turnip", "The artichoke", "The leek"],
+    why: "« Nappa » is a leafy cabbage that is everywhere in Japanese cooking.",
+  },
+  {
+    id: 'co30', cat: 'coulisses', diff: 3,
+    q: "And Raditz, Goku's older brother?",
+    a: ["The radish", "The beetroot", "The lettuce", "The celery"],
+    why: "The vegetable rule holds for Goku's own family too.",
+  },
+  {
+    id: 'co31', cat: 'coulisses', diff: 3,
+    q: "Which vegetable hides behind Broly's name?",
+    a: ["Broccoli", "The leek", "The bean", "The chicory"],
+    why: "His father Paragus completes the pair — his name comes from asparagus.",
+  },
+  {
+    id: 'co32', cat: 'coulisses', diff: 3,
+    q: "Which dairy product is Jeice named after?",
+    a: ["Cheese", "Butter", "Cream", "Yoghurt"],
+    why: "« Cheese », Japanese-style, like the rest of the Ginyu Force.",
+  },
+  {
+    id: 'co33', cat: 'coulisses', diff: 3,
+    q: "And Burter, the fastest of the squad?",
+    a: ["Butter", "Cheese", "Milk", "Cream"],
+    why: "« Batā », butter: Recoome comes from cream and Guldo from yoghurt.",
+  },
+  {
+    id: 'co34', cat: 'coulisses', diff: 3,
+    q: "Which garment gave Trunks his name?",
+    a: ["Underwear", "A sock", "A glove", "A woolly hat"],
+    why: "His sister Bulla follows the same logic — the Briefs family, in full.",
+  },
+  {
+    id: 'co35', cat: 'coulisses', diff: 3,
+    q: "What does « Porunga », the name of Namek's dragon, mean?",
+    a: ["God of dreams", "Guardian of the sky", "King of stars", "Golden serpent"],
+    why: "A Namekian name, unlike Shenron's, which comes from Chinese.",
+  },
+  {
+    id: 'co36', cat: 'coulisses', diff: 3,
+    q: "What was the « Z » in Dragon Ball Z meant to signal?",
+    a: [
+      "The end of the series, Z closing the alphabet",
+      "The name of planet Zeta",
+      "The Japanese word for power",
+      "The Saiyans' training zone",
+    ],
+    why: "The author meant to wrap things up; the story ran on for another seven years.",
+  },
+  {
+    id: 'co37', cat: 'coulisses', diff: 3,
+    q: "How did Akira Toriyama draw himself in his bonus pages?",
+    a: ["A small masked robot", "A bird", "A cat", "A samurai"],
+    why: "A robot in a gas mask — his signature in the margins of his manga.",
+  },
+  {
+    id: 'co38', cat: 'coulisses', diff: 3,
+    q: "Which 2009 recut tightens the anime back onto the manga's plot?",
+    a: ["Dragon Ball Kai", "Dragon Ball GT", "Dragon Ball Super", "Dragon Ball Daima"],
+    why: "Filler episodes are gone and the picture was reworked from scratch.",
+  },
+  {
+    id: 'co39', cat: 'coulisses', diff: 3,
+    q: "Which 2024 series marks the franchise's fortieth year by turning the heroes young again?",
+    a: ["Dragon Ball Daima", "Dragon Ball Super", "Dragon Ball Heroes", "Dragon Ball GT"],
+    why: "Akira Toriyama worked on its story and characters before he died.",
+  },
+  {
+    id: 'co40', cat: 'coulisses', diff: 3,
+    q: "Which Toriyama manga is set in the same universe, around a galactic patrolman?",
+    a: ["Jaco the Galactic Patrolman", "Sand Land", "Cowa!", "Kajika"],
+    why: "Bulma's older sister turns up in it: the link to Dragon Ball is spelled out.",
+  },
+  {
+    id: 'co41', cat: 'coulisses', diff: 3,
+    q: "Which 1995 role-playing game did Toriyama design characters for, alongside the creator of Dragon Quest?",
+    a: ["Chrono Trigger", "Secret of Mana", "Terranigma", "Illusion of Gaia"],
+    why: "A one-off gathering of star authors, with Yuji Horii writing the story.",
+  },
+  {
+    id: 'co42', cat: 'coulisses', diff: 3,
+    q: "What does Chi-Chi's name refer to in Japanese?",
+    a: ["Milk", "Fire", "The mountain", "The wind"],
+    why: "She is the Ox-King's daughter: the bovine theme runs in the family.",
+  },
+  {
+    id: 'co43', cat: 'coulisses', diff: 3,
+    q: "Which heroine from another Toriyama manga crosses Goku's path during his quest?",
+    a: ["Arale", "Ranma", "Lum", "Nausicaä"],
+    why: "Penguin Village appears mid-chase after General Blue, just long enough for a detour.",
+  },
+  {
+    id: 'co44', cat: 'coulisses', diff: 3,
+    q: "Which appliance is Frieza's name taken from?",
+    a: ["The freezer", "The oven", "The washing machine", "The toaster"],
+    why: "His family keeps the cold theme going: Cooler, King Cold, even his ancestor Chilled.",
+  },
+  {
+    id: 'co45', cat: 'coulisses', diff: 3,
+    q: "Whose memory did Goku name his eldest son after?",
+    a: ["His adoptive grandfather", "His master Master Roshi", "His father Bardock", "The Guardian of Earth"],
+    why: "The old man who took him in was already called Son Gohan.",
+  },
+  {
+    id: 'co46', cat: 'coulisses', diff: 3,
+    q: "Which dish gave Chiaotzu his name?",
+    a: ["The Chinese dumpling", "Noodle soup", "Peking duck", "Fried rice"],
+    why: "His inseparable Tien owes his to a bowl of rice topped with crab omelette.",
+  },
+  {
+    id: 'co47', cat: 'coulisses', diff: 3,
+    q: "How far apart did the manga and its first anime adaptation end?",
+    a: ["About a year", "Five years", "Ten years", "Not at all — they ended the same month"],
+    why: "The manga closed in 1995; the anime kept airing into 1996.",
+  },
+  {
+    id: 'co48', cat: 'coulisses', diff: 3,
+    q: "Which publisher has historically released the manga in France?",
+    a: ["Glénat", "Kana", "Pika", "Ki-oon"],
+    why: "The first French edition appeared in the early 1990s, and the series never changed house.",
   },
 ]

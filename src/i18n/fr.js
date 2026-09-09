@@ -25,8 +25,8 @@ export default {
 
   accueil: {
     surtitre: 'Quiz de fan · 100 % gratuit',
-    accroche: (n) =>
-      `${n} questions originales réparties en 4 catégories et 3 niveaux. Réponds vite, gagne ton rang, et va défier tes amis avec ta puissance de combat.`,
+    accroche: (n, c) =>
+      `${n} questions originales réparties en ${c} catégories et 3 niveaux. Réponds vite, gagne ton rang, et va défier tes amis avec ta puissance de combat.`,
     etapeCategorie: 'Choisis ton terrain',
     etapeNiveau: 'Choisis ton niveau',
     legendeNiveau: 'Niveau de difficulté',
@@ -56,6 +56,10 @@ export default {
     power: {
       label: 'Power levels',
       tagline: 'Scouters, multiplicateurs et chiffres cultes',
+    },
+    coulisses: {
+      label: 'Coulisses & création',
+      tagline: 'Toriyama, le Jump, l’origine des noms',
     },
   },
 

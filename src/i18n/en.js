@@ -26,8 +26,8 @@ export default {
 
   accueil: {
     surtitre: 'Fan quiz · 100% free',
-    accroche: (n) =>
-      `${n} original questions across 4 categories and 3 difficulty levels. Answer fast, earn your rank, then go and challenge your friends.`,
+    accroche: (n, c) =>
+      `${n} original questions across ${c} categories and 3 difficulty levels. Answer fast, earn your rank, then go and challenge your friends.`,
     etapeCategorie: 'Pick your battleground',
     etapeNiveau: 'Pick your level',
     legendeNiveau: 'Difficulty level',
@@ -57,6 +57,10 @@ export default {
     power: {
       label: 'Power levels',
       tagline: 'Scouters, multipliers and legendary numbers',
+    },
+    coulisses: {
+      label: 'Behind the scenes',
+      tagline: 'Toriyama, Weekly Jump, where the names come from',
     },
   },
 
