@@ -36,6 +36,7 @@ src/
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
 │   ├── share.js           résumé partagé (Web Share natif, sinon presse-papier)
 │   ├── storage.js         meilleurs scores par mode (localStorage, migration v1→v2)
+│   ├── history.js         journal des 20 dernières parties
 │   └── accents.js         table des accents de couleur
 ├── hooks/useCountdown.js  compte à rebours du mode chrono
 ├── components/
@@ -140,6 +141,23 @@ zéro, qui laisserait croire à un score nul.
 C'est un vrai `<table>` avec `<caption>` et `<th scope>` : la structure porte le
 sens pour les lecteurs d'écran, et le conteneur reste défilant pour qu'une
 traduction plus longue ne déborde jamais de la page.
+
+### Historique des parties
+
+`lib/history.js` tient un journal séparé des records : ceux-ci ne gardent que le
+meilleur résultat, alors qu'un historique a besoin de la chronologie — **y compris
+des parties ratées**, puisque c'est justement là qu'on lit sa progression.
+
+Le journal conserve les **20 dernières parties** et `GameHistory` en affiche six.
+Sans plafond, un joueur assidu finirait par saturer le quota du localStorage, et
+l'écriture échouerait alors silencieusement pour tout le reste du site.
+
+Les dates sont relatives via `Intl.RelativeTimeFormat` — « à l'instant », « il y a
+5 minutes », « hier » — puis basculent sur une date courte au-delà d'une semaine,
+où l'écart en jours ne dit plus rien d'utile.
+
+Le bouton d'effacement de l'accueil vide les deux stockages à la fois, et son
+libellé le dit explicitement.
 
 ### Partage du score
 

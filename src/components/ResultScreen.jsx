@@ -5,6 +5,7 @@ import Badge from './ui/Badge'
 import KiOrb from './ui/KiOrb'
 import ShareButton from './ShareButton'
 import ScoreTable from './ScoreTable'
+import GameHistory from './GameHistory'
 import { accent } from '../lib/accents'
 import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
 import { buildSharePayload } from '../lib/share'
@@ -17,6 +18,7 @@ export default function ResultScreen({
   chrono,
   isRecord,
   bestScores,
+  history,
   onReplay,
   onHome,
 }) {
@@ -116,6 +118,8 @@ export default function ResultScreen({
         chrono={chrono}
         isRecord={isRecord}
       />
+
+      <GameHistory history={history} />
 
       <div>
         <button

@@ -100,7 +100,7 @@ export default function HomeScreen({
             onClick={onReset}
             className="font-label text-xs uppercase tracking-[0.14em] text-smoke underline decoration-2 underline-offset-4 hover:text-crimson tap-safe"
           >
-            Effacer mes records
+            Effacer mes records et mon historique
           </button>
         )}
       </section>
