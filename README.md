@@ -72,32 +72,43 @@ propositions, l'absence de doublons et la bonne répartition des réponses.
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
 
-## Déploiement sur OVH
+## Déploiement
 
-### Automatique (GitHub Actions)
+Le site est publié sur **GitHub Pages**, sur le domaine `dragonballquiz.com`.
+
+### Automatique
 
 Chaque push sur `main` déclenche `.github/workflows/deploy.yml` : validation de la
-banque de questions, lint, build, puis publication de `dist/` en FTPS dans `www/`.
-Le workflow se termine par une vérification HTTP du site en ligne — un upload
-partiel ou un mauvais répertoire distant fait échouer le job au lieu de passer
-inaperçu. Il est aussi déclenchable à la main (*Actions → Déploiement OVH → Run
-workflow*), sans commit.
+banque de questions, lint, build, puis publication de `dist/` sur Pages. Il est aussi
+déclenchable à la main (*Actions → Déploiement GitHub Pages → Run workflow*), sans
+commit. **Aucun secret à configurer** : le workflow s'authentifie via OIDC.
 
-Trois secrets sont à définir dans **Settings → Secrets and variables → Actions** :
+Le domaine personnalisé tient à deux choses qu'il ne faut pas dissocier :
 
-| Secret | Valeur |
-| --- | --- |
-| `OVH_FTP_HOST` | `ftp.clusterXXX.hosting.ovh.net` (visible dans l'espace client OVH) |
-| `OVH_FTP_USER` | l'utilisateur FTP de l'hébergement |
-| `OVH_FTP_PASSWORD` | son mot de passe |
+- `public/CNAME`, copié dans `dist/` au build. S'il disparaît, Pages retombe sur
+  l'URL par défaut au déploiement suivant.
+- La zone DNS du domaine, chez OVH, qui doit pointer vers Pages :
 
-L'action tierce qui réalise l'envoi est épinglée sur un **SHA de commit** et non sur
-un tag : elle reçoit le mot de passe FTP, et un tag peut être redéplacé vers du code
-malveillant. Pour la mettre à jour, remplacer le SHA par celui de la nouvelle version.
+  ```
+  A     @    185.199.108.153        AAAA  @  2606:50c0:8000::153
+  A     @    185.199.109.153        AAAA  @  2606:50c0:8001::153
+  A     @    185.199.110.153        AAAA  @  2606:50c0:8002::153
+  A     @    185.199.111.153        AAAA  @  2606:50c0:8003::153
+  CNAME www  yboukamir.github.io.
+  ```
 
-### Manuel
+`public/.nojekyll` désactive le traitement Jekyll, qui ignorerait sinon les fichiers
+et dossiers commençant par un underscore.
 
-Le build produit un site entièrement statique, à copier tel quel.
+### Repli : hébergement classique (OVH ou autre)
+
+Le build est un site statique ordinaire : il peut être servi par n'importe quel
+hébergeur, sans Node ni base de données. Cette procédure n'est plus celle en usage,
+elle est conservée au cas où le site quitterait Pages.
+
+`public/.htaccess` ne sert que dans ce cas : GitHub Pages n'est pas Apache et
+l'ignore complètement. Il y est conservé pour que le repli fonctionne d'emblée,
+avec compression, cache long sur les assets hashés et `no-cache` sur l'index.
 
 ```bash
 npm run build
