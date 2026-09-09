@@ -121,6 +121,11 @@ Les records du mode chrono sont stockés **séparément** de ceux du mode classi
 contrainte de temps à un score sans : le second l'emporterait presque toujours au
 pourcentage, et le mode chrono ne décrocherait jamais de record.
 
+Sur l'accueil, chaque carte n'affiche que le record du **mode actuellement
+sélectionné** : basculer l'interrupteur change les badges affichés. Le
+pictogramme ⏱ lève l'ambiguïté, y compris sur « Jamais tenté », qui se lit alors
+« jamais tenté en chrono » et non « jamais joué ».
+
 ### Partage du score
 
 `ShareButton` dégrade en trois temps, sans jamais laisser le joueur sans issue :

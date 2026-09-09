@@ -2,8 +2,9 @@ import { accent } from '../lib/accents'
 import Badge from './ui/Badge'
 
 /** Carte de sélection d'une catégorie, avec rappel du record personnel. */
-export default function CategoryCard({ category, best, selected, onSelect }) {
+export default function CategoryCard({ category, best, chrono, selected, onSelect }) {
   const a = accent(category.accent)
+  const record = chrono ? best?.chrono : best?.normal
 
   return (
     <button
@@ -38,21 +39,18 @@ export default function CategoryCard({ category, best, selected, onSelect }) {
         {category.tagline}
       </span>
 
-      {/* Les deux modes ont leur propre record : un score au chronomètre
-          ne se compare pas à un score sans contrainte de temps. */}
-      <span className="mt-2 flex flex-wrap gap-1.5 pl-3">
-        {!best?.normal && !best?.chrono && <Badge tone="smoke">Jamais tenté</Badge>}
-
-        {best?.normal && (
-          <Badge tone={selected ? category.accent : 'ki'}>
-            Record {best.normal.score}/{best.normal.total} · {best.normal.difficulty}
+      {/* Chaque mode a son propre record — un score au chronomètre ne se
+          compare pas à un score sans contrainte de temps — mais seul celui
+          du mode sélectionné est affiché, pour ne pas charger la carte.
+          Le pictogramme ⏱ lève l'ambiguïté quand le chrono est actif. */}
+      <span className="mt-2 pl-3">
+        {record ? (
+          <Badge tone={chrono ? 'crimson' : selected ? category.accent : 'ki'}>
+            {chrono ? '⏱ ' : 'Record '}
+            {record.score}/{record.total} · {record.difficulty}
           </Badge>
-        )}
-
-        {best?.chrono && (
-          <Badge tone="crimson">
-            ⏱ {best.chrono.score}/{best.chrono.total} · {best.chrono.difficulty}
-          </Badge>
+        ) : (
+          <Badge tone="smoke">{chrono ? '⏱ Jamais tenté' : 'Jamais tenté'}</Badge>
         )}
       </span>
     </button>

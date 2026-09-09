@@ -59,6 +59,7 @@ export default function HomeScreen({
               key={c.id}
               category={c}
               best={bestScores[c.id]}
+              chrono={chrono}
               selected={category === c.id}
               onSelect={onSelectCategory}
             />
