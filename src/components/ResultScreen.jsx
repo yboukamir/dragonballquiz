@@ -4,6 +4,7 @@ import Button from './ui/Button'
 import Badge from './ui/Badge'
 import KiOrb from './ui/KiOrb'
 import ShareButton from './ShareButton'
+import ScoreTable from './ScoreTable'
 import { accent } from '../lib/accents'
 import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
 import { buildSharePayload } from '../lib/share'
@@ -15,6 +16,7 @@ export default function ResultScreen({
   results,
   chrono,
   isRecord,
+  bestScores,
   onReplay,
   onHome,
 }) {
@@ -107,6 +109,13 @@ export default function ResultScreen({
       </div>
 
       <ShareButton payload={sharePayload} />
+
+      <ScoreTable
+        bestScores={bestScores}
+        categoryId={category.id}
+        chrono={chrono}
+        isRecord={isRecord}
+      />
 
       <div>
         <button

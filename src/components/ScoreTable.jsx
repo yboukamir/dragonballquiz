@@ -1,0 +1,127 @@
+import { CATEGORIES } from '../data/questions'
+import { getRank } from '../lib/ranks'
+
+/**
+ * Tableau des meilleurs scores : une ligne par catégorie, une colonne par
+ * mode. Contrairement aux cartes d'accueil, qui n'affichent que le mode
+ * sélectionné pour rester lisibles, on montre ici les deux — en fin de
+ * partie, voir ce qui reste à conquérir est précisément l'intérêt.
+ *
+ * La case qui vient d'être jouée est mise en évidence, et signalée d'une
+ * étoile si elle constitue un nouveau record.
+ */
+function Cellule({ record, courante, nouveau }) {
+  if (!record) {
+    return (
+      <td
+        className={[
+          'border-2 border-ink px-2 py-2 text-center align-middle',
+          courante ? 'bg-ki/25' : '',
+        ].join(' ')}
+      >
+        <span className="font-body text-sm text-ink/35">—</span>
+      </td>
+    )
+  }
+
+  const rang = getRank(record.score, record.total)
+
+  return (
+    <td
+      className={[
+        'border-2 border-ink px-2 py-2 text-center align-middle',
+        courante ? 'bg-ki/25' : '',
+      ].join(' ')}
+    >
+      <span className="block font-display text-lg leading-none tabular-nums">
+        {nouveau && <span aria-label="nouveau record">★ </span>}
+        {record.score}/{record.total}
+      </span>
+      <span className="mt-0.5 block font-label text-[0.65rem] uppercase leading-tight tracking-wider text-ink/60">
+        {record.difficulty} · {rang.label}
+      </span>
+    </td>
+  )
+}
+
+export default function ScoreTable({ bestScores, categoryId, chrono, isRecord }) {
+  const joues = CATEGORIES.filter(
+    (c) => bestScores[c.id]?.normal || bestScores[c.id]?.chrono,
+  ).length
+
+  return (
+    <section className="border-[3px] border-ink bg-paper text-ink shadow-[6px_6px_0_0_var(--color-void)]">
+      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-ink px-4 py-3">
+        <h2 className="font-display text-2xl leading-none">Tableau des scores</h2>
+        <p className="font-label text-xs uppercase tracking-[0.14em] text-ink/60">
+          {joues} catégorie{joues > 1 ? 's' : ''} sur {CATEGORIES.length} entamée
+          {joues > 1 ? 's' : ''}
+        </p>
+      </div>
+
+      {/* Le tableau reste étroit, mais on garde le conteneur défilant :
+          une traduction plus longue ne doit pas déborder de la page. */}
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <caption className="sr-only">
+            Meilleurs scores par catégorie et par mode de jeu
+          </caption>
+          <thead>
+            <tr>
+              <th
+                scope="col"
+                className="border-2 border-ink bg-ink px-3 py-2 text-left font-label text-xs uppercase tracking-[0.12em] text-paper"
+              >
+                Catégorie
+              </th>
+              <th
+                scope="col"
+                className="border-2 border-ink bg-ink px-2 py-2 font-label text-xs uppercase tracking-[0.12em] text-paper"
+              >
+                Classique
+              </th>
+              <th
+                scope="col"
+                className="border-2 border-ink bg-ink px-2 py-2 font-label text-xs uppercase tracking-[0.12em] text-paper"
+              >
+                ⏱ Chrono
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {CATEGORIES.map((c) => {
+              const best = bestScores[c.id] ?? {}
+              const estCourante = c.id === categoryId
+
+              return (
+                <tr key={c.id}>
+                  <th
+                    scope="row"
+                    className={[
+                      'border-2 border-ink px-3 py-2 text-left font-body text-sm font-semibold',
+                      estCourante ? 'bg-ki/25' : '',
+                    ].join(' ')}
+                  >
+                    {c.label}
+                  </th>
+
+                  <Cellule
+                    record={best.normal}
+                    courante={estCourante && !chrono}
+                    nouveau={estCourante && !chrono && isRecord}
+                  />
+                  <Cellule
+                    record={best.chrono}
+                    courante={estCourante && chrono}
+                    nouveau={estCourante && chrono && isRecord}
+                  />
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}

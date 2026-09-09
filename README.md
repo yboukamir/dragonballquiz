@@ -40,7 +40,7 @@ src/
 ├── hooks/useCountdown.js  compte à rebours du mode chrono
 ├── components/
 │   ├── ui/                primitives réutilisables (Button, Panel, Countdown…)
-│   └── *.jsx              écrans et blocs métier
+│   └── *.jsx              écrans et blocs métier (ScoreTable, ShareButton…)
 └── App.jsx                machine à états : accueil → quiz → résultat
 ```
 
@@ -125,6 +125,21 @@ Sur l'accueil, chaque carte n'affiche que le record du **mode actuellement
 sélectionné** : basculer l'interrupteur change les badges affichés. Le
 pictogramme ⏱ lève l'ambiguïté, y compris sur « Jamais tenté », qui se lit alors
 « jamais tenté en chrono » et non « jamais joué ».
+
+### Tableau des scores
+
+En fin de partie, `ScoreTable` récapitule les records : une ligne par catégorie,
+une colonne par mode. Contrairement aux cartes d'accueil, les deux modes y sont
+montrés côte à côte — c'est justement le moment où voir ce qu'il reste à conquérir
+donne envie de relancer une manche.
+
+La case qui vient d'être jouée est surlignée, et porte une étoile s'il s'agit d'un
+nouveau record. Les combinaisons jamais tentées affichent un tiret plutôt qu'un
+zéro, qui laisserait croire à un score nul.
+
+C'est un vrai `<table>` avec `<caption>` et `<th scope>` : la structure porte le
+sens pour les lecteurs d'écran, et le conteneur reste défilant pour qu'une
+traduction plus longue ne déborde jamais de la page.
 
 ### Partage du score
 

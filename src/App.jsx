@@ -101,6 +101,7 @@ export default function App() {
             results={results}
             chrono={roundChrono}
             isRecord={isRecord}
+            bestScores={bestScores}
             onReplay={() => start()}
             onHome={goHome}
           />
