@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Panel from './ui/Panel'
 import Button from './ui/Button'
 import Badge from './ui/Badge'
@@ -6,7 +6,7 @@ import KiOrb from './ui/KiOrb'
 import ShareButton from './ShareButton'
 import { accent } from '../lib/accents'
 import { getRank, toPowerLevel, formatPowerLevel } from '../lib/ranks'
-import { buildShareText } from '../lib/share'
+import { buildSharePayload } from '../lib/share'
 
 export default function ResultScreen({
   category,
@@ -18,6 +18,13 @@ export default function ResultScreen({
   onHome,
 }) {
   const [showRecap, setShowRecap] = useState(false)
+
+  // Identite stable : ShareButton interroge navigator.canShare dans un effet
+  // qui depend de cet objet.
+  const sharePayload = useMemo(
+    () => buildSharePayload({ category, difficulty, results }),
+    [category, difficulty, results],
+  )
 
   const total = results.length
   const score = results.filter(Boolean).length
@@ -91,7 +98,7 @@ export default function ResultScreen({
         </Button>
       </div>
 
-      <ShareButton text={buildShareText({ category, difficulty, results })} />
+      <ShareButton payload={sharePayload} />
 
       <div>
         <button

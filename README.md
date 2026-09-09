@@ -34,7 +34,7 @@ src/
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
-│   ├── share.js           texte copié dans le presse-papier
+│   ├── share.js           résumé partagé (Web Share natif, sinon presse-papier)
 │   ├── storage.js         meilleurs scores (localStorage, tolérant aux erreurs)
 │   └── accents.js         table des accents de couleur
 ├── components/
@@ -71,6 +71,23 @@ propositions, l'absence de doublons et la bonne répartition des réponses.
 
 Si un palier ne contient pas assez de questions, le tirage complète avec les
 plus proches du niveau visé plutôt que d'échouer.
+
+### Partage du score
+
+`ShareButton` dégrade en trois temps, sans jamais laisser le joueur sans issue :
+
+1. **API Web Share** quand le navigateur l'expose — la feuille de partage native
+   du système, chemin normal sur mobile. Aucune API de réseau social n'est intégrée.
+2. **Presse-papier** sinon, cas de la plupart des navigateurs de bureau.
+3. **Champ pré-sélectionné** si la copie elle-même est refusée (permission, absence
+   de geste utilisateur, iframe restreinte).
+
+Une annulation de la feuille de partage (`AbortError`) est un choix de
+l'utilisateur, pas une erreur : elle ne déclenche aucun message.
+
+`buildSharePayload` renvoie le texte et l'URL séparés pour Web Share, qui ajoute
+le lien lui-même, et une version `full` d'un seul tenant pour le presse-papier —
+les concaténer partout ferait apparaître l'URL en double.
 
 ## Déploiement
 

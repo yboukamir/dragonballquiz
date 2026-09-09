@@ -1,21 +1,36 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Button from './ui/Button'
 
 /**
- * Copie le résumé de la partie dans le presse-papier.
- * Aucune API réseau social : juste du texte, que le joueur colle où il veut.
+ * Partage du score, par ordre de préférence :
  *
- * Trois cas à couvrir :
- *  1. `navigator.clipboard` en contexte sécurisé — le cas normal ;
- *  2. le repli historique par <textarea> + execCommand (http, vieux Safari) ;
- *  3. le refus pur et simple du navigateur (permission, absence de geste
- *     utilisateur, iframe restreinte) : on affiche alors le texte,
- *     pré-sélectionné, pour que la copie manuelle reste possible.
+ *  1. API Web Share — la feuille de partage native du système. C'est le
+ *     chemin naturel sur mobile : messagerie, réseaux, notes, tout y passe
+ *     sans qu'on ait à intégrer la moindre API tierce.
+ *  2. Presse-papier, quand Web Share est absent (cas de la plupart des
+ *     navigateurs de bureau).
+ *  3. Champ de texte pré-sélectionné, si le navigateur refuse même la copie.
  */
-async function copyText(text) {
+
+/** Web Share n'existe qu'en contexte sécurisé et sur une partie des navigateurs. */
+function supporteWebShare(payload) {
+  if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false
+  // canShare valide la charge utile : certains navigateurs acceptent `text`
+  // mais pas `url`, ou l'inverse.
+  if (typeof navigator.canShare === 'function') {
+    try {
+      return navigator.canShare(payload)
+    } catch {
+      return false
+    }
+  }
+  return true
+}
+
+async function copierTexte(texte) {
   try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text)
+      await navigator.clipboard.writeText(texte)
       return true
     }
   } catch {
@@ -23,38 +38,65 @@ async function copyText(text) {
   }
 
   try {
-    const area = document.createElement('textarea')
-    area.value = text
-    area.setAttribute('readonly', '')
-    area.style.position = 'fixed'
-    area.style.opacity = '0'
-    document.body.appendChild(area)
-    area.select()
+    const zone = document.createElement('textarea')
+    zone.value = texte
+    zone.setAttribute('readonly', '')
+    zone.style.position = 'fixed'
+    zone.style.opacity = '0'
+    document.body.appendChild(zone)
+    zone.select()
     const ok = document.execCommand('copy')
-    document.body.removeChild(area)
+    document.body.removeChild(zone)
     return ok
   } catch {
     return false
   }
 }
 
-export default function ShareButton({ text, className = '' }) {
+export default function ShareButton({ payload, className = '' }) {
   const [status, setStatus] = useState('idle')
-  const fallbackRef = useRef(null)
+  const replRef = useRef(null)
+
+  // La disponibilité de Web Share ne varie pas pendant la session : c'est une
+  // valeur dérivée du navigateur, pas un état à synchroniser dans un effet.
+  const partageNatif = useMemo(
+    () => supporteWebShare({ title: payload.title, text: payload.text, url: payload.url }),
+    [payload],
+  )
 
   useEffect(() => {
-    if (status !== 'done') return
+    if (status !== 'copied' && status !== 'shared') return
     const t = setTimeout(() => setStatus('idle'), 2400)
     return () => clearTimeout(t)
   }, [status])
 
-  // Copie refusée : on met le texte sous les yeux du joueur, déjà
-  // sélectionné, pour qu'un simple Ctrl+C suffise.
   useEffect(() => {
     if (status !== 'failed') return
-    fallbackRef.current?.focus()
-    fallbackRef.current?.select()
+    replRef.current?.focus()
+    replRef.current?.select()
   }, [status])
+
+  async function copier() {
+    setStatus((await copierTexte(payload.full)) ? 'copied' : 'failed')
+  }
+
+  async function partager() {
+    const { title, text, url } = payload
+    try {
+      await navigator.share({ title, text, url })
+      setStatus('shared')
+    } catch (err) {
+      // L'utilisateur a simplement fermé la feuille de partage : ce n'est
+      // pas une erreur, et afficher un message serait déroutant.
+      if (err?.name === 'AbortError') return
+      await copier()
+    }
+  }
+
+  const libelle = {
+    shared: '✔ Partagé !',
+    copied: '✔ Copié !',
+  }
 
   return (
     <div className={className}>
@@ -62,23 +104,36 @@ export default function ShareButton({ text, className = '' }) {
         variant="paper"
         size="md"
         className="w-full"
-        onClick={async () => setStatus((await copyText(text)) ? 'done' : 'failed')}
+        onClick={partageNatif ? partager : copier}
       >
-        {status === 'done' ? '✔ Copié !' : '⧉ Partager mon score'}
+        {libelle[status] ?? (partageNatif ? '↗ Partager mon score' : '⧉ Copier mon score')}
       </Button>
 
+      {/* Sur mobile, la feuille native ne remplace pas toujours le besoin
+          d'un simple copier-coller : on laisse les deux accessibles. */}
+      {partageNatif && (
+        <button
+          type="button"
+          onClick={copier}
+          className="mt-2 w-full font-label text-xs uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
+        >
+          ou copier le texte
+        </button>
+      )}
+
       <p aria-live="polite" className="mt-2 min-h-5 text-center font-body text-xs text-paper-dim">
-        {status === 'done' && 'Le résumé est dans ton presse-papier, colle-le où tu veux.'}
+        {status === 'shared' && 'Résumé envoyé à l’application choisie.'}
+        {status === 'copied' && 'Le résumé est dans ton presse-papier, colle-le où tu veux.'}
         {status === 'failed' &&
           'Ton navigateur a bloqué la copie — le texte est sélectionné, fais Ctrl+C (ou ⌘+C).'}
       </p>
 
       {status === 'failed' && (
         <textarea
-          ref={fallbackRef}
+          ref={replRef}
           readOnly
           rows={6}
-          value={text}
+          value={payload.full}
           aria-label="Résumé de la partie à copier"
           className="w-full resize-none border-[3px] border-paper/30 bg-ink-soft p-3 font-body text-sm text-paper"
         />
