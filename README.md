@@ -7,7 +7,7 @@ sans backend : les meilleurs scores vivent dans le `localStorage` du visiteur.
 
 ## Aperçu
 
-![Écran d'accueil : titre en lettrage manga, choix de catégorie et de niveau](docs/apercu-accueil.png)
+![Écran d'accueil : titre en lettrage manga et les cinq cartes de catégorie](docs/apercu-accueil.png)
 
 | En partie | Fin de partie |
 | --- | --- |

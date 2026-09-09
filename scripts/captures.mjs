@@ -63,9 +63,11 @@ const faire = (nom) => cible === 'tout' || cible === nom
 /* ---------------------------------------------------- accueil (large) */
 if (faire('accueil')) {
   // Hauteur calée juste sous les cartes de catégories : le titre et les
-  // quatre catégories suffisent à donner le ton, et une capture plus haute
-  // repousserait le texte du README trop bas.
-  const page = await nouvellePage({ width: 1000, height: 820, deviceScaleFactor: 1.5 })
+  // cinq catégories suffisent à donner le ton, et une capture plus haute
+  // repousserait le texte du README trop bas. À 1000 px de large, la
+  // dernière carte se termine à 951 px et le titre suivant commence à
+  // 991 px — 970 tombe entre les deux.
+  const page = await nouvellePage({ width: 1000, height: 970, deviceScaleFactor: 1.5 })
   await page.goto(SITE, { waitUntil: 'networkidle0' })
   await attendre(1200)
   await page.screenshot({ path: SORTIE + 'apercu-accueil.png' })
