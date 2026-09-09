@@ -66,10 +66,9 @@ jobs:
         uses: actions/deploy-pages@v5
 
       # Verification post-deploiement : sans elle, un echec silencieux
-      # passerait inapercu. On tolere la propagation DNS et l'emission du
-      # certificat, encore en cours lors des tout premiers deploiements.
+      # passerait inapercu. Le domaine et son certificat etant desormais
+      # etablis, un echec ici doit faire echouer le build.
       - name: Verifier que le site repond
-        continue-on-error: true
         run: |
           for tentative in 1 2 3 4 5; do
             echo "Tentative $tentative..."
@@ -81,4 +80,5 @@ jobs:
             echo "Reponse HTTP $code, nouvelle tentative dans 20 s."
             sleep 20
           done
-          echo "::warning::Le domaine personnalise ne repond pas encore — DNS ou certificat probablement en cours de propagation. L'artefact est bien publie sur ${{ steps.deploiement.outputs.page_url }}"
+          echo "::error::Le site ne repond pas correctement apres le deploiement."
+          exit 1
