@@ -69,8 +69,9 @@ export default function App() {
     const { all, updated } = saveScore(categoryId, {
       score,
       total: roundResults.length,
-      // Le libellé est figé dans la langue de la partie : traduire un record
-      // a posteriori supposerait de stocker un identifiant, pas un texte.
+      difficultyId,
+      // Libellé conservé en repli : les records enregistrés avant le bilingue
+      // n ont pas d identifiant, et doivent rester lisibles.
       difficulty: t.niveaux[difficultyId].label,
       chrono: roundChrono,
     })
@@ -83,6 +84,7 @@ export default function App() {
     setHistory(
       pushGame({
         category: categoryId,
+        difficultyId,
         difficulty: t.niveaux[difficultyId].label,
         chrono: roundChrono,
         score,

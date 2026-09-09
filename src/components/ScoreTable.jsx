@@ -1,6 +1,7 @@
 import { CATEGORIES } from '../data/categories'
 import { getRank } from '../lib/ranks'
 import { useLang } from '../i18n'
+import { labelNiveau } from '../lib/labels'
 
 /**
  * Tableau des meilleurs scores : une ligne par catégorie, une colonne par
@@ -39,7 +40,7 @@ function Cellule({ record, courante, nouveau, t }) {
         {record.score}/{record.total}
       </span>
       <span className="mt-0.5 block font-label text-[0.65rem] uppercase leading-tight tracking-wider text-ink/60">
-        {record.difficulty} · {rang.label}
+        {labelNiveau(record, t)} · {rang.label}
       </span>
     </td>
   )

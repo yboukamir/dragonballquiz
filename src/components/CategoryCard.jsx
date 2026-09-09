@@ -1,5 +1,6 @@
 import { accent } from '../lib/accents'
 import { useLang } from '../i18n'
+import { labelNiveau } from '../lib/labels'
 import Badge from './ui/Badge'
 
 /** Carte de sélection d'une catégorie, avec rappel du record personnel. */
@@ -50,8 +51,8 @@ export default function CategoryCard({ category, best, chrono, selected, onSelec
         {record ? (
           <Badge tone={chrono ? 'crimson' : selected ? category.accent : 'ki'}>
             {chrono
-              ? t.carte.recordChrono(record.score, record.total, record.difficulty)
-              : t.carte.record(record.score, record.total, record.difficulty)}
+              ? t.carte.recordChrono(record.score, record.total, labelNiveau(record, t))
+              : t.carte.record(record.score, record.total, labelNiveau(record, t))}
           </Badge>
         ) : (
           <Badge tone="smoke">

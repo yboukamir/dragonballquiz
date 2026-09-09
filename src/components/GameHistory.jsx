@@ -3,6 +3,7 @@ import { formatWhen } from '../lib/history'
 import { getRank } from '../lib/ranks'
 import { accent } from '../lib/accents'
 import { useLang } from '../i18n'
+import { labelNiveau } from '../lib/labels'
 
 const ACCENTS = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.accent]))
 
@@ -64,7 +65,7 @@ export default function GameHistory({ history }) {
                   {partie.chrono && <span className="text-crimson"> ⏱</span>}
                 </span>
                 <span className="block font-label text-xs uppercase tracking-wider text-smoke">
-                  {partie.difficulty} · {formatWhen(partie.date, t.locale)}
+                  {labelNiveau(partie, t)} · {formatWhen(partie.date, t.locale)}
                   {courante && <span className="text-ki"> · {t.historique.cettePartie}</span>}
                 </span>
               </span>

@@ -68,7 +68,7 @@ export function loadBestScores() {
  * même catégorie. La comparaison se fait sur le pourcentage, puis sur le
  * nombre de bonnes réponses.
  */
-export function saveScore(categoryId, { score, total, difficulty, chrono = false }) {
+export function saveScore(categoryId, { score, total, difficulty, difficultyId, chrono = false }) {
   const tout = loadBestScores()
   const emplacement = chrono ? 'chrono' : 'normal'
   const parCategorie = tout[categoryId] ?? {}
@@ -88,6 +88,9 @@ export function saveScore(categoryId, { score, total, difficulty, chrono = false
         score,
         total,
         pct,
+        // On garde l identifiant du niveau, traduisible a l affichage, et le
+        // libelle d origine comme repli pour les records d avant le bilingue.
+        difficultyId,
         difficulty,
         chrono,
         date: new Date().toISOString(),

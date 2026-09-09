@@ -33,6 +33,7 @@ export function loadHistory() {
 export function pushGame(partie) {
   const entree = {
     category: partie.category,
+    difficultyId: partie.difficultyId,
     difficulty: partie.difficulty,
     chrono: Boolean(partie.chrono),
     score: partie.score,
