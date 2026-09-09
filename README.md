@@ -30,7 +30,7 @@ npm run dev
 
 ```
 src/
-├── data/questions.js      80 questions, 4 catégories, 3 niveaux
+├── data/questions.js      120 questions, 4 catégories, 3 niveaux
 ├── lib/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat

@@ -1,5 +1,5 @@
 /**
- * Banque de questions — 80 questions originales rédigées pour ce site.
+ * Banque de questions — 120 questions originales rédigées pour ce site.
  *
  * Convention d'écriture : `a[0]` est TOUJOURS la bonne réponse.
  * Les propositions sont mélangées à l'exécution (voir `src/lib/quiz.js`),
@@ -164,6 +164,67 @@ export const QUESTIONS = [
     why: "À ne pas confondre avec Maron, une ancienne petite amie de Krilin.",
   },
 
+  {
+    id: 'pe21', cat: 'personnages', diff: 1,
+    q: "Comment s'appelle le second fils de Goku et Chichi ?",
+    a: ["Goten", "Gohan", "Trunks", "Tarble"],
+    why: "Né pendant les sept années où Goku est mort, il ne connaîtra son père que plus tard.",
+  },
+  {
+    id: 'pe22', cat: 'personnages', diff: 1,
+    q: "Quel ancien bandit du désert voyage accompagné du chat métamorphe Puar ?",
+    a: ["Yamcha", "Ten Shin Han", "Yajirobé", "Oolong"],
+    why: "Il détroussait les voyageurs avant de croiser la route de Goku et Bulma.",
+  },
+  {
+    id: 'pe23', cat: 'personnages', diff: 2,
+    q: "Quel guerrier à trois yeux, formé par Tsuru Sennin, finit par rejoindre les guerriers Z ?",
+    a: ["Ten Shin Han", "Chaozu", "Yajirobé", "Tao Pai Pai"],
+    why: "Il rompt avec l'école de la Grue après son combat contre Goku.",
+  },
+  {
+    id: 'pe24', cat: 'personnages', diff: 2,
+    q: "Quelle fille de Mr Satan finit par épouser Son Gohan ?",
+    a: ["Videl", "Erasa", "Angela", "Marron"],
+    why: "Elle apprend à voler auprès de lui avant le 25e Tenkaichi Budokai.",
+  },
+  {
+    id: 'pe25', cat: 'personnages', diff: 2,
+    q: "Quel scientifique conçoit les androïdes pour se venger de Goku ?",
+    a: ["Le Dr Gero", "Le Dr Brief", "Babidi", "Bulma"],
+    why: "Ancien de l'Armée du Ruban Rouge, il se transforme lui-même en C-20.",
+  },
+  {
+    id: 'pe26', cat: 'personnages', diff: 2,
+    q: "Quel membre du Commando Ginyu peut échanger son corps avec celui d'un adversaire ?",
+    a: ["Le capitaine Ginyu", "Jeece", "Burter", "Recoome"],
+    why: "La manœuvre finit par se retourner contre lui : il termine dans le corps d'une grenouille.",
+  },
+  {
+    id: 'pe27', cat: 'personnages', diff: 3,
+    q: "Quel Namek fusionne avec Piccolo sur Namek, décuplant sa puissance ?",
+    a: ["Nail", "Dendé", "Cargo", "Muri"],
+    why: "Garde du corps du doyen, il propose lui-même la fusion après avoir été laissé pour mort.",
+  },
+  {
+    id: 'pe28', cat: 'personnages', diff: 3,
+    q: "Quel jeune Saiyan de l'univers 6 est entraîné par Vegeta en personne ?",
+    a: ["Cabba", "Cauliflita", "Renso", "Tarble"],
+    why: "Vegeta le pousse au Super Saiyan en le mettant délibérément en colère.",
+  },
+  {
+    id: 'pe29', cat: 'personnages', diff: 3,
+    q: "Comment s'appelle le frère cadet de Vegeta ?",
+    a: ["Tarble", "Raditz", "Turles", "Paragus"],
+    why: "Trop faible pour l'armée de Freezer, il avait été envoyé sur une planète lointaine.",
+  },
+  {
+    id: 'pe30', cat: 'personnages', diff: 3,
+    q: "Quel Kaioshin, maître de Zamasu, est assassiné par son propre apprenti ?",
+    a: ["Gowasu", "Shin", "Kibito", "Le Vieux Kaioshin"],
+    why: "Zamasu le tue pour s'emparer de sa Potara, dans l'univers 10.",
+  },
+
   /* ---------------------------------------------------------------
      SAGAS
   --------------------------------------------------------------- */
@@ -252,7 +313,7 @@ export const QUESTIONS = [
     why: "Le Piccolo que l'on connaît est son descendant, engendré juste avant sa mort.",
   },
   {
-    id: 'sa15', cat: 'sagas', diff: 2,
+    id: 'sa15', cat: 'sagas', diff: 3,
     q: "Quel jeune Namek devient le nouveau Dieu de la Terre après l'arc Freezer ?",
     a: ["Dendé", "Nail", "Cargo", "Muri"],
     why: "Il crée de nouvelles Dragon Balls terrestres, nettement plus puissantes.",
@@ -286,6 +347,67 @@ export const QUESTIONS = [
     q: "Quel androïde tente de s'autodétruire pour éliminer Cell, sans savoir que sa bombe a été retirée ?",
     a: ["C-16", "C-17", "C-18", "C-19"],
     why: "Bulma l'avait désamorcée pendant les réparations : le sacrifice échoue.",
+  },
+
+  {
+    id: 'sa21', cat: 'sagas', diff: 1,
+    q: "Combien de Dragon Balls faut-il réunir pour invoquer le dragon ?",
+    a: ["Sept", "Cinq", "Quatre", "Dix"],
+    why: "Une fois le vœu exaucé, elles se dispersent et redeviennent des pierres pendant un an.",
+  },
+  {
+    id: 'sa22', cat: 'sagas', diff: 1,
+    q: "Comment s'appelle le dragon invoqué par les Dragon Balls terrestres ?",
+    a: ["Shenron", "Porunga", "Zalama", "Icarus"],
+    why: "Porunga est son équivalent namek, capable d'exaucer trois vœux au lieu d'un.",
+  },
+  {
+    id: 'sa23', cat: 'sagas', diff: 2,
+    q: "À combien de temps extérieur correspond une année passée dans la Salle de l'Esprit et du Temps ?",
+    a: ["Un jour", "Une semaine", "Un mois", "Une heure"],
+    why: "D'où son intérêt avant le Cell Game : un an d'entraînement en une seule journée.",
+  },
+  {
+    id: 'sa24', cat: 'sagas', diff: 2,
+    q: "Auprès de qui Goku s'entraîne-t-il après sa mort face à Raditz ?",
+    a: ["Kaio du Nord", "Tortue Géniale", "Karin", "Le Vieux Kaioshin"],
+    why: "Il y apprend le Kaio-ken et le Genkidama, au bout du long Chemin du Serpent.",
+  },
+  {
+    id: 'sa25', cat: 'sagas', diff: 2,
+    q: "Quelles créatures vertes les Saiyans font-ils pousser pour servir de combattants jetables ?",
+    a: ["Les Saibaimen", "Les Namekseijin", "Les Majins", "Les Sabaiens"],
+    why: "L'un d'eux tue Yamcha en s'autodétruisant contre lui.",
+  },
+  {
+    id: 'sa26', cat: 'sagas', diff: 2,
+    q: "À qui le monde attribue-t-il la victoire sur Cell ?",
+    a: ["Mr Satan", "Gohan", "Goku", "Trunks"],
+    why: "Gohan laisse volontiers la gloire au champion, ce qui arrange tout le monde.",
+  },
+  {
+    id: 'sa27', cat: 'sagas', diff: 3,
+    q: "Qui remporte le 23e Tenkaichi Budokai, celui qui oppose Goku à Piccolo ?",
+    a: ["Goku", "Piccolo", "Ten Shin Han", "Krilin"],
+    why: "Sa première victoire au tournoi, après deux finales perdues.",
+  },
+  {
+    id: 'sa28', cat: 'sagas', diff: 3,
+    q: "Quel ennemi propre à l'anime tente de répandre une brume qui asservit l'humanité ?",
+    a: ["Garlic Jr", "Cooler", "Turles", "Lord Slug"],
+    why: "Son arc n'existe que dans l'anime : il est absent du manga d'origine.",
+  },
+  {
+    id: 'sa29', cat: 'sagas', diff: 3,
+    q: "Quelle forme de Majin Buu absorbe Gotenks et Piccolo ?",
+    a: ["Super Buu", "Kid Buu", "Buu le gros", "Majin Buu originel"],
+    why: "Chaque absorption modifie sa silhouette et décuple son intelligence.",
+  },
+  {
+    id: 'sa30', cat: 'sagas', diff: 3,
+    q: "Quel Dieu de la Destruction organise un tournoi entre les univers 6 et 7 ?",
+    a: ["Champa", "Beerus", "Quitela", "Belmod"],
+    why: "Frère jumeau de Beerus, il veut s'emparer de la Terre de l'univers 7 pour sa cuisine.",
   },
 
   /* ---------------------------------------------------------------
@@ -412,6 +534,67 @@ export const QUESTIONS = [
     why: "Littéralement « le poing du soleil » : Krilin en fait un usage très régulier.",
   },
 
+  {
+    id: 'te21', cat: 'techniques', diff: 1,
+    q: "Quelle transformation Gohan atteint-il face à Cell, au-delà du Super Saiyan ?",
+    a: ["Le Super Saiyan 2", "Le Super Saiyan 3", "L'Ultra Instinct", "Le Gohan Beast"],
+    why: "Des éclairs parcourent désormais l'aura, et les cheveux se dressent davantage.",
+  },
+  {
+    id: 'te22', cat: 'techniques', diff: 1,
+    q: "Quelle forme aux cheveux dorés descendant jusqu'aux reins, et sans sourcils, apparaît contre Majin Buu ?",
+    a: ["Le Super Saiyan 3", "Le Super Saiyan 2", "Le Super Saiyan God", "Le Super Saiyan Blue"],
+    why: "Sa consommation d'énergie est telle qu'elle est intenable plus de quelques minutes.",
+  },
+  {
+    id: 'te23', cat: 'techniques', diff: 2,
+    q: "Quelle attaque Gohan tient-il de Piccolo, lancée les deux mains au-dessus de la tête ?",
+    a: ["Le Masenko", "Le Kienzan", "Le Kikoho", "Le Taiyoken"],
+    why: "Il l'emploie pour la première fois contre Nappa, encore enfant.",
+  },
+  {
+    id: 'te24', cat: 'techniques', diff: 2,
+    q: "Quelle attaque de Vegeta, longuement chargée bras écartés, marque le Cell Game ?",
+    a: ["Le Final Flash", "Le Galick Gun", "Le Big Bang Attack", "Le Makankosappo"],
+    why: "Cell la laisse volontairement le frapper — et le regrette aussitôt.",
+  },
+  {
+    id: 'te25', cat: 'techniques', diff: 2,
+    q: "Quelle sphère d'énergie compacte Vegeta lance-t-il d'une seule main contre C-19 ?",
+    a: ["Le Big Bang Attack", "Le Final Flash", "Le Genkidama", "Le Kienzan"],
+    why: "Sa première démonstration de puissance en Super Saiyan devant les autres guerriers Z.",
+  },
+  {
+    id: 'te26', cat: 'techniques', diff: 2,
+    q: "Comment nomme-t-on la technique qui permet de voler en contrôlant son ki ?",
+    a: ["Le Bukujutsu", "Le Kaio-ken", "Le Zenkai", "Le Taiyoken"],
+    why: "Krilin et Yamcha l'apprennent à l'école de Tortue Géniale, bien avant les Saiyans.",
+  },
+  {
+    id: 'te27', cat: 'techniques', diff: 3,
+    q: "Quelle transformation rosée Goku Black obtient-il ?",
+    a: ["Le Super Saiyan Rosé", "Le Super Saiyan God", "Le Super Saiyan Blue", "Le Golden Freezer"],
+    why: "La teinte vient de son corps de Saiyan habité par une âme divine.",
+  },
+  {
+    id: 'te28', cat: 'techniques', diff: 3,
+    q: "Quelle forme Vegeta atteint-il en poussant le Super Saiyan Blue au-delà de ses limites, face à Jiren ?",
+    a: ["Le Super Saiyan Blue Evolution", "L'Ultra Instinct", "Le Super Saiyan Rosé", "Le Super Saiyan 4"],
+    why: "Une voie propre à Vegeta, distincte de l'Ultra Instinct emprunté par Goku.",
+  },
+  {
+    id: 'te29', cat: 'techniques', diff: 3,
+    q: "Quelle attaque Cell tient-il des cellules de Freezer, tirée du bout du doigt ?",
+    a: ["Le Death Beam", "Le Masenko", "Le Kienzan", "Le Galick Gun"],
+    why: "Cell combine les techniques de tous les guerriers dont il porte les cellules.",
+  },
+  {
+    id: 'te30', cat: 'techniques', diff: 3,
+    q: "Quelle forme de Freezer, supérieure au Golden, apparaît dans l'arc Granolah du manga Super ?",
+    a: ["Le Black Freezer", "Meta-Cooler", "Freezer Ultime", "Le Golden Freezer 2"],
+    why: "Obtenue au prix de dix ans d'entraînement dans la Salle de l'Esprit et du Temps.",
+  },
+
   /* ---------------------------------------------------------------
      POWER LEVELS
   --------------------------------------------------------------- */
@@ -534,6 +717,71 @@ export const QUESTIONS = [
     q: "Combien de temps Freezer annonce-t-il avant l'explosion de la planète Namek ?",
     a: ["5 minutes", "10 minutes", "1 heure", "30 minutes"],
     why: "Cinq minutes qui, à l'écran, se sont tout de même un peu étirées…",
+  },
+  {
+    id: 'po21', cat: 'power', diff: 1,
+    q: "Que se passe-t-il quand un scouter mesure une puissance trop élevée pour lui ?",
+    a: ["Il explose", "Il s'éteint", "Il change de couleur", "Il se met à sonner"],
+    why: "Un ressort comique récurrent, du scouter de Raditz à ceux de l'armée de Freezer.",
+  },
+  {
+    id: 'po22', cat: 'power', diff: 1,
+    q: "Que mesure réellement un scouter ?",
+    a: [
+      "L'énergie que le combattant laisse s'échapper",
+      "Sa masse musculaire",
+      "Sa vitesse de déplacement",
+      "Son niveau de colère",
+    ],
+    why: "D'où son inutilité face à quelqu'un qui sait masquer son ki, comme les guerriers Z.",
+  },
+  {
+    id: 'po23', cat: 'power', diff: 2,
+    q: "Quelle puissance de combat Vegeta atteint-il sur Namek, après avoir été soigné ?",
+    a: ["24 000", "18 000", "30 000", "9 000"],
+    why: "Le Zenkai en action : frôler la mort puis guérir le rend nettement plus fort.",
+  },
+  {
+    id: 'po24', cat: 'power', diff: 2,
+    q: "Quelle puissance de combat Krilin atteint-il à l'arrivée des Saiyans sur Terre ?",
+    a: ["1 083", "820", "1 480", "610"],
+    why: "Fruit de l'entraînement auprès de Kami-Sama pendant l'absence de Goku.",
+  },
+  {
+    id: 'po25', cat: 'power', diff: 2,
+    q: "Quelle puissance de combat Gohan affiche-t-il à l'arrivée des Saiyans ?",
+    a: ["981", "1 307", "710", "1 480"],
+    why: "Après six mois de survie en pleine nature, imposés par Piccolo.",
+  },
+  {
+    id: 'po26', cat: 'power', diff: 2,
+    q: "Quelle puissance de combat Goku atteint-il grâce à l'entraînement de Kaio du Nord ?",
+    a: ["8 000", "5 000", "18 000", "4 000"],
+    why: "Soit le double de Nappa — mais encore loin des 18 000 de Vegeta.",
+  },
+  {
+    id: 'po27', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Freezer atteint-il sous sa deuxième forme ?",
+    a: ["1 000 000", "530 000", "2 500 000", "300 000"],
+    why: "Presque le double de sa première forme, et il lui en reste deux.",
+  },
+  {
+    id: 'po28', cat: 'power', diff: 3,
+    q: "Quelle puissance Goku atteint-il en Super Saiyan face à Freezer, sur Namek ?",
+    a: ["150 000 000", "120 000 000", "60 000 000", "300 000 000"],
+    why: "Juste de quoi dépasser les 120 millions de Freezer à pleine puissance.",
+  },
+  {
+    id: 'po29', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Yamcha affiche-t-il à l'arrivée des Saiyans ?",
+    a: ["1 480", "1 083", "1 830", "981"],
+    why: "Le plus fort des humains à ce moment-là, juste derrière Ten Shin Han.",
+  },
+  {
+    id: 'po30', cat: 'power', diff: 3,
+    q: "Quelle puissance de combat Ten Shin Han affiche-t-il à l'arrivée des Saiyans ?",
+    a: ["1 830", "1 480", "1 083", "2 400"],
+    why: "Le plus élevé des combattants humains, Piccolo mis à part.",
   },
 ]
 

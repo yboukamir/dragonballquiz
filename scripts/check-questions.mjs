@@ -6,6 +6,25 @@ const err = (m) => { console.log('  ✗ ' + m); fail++ }
 
 console.log(`Total : ${QUESTIONS.length} questions`)
 
+// Normalisation grossière : deux questions qui ne different que par la
+// ponctuation ou la casse sont des doublons pour le joueur.
+const normaliser = (s) =>
+  s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '') // marques diacritiques isolées par la décomposition NFD
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+
+const enonces = new Map()
+for (const q of QUESTIONS) {
+  const cle = normaliser(q.q)
+  if (enonces.has(cle)) err(`énoncé en double : ${q.id} et ${enonces.get(cle)}`)
+  else enonces.set(cle, q.id)
+}
+
+// Une bonne réponse qui réapparaît comme leurre d'une autre question de la
+// même catégorie est acceptable ; la même question posée deux fois, non.
 const ids = new Set()
 for (const q of QUESTIONS) {
   if (ids.has(q.id)) err(`id dupliqué : ${q.id}`)
