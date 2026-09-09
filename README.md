@@ -36,7 +36,8 @@ npm run dev
 | `npm run build` | build de production dans `dist/` |
 | `npm run preview` | sert le build de production en local |
 | `npm run lint` | oxlint |
-| `npm run check` | valide les deux banques, leur parité et celle des dictionnaires |
+| `npm run check` | valide les deux banques, le barème, leur parité et celle des dictionnaires |
+| `npm run check:fuites` | signale les explications qui citent la réponse d'une autre question |
 | `npm run check:share` | affiche le texte de partage et les rangs, dans les deux langues |
 | `node scripts/captures.mjs` | régénère les captures du README (voir l'en-tête du fichier) |
 
