@@ -16,8 +16,10 @@ export default function App() {
   const [screen, setScreen] = useState('home')
   const [categoryId, setCategoryId] = useState(null)
   const [difficultyId, setDifficultyId] = useState('moyen')
+  const [chrono, setChrono] = useState(false)
 
   const [round, setRound] = useState([])
+  const [roundChrono, setRoundChrono] = useState(false)
   const [roundKey, setRoundKey] = useState(0)
   const [results, setResults] = useState([])
   const [isRecord, setIsRecord] = useState(false)
@@ -36,6 +38,7 @@ export default function App() {
   function start(id = categoryId) {
     if (!id) return
     setRound(buildRound(id, difficultyId))
+    setRoundChrono(chrono)
     setRoundKey((k) => k + 1)
     setResults([])
     setIsRecord(false)
@@ -49,6 +52,7 @@ export default function App() {
       score: roundResults.filter(Boolean).length,
       total: roundResults.length,
       difficulty: difficulty.label,
+      chrono: roundChrono,
     })
 
     setBestScores(all)
@@ -70,6 +74,8 @@ export default function App() {
             bestScores={bestScores}
             onSelectCategory={setCategoryId}
             onSelectDifficulty={setDifficultyId}
+            chrono={chrono}
+            onToggleChrono={setChrono}
             onStart={() => start()}
             onReset={() => setBestScores(clearBestScores())}
           />
@@ -81,6 +87,7 @@ export default function App() {
             round={round}
             category={category}
             difficulty={difficulty}
+            chrono={roundChrono}
             onFinish={finish}
             onQuit={goHome}
           />
@@ -92,6 +99,7 @@ export default function App() {
             difficulty={difficulty}
             round={round}
             results={results}
+            chrono={roundChrono}
             isRecord={isRecord}
             onReplay={() => start()}
             onHome={goHome}

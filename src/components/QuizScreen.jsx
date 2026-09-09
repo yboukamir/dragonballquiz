@@ -1,19 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import AnswerButton from './AnswerButton'
 import ProgressBar from './ui/ProgressBar'
+import Countdown from './ui/Countdown'
 import Panel from './ui/Panel'
 import Badge from './ui/Badge'
 import Button from './ui/Button'
+import useCountdown from '../hooks/useCountdown'
 
-export default function QuizScreen({ round, category, difficulty, onFinish, onQuit }) {
+/** Valeur de `picked` quand le temps s'est écoulé sans réponse. */
+const TEMPS_ECOULE = -1
+
+export default function QuizScreen({ round, category, difficulty, chrono, onFinish, onQuit }) {
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState(null)
   const [results, setResults] = useState([])
   const nextRef = useRef(null)
 
+  // Verrou synchrone : sans lui, une réponse cliquée à l'instant précis où
+  // le chrono expire enregistrerait deux résultats pour une seule question.
+  const repondu = useRef(false)
+
   const question = round[index]
   const answered = picked !== null
-  const isCorrect = answered && question.answers[picked].correct
+  const isCorrect = answered && picked !== TEMPS_ECOULE && question.answers[picked].correct
+
+  const expirer = useCallback(() => {
+    if (repondu.current) return
+    repondu.current = true
+    setPicked(TEMPS_ECOULE)
+    setResults((r) => [...r, false])
+  }, [])
+
+  const remaining = useCountdown(difficulty.seconds, chrono && !answered, expirer)
 
   // Le bouton de suite prend le focus dès le feedback : la partie reste
   // entièrement jouable au clavier, sans re-tabuler toute la liste.
@@ -22,7 +40,8 @@ export default function QuizScreen({ round, category, difficulty, onFinish, onQu
   }, [answered])
 
   function choose(i) {
-    if (answered) return
+    if (repondu.current) return
+    repondu.current = true
     setPicked(i)
     setResults((r) => [...r, round[index].answers[i].correct])
   }
@@ -32,12 +51,15 @@ export default function QuizScreen({ round, category, difficulty, onFinish, onQu
       onFinish(results)
       return
     }
+    repondu.current = false
     setIndex((i) => i + 1)
     setPicked(null)
   }
 
   function stateFor(i) {
     if (!answered) return 'idle'
+    // `picked` vaut -1 en cas d'expiration : aucune proposition n'est alors
+    // marquée comme choisie, seule la bonne réponse est révélée.
     if (i === picked) return isCorrect ? 'correct' : 'wrong'
     if (i === question.correctIndex) return 'revealed'
     return 'muted'
@@ -50,8 +72,12 @@ export default function QuizScreen({ round, category, difficulty, onFinish, onQu
           <Badge tone={category.accent} solid>
             {category.label}
           </Badge>
-          {/* Le niveau choisi pour la partie — stable d'une question a l'autre. */}
           <Badge tone={difficulty.accent}>{difficulty.label}</Badge>
+          {chrono && (
+            <Badge tone="crimson" solid>
+              ⏱ Chrono
+            </Badge>
+          )}
         </div>
 
         <button
@@ -64,6 +90,12 @@ export default function QuizScreen({ round, category, difficulty, onFinish, onQu
       </header>
 
       <ProgressBar current={index} total={round.length} results={results} />
+
+      {/* Retiré dès la réponse : le décompte n'a plus de sens, et le laisser
+          se réinitialiser sous les yeux du joueur serait déroutant. */}
+      {chrono && !answered && (
+        <Countdown remaining={remaining} total={difficulty.seconds} />
+      )}
 
       <Panel className="animate-rise p-5 sm:p-7" key={question.id}>
         <span
@@ -99,6 +131,8 @@ export default function QuizScreen({ round, category, difficulty, onFinish, onQu
             <p className="font-display text-xl sm:text-2xl">
               {isCorrect ? (
                 <span className="text-jade">Dans le mille.</span>
+              ) : picked === TEMPS_ECOULE ? (
+                <span className="text-crimson">Temps écoulé.</span>
               ) : (
                 <span className="text-crimson">Raté.</span>
               )}{' '}

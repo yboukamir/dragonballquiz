@@ -17,6 +17,10 @@ export const DIFFICULTIES = [
     count: 10,
     mix: { 1: 0.7, 2: 0.3, 3: 0 },
     accent: 'jade',
+    // Secondes par question en mode chrono. Le temps se resserre avec le
+    // niveau : les questions difficiles sont plus longues à lire, mais
+    // celui qui les connaît répond d'instinct.
+    seconds: 15,
   },
   {
     id: 'moyen',
@@ -26,6 +30,7 @@ export const DIFFICULTIES = [
     count: 10,
     mix: { 1: 0.2, 2: 0.6, 3: 0.2 },
     accent: 'orange',
+    seconds: 12,
   },
   {
     id: 'difficile',
@@ -38,6 +43,7 @@ export const DIFFICULTIES = [
     count: 10,
     mix: { 1: 0, 2: 0.4, 3: 0.6 },
     accent: 'crimson',
+    seconds: 10,
   },
 ]
 

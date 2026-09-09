@@ -35,10 +35,11 @@ src/
 │   ├── quiz.js            niveaux, tirage d'une manche, mélange
 │   ├── ranks.js           rangs de fin de partie + puissance de combat
 │   ├── share.js           résumé partagé (Web Share natif, sinon presse-papier)
-│   ├── storage.js         meilleurs scores (localStorage, tolérant aux erreurs)
+│   ├── storage.js         meilleurs scores par mode (localStorage, migration v1→v2)
 │   └── accents.js         table des accents de couleur
+├── hooks/useCountdown.js  compte à rebours du mode chrono
 ├── components/
-│   ├── ui/                primitives réutilisables (Button, Panel, ProgressBar…)
+│   ├── ui/                primitives réutilisables (Button, Panel, Countdown…)
 │   └── *.jsx              écrans et blocs métier
 └── App.jsx                machine à états : accueil → quiz → résultat
 ```
@@ -94,6 +95,31 @@ suivants de moins en moins.
 
 Le script de mesure tient en quelques lignes : jouer deux manches d'affilée et
 compter les identifiants communs, répété quelques centaines de fois.
+
+### Mode chrono
+
+Option transversale, activable sur n'importe quelle catégorie et n'importe quel
+niveau — et non un quatrième niveau, ce qui aurait dilué la sémantique des trois
+autres. Le temps par question se resserre avec la difficulté : 15 s en facile,
+12 s en moyen, 10 s en difficile (`seconds` dans `DIFFICULTIES`).
+
+Passé le délai, la question compte comme manquée : la bonne réponse est révélée,
+mais aucune proposition n'est marquée comme choisie, puisque le joueur n'a rien
+choisi. Le mode est figé au lancement de la manche (`roundChrono`) : le basculer
+depuis l'accueil ne change jamais les règles d'une partie déjà commencée.
+
+`useCountdown` prend deux précautions qui comptent plus qu'il n'y paraît :
+
+- **Pause quand l'onglet passe en arrière-plan.** Perdre une question parce qu'on
+  a répondu à une notification serait injuste, et les navigateurs bridant les
+  timers des onglets cachés, un décompte naïf y deviendrait de toute façon faux.
+- **Temps restant calculé sur `performance.now`** plutôt qu'un compteur décrémenté
+  à chaque tick, qui dériverait au fil des imprécisions de `setInterval`.
+
+Les records du mode chrono sont stockés **séparément** de ceux du mode classique
+(voir `lib/storage.js`). Les mélanger reviendrait à comparer un score sous
+contrainte de temps à un score sans : le second l'emporterait presque toujours au
+pourcentage, et le mode chrono ne décrocherait jamais de record.
 
 ### Partage du score
 

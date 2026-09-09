@@ -13,6 +13,7 @@ export default function ResultScreen({
   difficulty,
   round,
   results,
+  chrono,
   isRecord,
   onReplay,
   onHome,
@@ -22,8 +23,8 @@ export default function ResultScreen({
   // Identite stable : ShareButton interroge navigator.canShare dans un effet
   // qui depend de cet objet.
   const sharePayload = useMemo(
-    () => buildSharePayload({ category, difficulty, results }),
-    [category, difficulty, results],
+    () => buildSharePayload({ category, difficulty, results, chrono }),
+    [category, difficulty, results, chrono],
   )
 
   const total = results.length
@@ -46,9 +47,16 @@ export default function ResultScreen({
         />
 
         <div className="relative flex flex-col items-center gap-3">
-          <Badge tone={category.accent} solid>
-            {category.label} · {difficulty.label}
-          </Badge>
+          <span className="flex flex-wrap justify-center gap-2">
+            <Badge tone={category.accent} solid>
+              {category.label} · {difficulty.label}
+            </Badge>
+            {chrono && (
+              <Badge tone="crimson" solid>
+                ⏱ Chrono
+              </Badge>
+            )}
+          </span>
 
           <p className="font-label text-sm uppercase tracking-[0.2em] text-ink/60">
             Rang atteint

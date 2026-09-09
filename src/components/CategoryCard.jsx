@@ -38,13 +38,21 @@ export default function CategoryCard({ category, best, selected, onSelect }) {
         {category.tagline}
       </span>
 
-      <span className="mt-2 pl-3">
-        {best ? (
+      {/* Les deux modes ont leur propre record : un score au chronomètre
+          ne se compare pas à un score sans contrainte de temps. */}
+      <span className="mt-2 flex flex-wrap gap-1.5 pl-3">
+        {!best?.normal && !best?.chrono && <Badge tone="smoke">Jamais tenté</Badge>}
+
+        {best?.normal && (
           <Badge tone={selected ? category.accent : 'ki'}>
-            Record {best.score}/{best.total} · {best.difficulty}
+            Record {best.normal.score}/{best.normal.total} · {best.normal.difficulty}
           </Badge>
-        ) : (
-          <Badge tone="smoke">Jamais tenté</Badge>
+        )}
+
+        {best?.chrono && (
+          <Badge tone="crimson">
+            ⏱ {best.chrono.score}/{best.chrono.total} · {best.chrono.difficulty}
+          </Badge>
         )}
       </span>
     </button>

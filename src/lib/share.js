@@ -10,14 +10,15 @@ export const SITE_URL = 'https://dragonballquiz.com'
  *   lien. Les concaténer ici le ferait apparaître deux fois.
  * - `full` d'un seul tenant pour le presse-papier, qui n'ajoute rien.
  */
-export function buildSharePayload({ category, difficulty, results }) {
+export function buildSharePayload({ category, difficulty, results, chrono = false }) {
   const total = results.length
   const score = results.filter(Boolean).length
   const rank = getRank(score, total)
   const grid = results.map((ok) => (ok ? '🟡' : '⬛')).join('')
+  const mode = chrono ? `${difficulty.label.toLowerCase()}, chrono ⏱` : difficulty.label.toLowerCase()
 
   const corps = [
-    `⚡ Dragon Ball Quiz — ${category.label} (${difficulty.label.toLowerCase()})`,
+    `⚡ Dragon Ball Quiz — ${category.label} (${mode})`,
     grid,
     `Score : ${score}/${total} · Rang : ${rank.label}`,
     `Puissance de combat estimée : ${formatPowerLevel(toPowerLevel(score, total))}`,

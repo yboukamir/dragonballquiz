@@ -1,19 +1,24 @@
 import { CATEGORIES, QUESTIONS } from '../data/questions'
+import { getDifficulty } from '../lib/quiz'
 import CategoryCard from './CategoryCard'
 import DifficultyPicker from './DifficultyPicker'
 import Button from './ui/Button'
+import Toggle from './ui/Toggle'
 import KiOrb from './ui/KiOrb'
 
 export default function HomeScreen({
   category,
   difficulty,
+  chrono,
   bestScores,
   onSelectCategory,
   onSelectDifficulty,
+  onToggleChrono,
   onStart,
   onReset,
 }) {
   const hasRecords = Object.keys(bestScores).length > 0
+  const niveau = getDifficulty(difficulty)
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-8 sm:gap-10 sm:py-14">
@@ -67,6 +72,13 @@ export default function HomeScreen({
           <span className="text-ki">2.</span> Choisis ton niveau
         </h2>
         <DifficultyPicker value={difficulty} onChange={onSelectDifficulty} />
+
+        <Toggle
+          checked={chrono}
+          onChange={onToggleChrono}
+          label="⏱ Mode chrono"
+          description={`${niveau.seconds} secondes par question. Passé le délai, la question est perdue.`}
+        />
       </section>
 
       {/* -------------------------------------------------------- Départ */}

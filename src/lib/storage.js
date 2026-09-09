@@ -4,68 +4,104 @@
  * Pas de backend en v1 : tout vit dans le localStorage du visiteur.
  * Chaque accès est protégé — navigation privée, cookies bloqués ou quota
  * dépassé ne doivent jamais casser le jeu, seulement désactiver la mémoire.
+ *
+ * Forme stockée : { [categorie]: { normal?: Record, chrono?: Record } }
+ *
+ * Les deux modes ont leur propre emplacement. Les mélanger reviendrait à
+ * comparer un score au chronomètre avec un score sans contrainte de temps :
+ * le second l'emporterait presque toujours au pourcentage, et le mode
+ * chrono ne décrocherait jamais de record.
  */
-const KEY = 'dbq.best.v1'
+const KEY = 'dbq.best.v2'
+const KEY_V1 = 'dbq.best.v1'
 
-function readAll() {
+const estRecord = (r) =>
+  r && typeof r === 'object' && typeof r.score === 'number' && typeof r.total === 'number'
+
+function lireBrut(cle) {
   try {
-    const raw = window.localStorage.getItem(KEY)
-    if (!raw) return {}
-    const parsed = JSON.parse(raw)
-    return parsed && typeof parsed === 'object' ? parsed : {}
+    const brut = window.localStorage.getItem(cle)
+    if (!brut) return null
+    const parsed = JSON.parse(brut)
+    return parsed && typeof parsed === 'object' ? parsed : null
   } catch {
-    return {}
+    return null
   }
 }
 
-function writeAll(data) {
+function ecrire(donnees) {
   try {
-    window.localStorage.setItem(KEY, JSON.stringify(data))
+    window.localStorage.setItem(KEY, JSON.stringify(donnees))
     return true
   } catch {
     return false
   }
 }
 
-/** @returns {{ [categoryId: string]: BestScore }} */
+/**
+ * Reprend les records de la v1, qui ne connaissait qu'un score par
+ * catégorie, et les range dans l'emplacement « normal ». La clé v1 est
+ * laissée en place : elle ne gêne pas, et la perdre serait irréversible
+ * si une version antérieure du site revenait à être servie depuis un cache.
+ */
+function migrerV1() {
+  const ancien = lireBrut(KEY_V1)
+  if (!ancien) return {}
+
+  const migre = {}
+  for (const [categorie, record] of Object.entries(ancien)) {
+    if (estRecord(record)) migre[categorie] = { normal: record }
+  }
+  if (Object.keys(migre).length > 0) ecrire(migre)
+  return migre
+}
+
+/** @returns {{ [categorie: string]: { normal?: object, chrono?: object } }} */
 export function loadBestScores() {
-  return readAll()
+  const actuel = lireBrut(KEY)
+  if (actuel) return actuel
+  return migrerV1()
 }
 
 /**
- * Enregistre le résultat s'il bat le meilleur score de la catégorie.
- * La comparaison se fait sur le pourcentage, puis sur le nombre de bonnes
- * réponses : 10/10 en facile ne doit pas écraser 14/15 en difficile.
+ * Enregistre le résultat s'il bat le meilleur score du même mode, dans la
+ * même catégorie. La comparaison se fait sur le pourcentage, puis sur le
+ * nombre de bonnes réponses.
  */
-export function saveScore(categoryId, { score, total, difficulty }) {
-  const all = readAll()
-  const previous = all[categoryId]
+export function saveScore(categoryId, { score, total, difficulty, chrono = false }) {
+  const tout = loadBestScores()
+  const emplacement = chrono ? 'chrono' : 'normal'
+  const parCategorie = tout[categoryId] ?? {}
+  const precedent = parCategorie[emplacement]
   const pct = total > 0 ? score / total : 0
 
-  const isBetter =
-    !previous ||
-    pct > previous.pct ||
-    (pct === previous.pct && score > previous.score)
+  const meilleur =
+    !precedent || pct > precedent.pct || (pct === precedent.pct && score > precedent.score)
 
-  if (!isBetter) return { all, updated: false }
+  if (!meilleur) return { all: tout, updated: false }
 
-  const next = {
-    ...all,
+  const suivant = {
+    ...tout,
     [categoryId]: {
-      score,
-      total,
-      pct,
-      difficulty,
-      date: new Date().toISOString(),
+      ...parCategorie,
+      [emplacement]: {
+        score,
+        total,
+        pct,
+        difficulty,
+        chrono,
+        date: new Date().toISOString(),
+      },
     },
   }
-  writeAll(next)
-  return { all: next, updated: true }
+  ecrire(suivant)
+  return { all: suivant, updated: true }
 }
 
 export function clearBestScores() {
   try {
     window.localStorage.removeItem(KEY)
+    window.localStorage.removeItem(KEY_V1)
   } catch {
     /* rien à faire : la mémoire n'était de toute façon pas disponible */
   }
