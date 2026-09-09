@@ -54,9 +54,18 @@ const clic = (page, texte, selecteur = 'button') =>
     selecteur,
   )
 
+// Sans argument, tout est regénéré. Avec « accueil » ou « jeu », seule la
+// partie demandée l'est : corriger une capture ne doit pas faire bouger les
+// autres, qui tirent des questions différentes à chaque exécution.
+const cible = process.argv[2] ?? 'tout'
+const faire = (nom) => cible === 'tout' || cible === nom
+
 /* ---------------------------------------------------- accueil (large) */
-{
-  const page = await nouvellePage({ width: 1000, height: 1180, deviceScaleFactor: 1.5 })
+if (faire('accueil')) {
+  // Hauteur calée juste sous les cartes de catégories : le titre et les
+  // quatre catégories suffisent à donner le ton, et une capture plus haute
+  // repousserait le texte du README trop bas.
+  const page = await nouvellePage({ width: 1000, height: 820, deviceScaleFactor: 1.5 })
   await page.goto(SITE, { waitUntil: 'networkidle0' })
   await attendre(1200)
   await page.screenshot({ path: SORTIE + 'apercu-accueil.png' })
@@ -65,7 +74,7 @@ const clic = (page, texte, selecteur = 'button') =>
 }
 
 /* --------------------------------------- quiz et résultat (mobile) */
-{
+if (faire('jeu')) {
   const page = await nouvellePage({ width: 390, height: 844, deviceScaleFactor: 2 })
   await page.goto(SITE, { waitUntil: 'networkidle0' })
   await attendre(1200)
