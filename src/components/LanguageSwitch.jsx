@@ -27,7 +27,11 @@ export default function LanguageSwitch({ className = '' }) {
             href={cheminDe(code)}
             hrefLang={LANGUES[code].htmlLang}
             lang={LANGUES[code].htmlLang}
-            aria-current={actif ? 'true' : undefined}
+            // « FR » et « EN » seuls ne disent rien à un lecteur d'écran : on
+            // lui donne le nom complet, dans la langue du lien. Il contient
+            // l'abréviation affichée, donc la commande vocale « FR » marche encore.
+            aria-label={LANGUES[code].nom}
+            aria-current={actif ? 'page' : undefined}
             onClick={(e) => {
               // On laisse le navigateur faire son travail sur un clic
               // modifié (nouvel onglet, nouvelle fenêtre) ou un clic non
