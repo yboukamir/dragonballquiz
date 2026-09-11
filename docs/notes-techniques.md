@@ -14,6 +14,7 @@ il tient debout.
 - [Tableau des scores](#tableau-des-scores)
 - [Historique des parties](#historique-des-parties)
 - [Partage du score](#partage-du-score)
+- [Tests](#tests)
 - [Domaine et hébergement](#domaine-et-hébergement)
 - [Repli sur un hébergement classique](#repli-sur-un-hébergement-classique)
 
@@ -295,6 +296,24 @@ faut-il que l'aperçu donne envie de cliquer. Chaque langue a son image
 
 Le workflow de déploiement vérifie que les deux images répondent bien en
 `image/png` : si `public/og/` disparaissait, les aperçus casseraient sans bruit.
+## Tests
+
+`npm test` lance une suite Vitest sur la logique pure de `src/lib/` : migrations
+du stockage, règle du record, rangs et puissance de combat, barème, historique,
+libellés de niveau. Les données restent vérifiées par `npm run check`. Les deux
+tournent dans le workflow de déploiement : un test rouge bloque la mise en ligne.
+
+Pas de jsdom : le code ne lit que `window.localStorage`, et
+`src/test/stockage-memoire.js` le remplace par une `Map`. Deux options y
+reproduisent les pannes réelles que le jeu doit encaisser sans casser : un quota
+plein, et un stockage refusé en bloc, comme en navigation privée stricte.
+
+**Les tests suivent la règle documentée, pas le comportement du moment.** C'est ce
+qui leur a fait trouver leur premier bug. À taux égal, `saveScore` devait
+départager sur les points, puis seulement sur les bonnes réponses. Il combinait
+les deux par un simple « ou » : une bonne réponse de plus l'emportait donc sur
+1 200 points de plus, et remplaçait un record obtenu sur des questions plus chères.
+
 ## Domaine et hébergement
 
 Le domaine personnalisé tient à deux choses qu'il ne faut pas dissocier :

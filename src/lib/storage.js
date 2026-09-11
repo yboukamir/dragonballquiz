@@ -116,11 +116,17 @@ export function saveScore(
   const ratio = ratioDe(candidat)
   const ratioPrecedent = ratioDe(precedent)
 
+  // Comparaison lexicographique : un critère ne compte que si les précédents
+  // sont à égalité. Un simple « ou » laissait une bonne réponse de plus
+  // l'emporter sur 1 200 points de plus, à taux égal.
+  const pointsCandidat = points ?? 0
+  const pointsPrecedent = precedent?.points ?? 0
   const meilleur =
     !precedent ||
     ratio > ratioPrecedent ||
     (ratio === ratioPrecedent &&
-      ((points ?? 0) > (precedent.points ?? 0) || score > precedent.score))
+      (pointsCandidat > pointsPrecedent ||
+        (pointsCandidat === pointsPrecedent && score > precedent.score)))
 
   if (!meilleur) return { all: tout, updated: false }
 

@@ -18,6 +18,7 @@ sans backend : les meilleurs scores vivent dans le `localStorage` du visiteur.
 - **React 19** (aucun routeur : une seule page, trois écrans pilotés par un état local)
 - **Tailwind CSS v4** via `@tailwindcss/vite` — les tokens de design sont dans `src/index.css`
 - **Vite 8** pour le build
+- **Vitest** pour les tests de la logique pure, à côté du code (`src/lib/*.test.js`)
 - Aucune dépendance UI tierce
 
 ## Démarrer
@@ -33,6 +34,7 @@ npm run dev
 | `npm run build` | build de production dans `dist/` |
 | `npm run preview` | sert le build de production en local |
 | `npm run lint` | oxlint |
+| `npm test` | tests de la logique du jeu (Vitest) : stockage, barème, rangs, historique |
 | `npm run check` | valide les deux banques, le barème, leur parité et celle des dictionnaires |
 | `npm run check:fuites` | signale les explications qui citent la réponse d'une autre question |
 | `npm run check:share` | affiche le texte de partage et les rangs, dans les deux langues |
