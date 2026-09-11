@@ -44,7 +44,7 @@ function Cellule({ record, courante, nouveau, t }) {
         {pondere ? (
           <>
             {formatNombre(record.points, t.locale)}
-            <span className="text-xs text-ink/50"> {t.unites.points}</span>
+            <span className="text-xs text-ink/65"> {t.unites.points}</span>
           </>
         ) : (
           <>

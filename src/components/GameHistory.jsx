@@ -27,7 +27,7 @@ export default function GameHistory({ history }) {
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-paper/25 px-4 py-3">
         <h2 className="font-display text-2xl leading-none text-paper">{t.historique.titre}</h2>
         {history.length > A_AFFICHER && (
-          <p className="font-label text-xs uppercase tracking-[0.14em] text-smoke">
+          <p className="font-label text-xs uppercase tracking-[0.14em] text-mist">
             {t.historique.conservees(parties.length, history.length)}
           </p>
         )}
@@ -63,9 +63,9 @@ export default function GameHistory({ history }) {
               <span className="min-w-0 flex-1">
                 <span className="block truncate font-body text-sm font-semibold text-paper">
                   {t.categories[partie.category]?.label ?? partie.category}
-                  {partie.chrono && <span className="text-crimson"> ⏱</span>}
+                  {partie.chrono && <span className="text-rose"> ⏱</span>}
                 </span>
-                <span className="block font-label text-xs uppercase tracking-wider text-smoke">
+                <span className="block font-label text-xs uppercase tracking-wider text-mist">
                   {partie.score}/{partie.total} · {labelNiveau(partie, t)} ·{' '}
                   {formatWhen(partie.date, t.locale)}
                   {courante && <span className="text-ki"> · {t.historique.cettePartie}</span>}
@@ -77,7 +77,7 @@ export default function GameHistory({ history }) {
                   {aDesPoints(partie) ? (
                     <>
                       {formatNombre(partie.points, t.locale)}
-                      <span className="text-xs text-smoke"> {t.unites.points}</span>
+                      <span className="text-xs text-mist"> {t.unites.points}</span>
                     </>
                   ) : (
                     <>
@@ -85,7 +85,7 @@ export default function GameHistory({ history }) {
                     </>
                   )}
                 </span>
-                <span className={`block font-label text-[0.65rem] uppercase tracking-wider ${a.text}`}>
+                <span className={`block font-label text-[0.65rem] uppercase tracking-wider ${a.surSombre}`}>
                   {rang.label}
                 </span>
               </span>

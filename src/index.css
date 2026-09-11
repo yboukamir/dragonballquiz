@@ -11,6 +11,9 @@
   --color-ink: #0f0e14;
   --color-ink-soft: #1b1922;
   --color-smoke: #45414f;
+  /* Gris de texte discret. smoke reste pour les fonds et les bordures : en
+     texte, il tombait à 1,8:1 sur l’encre, sous la norme WCAG de 4,5:1. */
+  --color-mist: #9c9aa2;
 
   --color-paper: #fff7e8;
   --color-paper-dim: #efe2ca;
@@ -20,7 +23,10 @@
   --color-ki: #ffc61a;
   --color-cobalt: #1d4fd8;
   --color-sky: #35a7ff;
-  --color-crimson: #e01b3c;
+  /* Légèrement assombri : le texte papier du badge chrono y passe 4,5:1. */
+  --color-crimson: #dc1a3b;
+  /* Rouge éclairci pour le texte sur fond sombre (crimson y plafonnait à 3,6:1). */
+  --color-rose: #e8546d;
   --color-jade: #2fbf71;
 
   --font-display: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;

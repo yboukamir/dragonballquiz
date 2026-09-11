@@ -107,7 +107,7 @@ export default function HomeScreen({
           <button
             type="button"
             onClick={onReset}
-            className="font-label text-xs uppercase tracking-[0.14em] text-smoke underline decoration-2 underline-offset-4 hover:text-crimson tap-safe"
+            className="font-label text-xs uppercase tracking-[0.14em] text-mist underline decoration-2 underline-offset-4 hover:text-rose tap-safe"
           >
             {t.accueil.effacer}
           </button>

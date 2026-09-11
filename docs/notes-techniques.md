@@ -14,6 +14,7 @@ il tient debout.
 - [Tableau des scores](#tableau-des-scores)
 - [Historique des parties](#historique-des-parties)
 - [Partage du score](#partage-du-score)
+- [Accessibilité](#accessibilité)
 - [Tests](#tests)
 - [Domaine et hébergement](#domaine-et-hébergement)
 - [Repli sur un hébergement classique](#repli-sur-un-hébergement-classique)
@@ -296,6 +297,37 @@ faut-il que l'aperçu donne envie de cliquer. Chaque langue a son image
 
 Le workflow de déploiement vérifie que les deux images répondent bien en
 `image/png` : si `public/og/` disparaissait, les aperçus casseraient sans bruit.
+## Accessibilité
+
+Lighthouse donnait 100 en accessibilité, mais il n'examine que la page au
+chargement, et il renonce à mesurer le contraste sur un fond en dégradé : le
+texte gris du pied de page, à 1,8:1, lui échappait. `scripts/audit-a11y.mjs`
+joue donc des manches dans les deux langues et passe axe-core sur chaque état —
+question, retour après réponse, compte à rebours, résultat, récapitulatif —,
+puis rejoue une manche entière au clavier seul.
+
+Ce qu'il a trouvé, et ce qui a été corrigé :
+
+- **Contraste.** Le gris `smoke` servait de couleur de texte, à 1,8:1. Il est
+  désormais réservé aux fonds et aux bordures ; le texte discret passe à `mist`,
+  au moins 5:1, y compris sur la ligne surlignée de l'historique. Le rouge et le
+  cobalt, lisibles en aplat, tombaient sous le seuil en texte sur l'encre : chaque
+  accent a maintenant une variante `surSombre` (`rose` pour le rouge, `sky`
+  pour le cobalt). Sur la carte sélectionnée, au fond papier, les badges passent
+  en plein. Le rouge de base est très légèrement assombri pour que le texte papier
+  du badge chrono atteigne 4,5:1.
+- **Titre de page.** L'écran de question n'avait pas de `h1`. Un titre caché
+  visuellement situe la question dans la manche ; l'énoncé reste un `h2`.
+- **Focus.** Le bouton de suite disparaissait avec le retour, et le focus
+  retombait sur la page : au clavier, il fallait retraverser tout l'en-tête à
+  chaque question, et un lecteur d'écran n'annonçait rien. Le focus va maintenant
+  à l'énoncé de chaque nouvelle question, puis au rang sur l'écran de résultat.
+  Une manche se joue au clavier avec une seule tabulation par question.
+
+Aucune couleur de remplacement ne sort d'un nuancier : chacune garde la teinte
+d'origine, éclaircie ou assombrie juste assez pour franchir le seuil — avec de la
+marge — sur les fonds réels où elle s'affiche.
+
 ## Tests
 
 `npm test` lance une suite Vitest sur la logique pure de `src/lib/` : migrations

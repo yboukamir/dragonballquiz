@@ -50,7 +50,7 @@ export default function CategoryCard({ category, best, chrono, selected, wide, o
           Le pictogramme ⏱ lève l'ambiguïté quand le chrono est actif. */}
       <span className="mt-2 pl-3">
         {record ? (
-          <Badge tone={chrono ? 'crimson' : selected ? category.accent : 'ki'}>
+          <Badge tone={chrono ? 'crimson' : selected ? category.accent : 'ki'} solid={selected}>
             {chrono
               ? t.carte.recordChrono(valeurScore(record, t), labelNiveau(record, t))
               : t.carte.record(valeurScore(record, t), labelNiveau(record, t))}

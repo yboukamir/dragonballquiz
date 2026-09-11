@@ -20,6 +20,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
   const [picked, setPicked] = useState(null)
   const [results, setResults] = useState([])
   const nextRef = useRef(null)
+  const questionRef = useRef(null)
 
   // Verrou synchrone : sans lui, une réponse cliquée à l'instant précis où
   // le chrono expire enregistrerait deux résultats pour une seule question.
@@ -43,6 +44,14 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
   useEffect(() => {
     if (answered) nextRef.current?.focus()
   }, [answered])
+
+  // À chaque nouvelle question, le focus va à l'énoncé. Sans cela, le bouton
+  // de suite disparaît avec le retour et le focus retombe sur la page : au
+  // clavier, il faudrait retraverser tout l'en-tête, et un lecteur d'écran
+  // n'annoncerait pas la question suivante.
+  useEffect(() => {
+    questionRef.current?.focus({ preventScroll: true })
+  }, [index])
 
   function choose(i) {
     if (repondu.current) return
@@ -72,6 +81,11 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 py-6 sm:py-10">
+      {/* Titre de page pour les lecteurs d'écran : l'énoncé reste un h2, sous
+          un h1 qui situe la question dans la manche. */}
+      <h1 className="sr-only">
+        {t.categories[category.id].label} — {t.quiz.questionSur(index + 1, round.length)}
+      </h1>
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone={category.accent} solid>
@@ -116,7 +130,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           {t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}
         </span>
 
-        <h2 className="relative font-display text-2xl leading-[1.05] sm:text-4xl">
+        <h2 ref={questionRef} tabIndex={-1} className="relative font-display text-2xl leading-[1.05] sm:text-4xl">
           {question.prompt}
         </h2>
       </Panel>
@@ -146,9 +160,9 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
               {isCorrect ? (
                 <span className="text-jade">{t.quiz.juste}</span>
               ) : picked === TEMPS_ECOULE ? (
-                <span className="text-crimson">{t.quiz.tempsEcoule}</span>
+                <span className="text-rose">{t.quiz.tempsEcoule}</span>
               ) : (
-                <span className="text-crimson">{t.quiz.faux}</span>
+                <span className="text-rose">{t.quiz.faux}</span>
               )}{' '}
               <span className="text-paper">
                 {isCorrect

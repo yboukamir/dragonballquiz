@@ -10,9 +10,9 @@ export default function Footer() {
           {t.pied.marque}
         </p>
 
-        <p className="font-body text-xs leading-relaxed text-smoke">{t.pied.mention}</p>
+        <p className="font-body text-xs leading-relaxed text-mist">{t.pied.mention}</p>
 
-        <p className="font-body text-xs text-smoke">{t.pied.credit}</p>
+        <p className="font-body text-xs text-mist">{t.pied.credit}</p>
       </div>
     </footer>
   )

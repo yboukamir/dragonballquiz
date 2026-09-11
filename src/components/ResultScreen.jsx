@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Panel from './ui/Panel'
 import Button from './ui/Button'
 import Badge from './ui/Badge'
@@ -28,6 +28,14 @@ export default function ResultScreen({
 }) {
   const { t } = useLang()
   const [showRecap, setShowRecap] = useState(false)
+  const titreRef = useRef(null)
+
+  // L'écran de résultat remplace la question sous le focus, qui retombait
+  // alors sur la page : on le pose sur le rang, pour qu'un lecteur d'écran
+  // annonce le résultat dès son affichage.
+  useEffect(() => {
+    titreRef.current?.focus({ preventScroll: true })
+  }, [])
 
   // Le récapitulatif contient les questions telles qu'elles ont été posées,
   // donc dans la langue de la partie. C'est exact, mais l'afficher d'office
@@ -96,7 +104,11 @@ export default function ResultScreen({
             {t.resultat.rangAtteint}
           </p>
 
-          <h1 className={`title-ink font-display text-5xl leading-[0.9] sm:text-7xl ${a.text}`}>
+          <h1
+            ref={titreRef}
+            tabIndex={-1}
+            className={`title-ink font-display text-5xl leading-[0.9] sm:text-7xl ${a.text}`}
+          >
             {rangLibelle.label}
           </h1>
 
