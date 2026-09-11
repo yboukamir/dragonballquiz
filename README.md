@@ -37,6 +37,7 @@ npm run dev
 | `npm run check:fuites` | signale les explications qui citent la réponse d'une autre question |
 | `npm run check:share` | affiche le texte de partage et les rangs, dans les deux langues |
 | `node scripts/captures.mjs` | régénère les captures du README (voir l'en-tête du fichier) |
+| `node scripts/og-images.mjs` | régénère les images d'aperçu de partage, dans `public/og/` |
 
 ## Structure
 

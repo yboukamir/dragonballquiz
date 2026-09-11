@@ -82,3 +82,14 @@ jobs:
           done
           echo "::error::Le site ne repond pas correctement apres le deploiement."
           exit 1
+
+      - name: Verifier les images de partage
+        run: |
+          for langue in fr en; do
+            reponse=$(curl -sSL -o /dev/null -w '%{http_code} %{content_type}' --max-time 20 "https://dragonballquiz.com/og/$langue.png" || echo 000)
+            echo "og/$langue.png : $reponse"
+            case "$reponse" in
+              "200 image/png"*) ;;
+              *) echo "::error::Image de partage og/$langue.png indisponible."; exit 1 ;;
+            esac
+          done

@@ -278,6 +278,23 @@ l'utilisateur, pas une erreur : elle ne déclenche aucun message.
 le lien lui-même, et une version `full` d'un seul tenant pour le presse-papier —
 les concaténer partout ferait apparaître l'URL en double.
 
+
+**L'aperçu du lien.** Le bouton de partage pousse à coller le lien ; encore
+faut-il que l'aperçu donne envie de cliquer. Chaque langue a son image
+1200 × 630 (`public/og/fr.png`, `en.png`), déclarée en `og:image` avec
+`twitter:card` en `summary_large_image`. Trois choix qui comptent :
+
+- **Une URL fixe**, hors du build haché : les réseaux mettent l'aperçu en cache
+  sur l'URL de l'image, un nom qui change à chaque déploiement le casserait.
+- **Des chiffres lus dans les données.** `scripts/og-images.mjs` compte les
+  questions, les catégories et les niveaux, et prend les libellés dans les
+  dictionnaires : relancer le script remet l'image d'accord avec le site.
+- **Moins de 300 Ko.** Au-delà, WhatsApp renonce parfois à afficher l'aperçu ;
+  le script échoue si l'image dépasse, si une police n'a pas chargé ou si un
+  texte sort du cadre.
+
+Le workflow de déploiement vérifie que les deux images répondent bien en
+`image/png` : si `public/og/` disparaissait, les aperçus casseraient sans bruit.
 ## Domaine et hébergement
 
 Le domaine personnalisé tient à deux choses qu'il ne faut pas dissocier :
