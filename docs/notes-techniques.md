@@ -15,6 +15,7 @@ il tient debout.
 - [Historique des parties](#historique-des-parties)
 - [Partage du score](#partage-du-score)
 - [Accessibilité](#accessibilité)
+- [Performance](#performance)
 - [Tests](#tests)
 - [Domaine et hébergement](#domaine-et-hébergement)
 - [Repli sur un hébergement classique](#repli-sur-un-hébergement-classique)
@@ -327,6 +328,54 @@ Ce qu'il a trouvé, et ce qui a été corrigé :
 Aucune couleur de remplacement ne sort d'un nuancier : chacune garde la teinte
 d'origine, éclaircie ou assombrie juste assez pour franchir le seuil — avec de la
 marge — sur les fonds réels où elle s'affiche.
+
+## Performance
+
+**Polices hébergées sur le site.** Anton, Barlow et Barlow Condensed viennent des
+paquets Fontsource (licence SIL OFL), importés dans `src/main.jsx` et émis par Vite
+avec le reste du site. La feuille de Google Fonts bloquait le premier affichage le
+temps de joindre deux serveurs tiers, et transmettait l'adresse IP de chaque
+visiteur à Google. Mêmes graisses que celles que Google servait, sans l'italique
+que rien n'utilise ; chaque feuille découpe la police par alphabet, et le
+navigateur ne télécharge que le sous-ensemble latin. Rendu vérifié identique au
+pixel près avant publication.
+
+**Aucun décalage de mise en page au chargement.** Lighthouse mesurait un décalage
+cumulé (CLS) de 0,31 à 0,35 sur l'accueil français, au-delà du seuil « mauvais »
+de Google (0,25). En retardant séparément les polices puis la banque de questions,
+le diagnostic a isolé trois causes, toutes antérieures aux polices locales :
+
+| Cause | Effet mesuré | Correction |
+| --- | --- | --- |
+| Surtitre plus large en police de secours : le sélecteur de langue passait dessous, puis remontait | ≈ 0,31, page française, 390 à 412 px | La rangée ne revient plus à la ligne ; le surtitre se replie dans sa colonne |
+| « DRAGON BALL » sur deux lignes en Arial, 31 % plus large qu'Anton en capitales | 48 px, 320 à 360 px | Police de secours des titres : Arial à 69 %, hauteurs calées sur Anton |
+| « Chargement des questions… » remplacé par une accroche de trois lignes | ≈ 0,04, les deux pages | Nombre de questions injecté au build |
+
+La police de secours des titres est réservée aux capitales (h1, h2, h3). En
+minuscules, Anton n'est que 6 à 15 % plus étroite qu'Arial : le même réglage
+rendrait le secours trop étroit, et « Techniques & transformations » tiendrait sur
+une ligne avant d'en prendre deux à l'arrivée d'Anton. Les hauteurs
+(`ascent-override`, `descent-override`) sont celles d'Anton lues par le moteur de
+rendu (1,180 et 0,330), divisées par la réduction : sans elles, le texte ne
+changeait plus de ligne mais sautait de 17 à 36 px dans la sienne. Écart résiduel
+mesuré : 1 px, de 320 à 1000 px.
+
+Limite connue : le réglage est calé sur Arial. Helvetica, aux proportions
+identiques, se comporte de la même façon ; sur Android, il dépend de la
+reconnaissance de Roboto par `local()`, non vérifiée.
+
+**Mesures Lighthouse** — mobile, médiane de trois passages sur le site en ligne :
+
+| Étape | Score FR | Score EN | CLS (FR) | Premier affichage |
+| --- | --- | --- | --- | --- |
+| Google Fonts | 76 | 92 | 0,32 | 2,7 s |
+| Polices sur le site | 83 | 98 | 0,31 | 1,75 s |
+| Décalage corrigé | **98** | **98** | **0,000** | 1,8 s |
+
+Lighthouse varie nettement d'un passage à l'autre (81, puis 76 et 76 sur la même
+page), d'où les médianes. Il attribue un décalage à la dernière ressource arrivée,
+pas forcément à la bonne : retarder une ressource à la fois reste le moyen le plus
+sûr d'en trouver la cause.
 
 ## Tests
 

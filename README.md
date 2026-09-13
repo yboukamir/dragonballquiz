@@ -19,6 +19,7 @@ sans backend : les meilleurs scores vivent dans le `localStorage` du visiteur.
 - **Tailwind CSS v4** via `@tailwindcss/vite` — les tokens de design sont dans `src/index.css`
 - **Vite 8** pour le build
 - **Vitest** pour les tests de la logique pure, à côté du code (`src/lib/*.test.js`)
+- **Polices hébergées sur le site** (Fontsource) : aucune requête vers un service tiers au chargement
 - Aucune dépendance UI tierce
 
 ## Démarrer
@@ -78,6 +79,9 @@ Le détail de chaque point est dans les **[notes techniques](docs/notes-techniqu
   injuste.
 - **[Un partage en trois paliers](docs/notes-techniques.md#partage-du-score)** — partage
   natif, sinon presse-papier, sinon champ pré-sélectionné.
+- **[Aucun saut de page au chargement](docs/notes-techniques.md#performance)** — trois causes
+  isolées en retardant polices et données une à une ; décalage ramené de 0,35 à 0, et score
+  Lighthouse mobile de 76 à 98.
 
 ## Déploiement
 
