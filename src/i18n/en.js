@@ -40,7 +40,6 @@ export default {
     commencer: 'Start the fight →',
     choisirCategorie: 'Pick a category',
     effacer: 'Clear my records and history',
-    chargement: 'Loading questions…',
   },
 
   carte: {

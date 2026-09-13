@@ -130,7 +130,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           {t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}
         </span>
 
-        <h2 ref={questionRef} tabIndex={-1} className="relative font-display text-2xl leading-[1.05] sm:text-4xl">
+        <h2 ref={questionRef} tabIndex={-1} className="relative font-titre text-2xl leading-[1.05] sm:text-4xl">
           {question.prompt}
         </h2>
       </Panel>

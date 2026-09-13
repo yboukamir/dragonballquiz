@@ -25,7 +25,7 @@ export default function GameHistory({ history }) {
   return (
     <section className="border-[3px] border-paper/25 bg-ink-soft">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-paper/25 px-4 py-3">
-        <h2 className="font-display text-2xl leading-none text-paper">{t.historique.titre}</h2>
+        <h2 className="font-titre text-2xl leading-none text-paper">{t.historique.titre}</h2>
         {history.length > A_AFFICHER && (
           <p className="font-label text-xs uppercase tracking-[0.14em] text-mist">
             {t.historique.conservees(parties.length, history.length)}

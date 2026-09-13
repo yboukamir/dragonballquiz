@@ -39,7 +39,6 @@ export default {
     commencer: 'Commencer le combat →',
     choisirCategorie: 'Choisis une catégorie',
     effacer: 'Effacer mes records et mon historique',
-    chargement: 'Chargement des questions…',
   },
 
   carte: {

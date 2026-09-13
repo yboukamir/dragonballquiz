@@ -68,7 +68,7 @@ export default function ScoreTable({ bestScores, categoryId, chrono, isRecord })
   return (
     <section className="border-[3px] border-ink bg-paper text-ink shadow-[6px_6px_0_0_var(--color-void)]">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-ink px-4 py-3">
-        <h2 className="font-display text-2xl leading-none">{t.tableau.titre}</h2>
+        <h2 className="font-titre text-2xl leading-none">{t.tableau.titre}</h2>
         <p className="font-label text-xs uppercase tracking-[0.14em] text-ink/60">
           {t.tableau.entamees(joues, CATEGORIES.length)}
         </p>

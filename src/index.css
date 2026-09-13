@@ -1,6 +1,30 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
+   Police de secours des titres en capitales.
+   Tant qu’Anton n’est pas chargée, les titres s’affichent en Arial — plus
+   large de 31 % en capitales : « DRAGON BALL » passait alors sur deux
+   lignes à 320 et 360 px, puis revenait sur une seule à l’arrivée de la
+   vraie police, et toute la page sautait de 48 px. Arial est donc réduite
+   à la largeur d’Anton (size-adjust), et ses hauteurs calées sur celles
+   d’Anton, lues par le moteur de rendu (1,180 au-dessus de la ligne de
+   base, 0,330 en dessous), divisées par la même réduction : sans cela, le
+   texte ne changerait plus de ligne, mais sauterait dans la sienne.
+   Mesuré de 320 à 1000 px : écart résiduel de ±1 px.
+   Réservée aux capitales : en minuscules, Anton n’est que 6 à 15 % plus
+   étroite qu’Arial, et ce réglage rendrait le secours trop étroit.
+------------------------------------------------------------------ */
+@font-face {
+  font-family: 'Anton Capitales Secours';
+  src: local('Arial'), local('ArialMT'), local('Helvetica Neue'), local('HelveticaNeue'),
+    local('Helvetica'), local('Roboto'), local('Roboto-Regular');
+  size-adjust: 69%;
+  ascent-override: 171.01%;
+  descent-override: 47.83%;
+  line-gap-override: 0%;
+}
+
+/* ------------------------------------------------------------------
    Design tokens — palette "encre & ki"
    Volontairement loin du degrade violet/bleu generique : on part d'un
    noir d'encre chaud, de papier creme, et de trois energies vives
@@ -30,6 +54,7 @@
   --color-jade: #2fbf71;
 
   --font-display: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-titre: 'Anton', 'Anton Capitales Secours', 'Haettenschweiler', 'Arial Narrow', sans-serif;
   --font-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-body: 'Barlow', system-ui, sans-serif;
 
@@ -95,7 +120,7 @@
   }
 
   h1, h2, h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-titre);
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 0.92;
