@@ -324,6 +324,13 @@ Ce qu'il a trouvé, et ce qui a été corrigé :
   chaque question, et un lecteur d'écran n'annonçait rien. Le focus va maintenant
   à l'énoncé de chaque nouvelle question, puis au rang sur l'écran de résultat.
   Une manche se joue au clavier avec une seule tabulation par question.
+- **Liens de langue.** VoiceOver lisait « fr » et « en », en abréviations. Chaque
+  lien porte maintenant le nom complet de sa langue, dans cette langue
+  (`aria-label` et `lang`) : « Français », « English ». Vérifié sur iPhone. La
+  page en cours reste signalée par `aria-current="page"`, mais VoiceOver sur iOS
+  ne l'annonce pas sur ces liens ; il dit seulement « lien visité ». Ajouter
+  « page actuelle » au nom l'aurait fait lire deux fois par les autres lecteurs
+  d'écran : on s'en tient au standard.
 
 Aucune couleur de remplacement ne sort d'un nuancier : chacune garde la teinte
 d'origine, éclaircie ou assombrie juste assez pour franchir le seuil — avec de la
