@@ -14,6 +14,9 @@
     "check:fuites": "node scripts/check-fuites.mjs"
   },
   "dependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
