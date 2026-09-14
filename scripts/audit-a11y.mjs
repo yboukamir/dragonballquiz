@@ -142,8 +142,12 @@ for (const langue of ['fr', 'en']) {
 
   await auditer(page, 'accueil', langue)
 
+  // Carte sélectionnée, sans record : son fond passe au papier, et tout ce
+  // qu'elle contient doit rester lisible dessus. Cet état manquait, et
+  // l'étiquette « Jamais tenté » y est restée illisible sans que rien ne le signale.
   await clic(page, /Sagas/, 'section button')
-  await attendre(200)
+  await attendre(300)
+  await auditer(page, 'accueil-selection', langue)
   await clic(page, L.commencer)
   await attendre(500)
   await auditer(page, 'question', langue)
@@ -190,7 +194,9 @@ for (const langue of ['fr', 'en']) {
   await clic(page, L.chrono)
   await attendre(200)
   await clic(page, /Sagas/, 'section button')
-  await attendre(200)
+  await attendre(300)
+  // En chrono, la carte sélectionnée n'a pas encore de record : « ⏱ Jamais tenté ».
+  await auditer(page, 'accueil-chrono', langue)
   await clic(page, L.difficile, 'fieldset button')
   await attendre(200)
   await clic(page, L.commencer)

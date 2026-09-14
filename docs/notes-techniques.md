@@ -352,7 +352,8 @@ Lighthouse donnait 100 en accessibilité, mais il n'examine que la page au
 chargement, et il renonce à mesurer le contraste sur un fond en dégradé : le
 texte gris du pied de page, à 1,8:1, lui échappait. `scripts/audit-a11y.mjs`
 joue donc des manches dans les deux langues et passe axe-core sur chaque état —
-question, retour après réponse, compte à rebours, résultat, récapitulatif —,
+accueil avec et sans carte sélectionnée, en mode normal et chrono, question,
+retour après réponse, compte à rebours, résultat, récapitulatif : 18 écrans —,
 puis rejoue une manche entière au clavier seul.
 
 Ce qu'il a trouvé, et ce qui a été corrigé :
@@ -379,6 +380,15 @@ Ce qu'il a trouvé, et ce qui a été corrigé :
   ne l'annonce pas sur ces liens ; il dit seulement « lien visité ». Ajouter
   « page actuelle » au nom l'aurait fait lire deux fois par les autres lecteurs
   d'écran : on s'en tient au standard.
+- **Carte sélectionnée et mode chrono.** L'audit cliquait une catégorie et lançait
+  aussitôt la partie : l'accueil n'était jamais examiné avec une carte
+  sélectionnée. Deux défauts y dormaient, signalés à l'œil par un joueur :
+  l'étiquette « Jamais tenté » gardait son texte crème sur le fond papier de la
+  carte sélectionnée, presque invisible, et la description du mode chrono activé,
+  en texte papier à 85 % d'opacité sur le rouge, tombait à 3,7:1. L'étiquette
+  passe en plein à la sélection, comme celle du record (9,3:1), et la description
+  retrouve sa pleine opacité (4,6:1). Les deux états sont maintenant audités. La
+  leçon : un audit ne voit que les états qu'on lui fait traverser.
 
 Aucune couleur de remplacement ne sort d'un nuancier : chacune garde la teinte
 d'origine, éclaircie ou assombrie juste assez pour franchir le seuil — avec de la

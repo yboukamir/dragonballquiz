@@ -50,7 +50,9 @@ export default function Toggle({
         <span className="block font-display text-xl leading-none">{label}</span>
         {description && (
           <span
-            className={`mt-1 block font-body text-xs ${checked ? 'opacity-85' : 'text-paper-dim/70'}`}
+            // Pleine opacité une fois activé : le texte papier sur le rouge chrono
+            // tient 4,6:1 ; à 85 %, il tombait à 3,7:1, sous le seuil de 4,5:1.
+            className={`mt-1 block font-body text-xs ${checked ? 'text-paper' : 'text-paper-dim/70'}`}
           >
             {description}
           </span>

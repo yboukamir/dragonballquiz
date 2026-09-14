@@ -56,7 +56,9 @@ export default function CategoryCard({ category, best, chrono, selected, wide, o
               : t.carte.record(valeurScore(record, t), labelNiveau(record, t))}
           </Badge>
         ) : (
-          <Badge tone="smoke">
+          // Plein une fois la carte sélectionnée, comme le record : en version
+          // douce, son texte crème disparaissait sur le fond papier de la carte.
+          <Badge tone="smoke" solid={selected}>
             {chrono ? t.carte.jamaisTenteChrono : t.carte.jamaisTente}
           </Badge>
         )}
