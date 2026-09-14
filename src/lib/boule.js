@@ -39,6 +39,14 @@ export function cheminEtoile(cx, cy, r) {
 /** Nombre d'étoiles ramené entre 1 et 7, comme les boules de la série. */
 export const bornerEtoiles = (n) => Math.min(7, Math.max(1, Math.round(Number(n) || 1)))
 
+/**
+ * Étoiles de la boule de fin de partie : le taux pondéré, celui qui décide
+ * aussi du rang, ramené sur 7. Une manche ratée garde une étoile, un
+ * sans-faute en montre sept.
+ */
+export const etoilesPourRatio = (ratio) =>
+  bornerEtoiles(Math.round(Math.min(1, Math.max(0, Number(ratio))) * 7))
+
 /** Centres et rayon des étoiles d'une boule à `n` étoiles. */
 export function etoilesDe(n) {
   const { r, points } = DISPOSITIONS[bornerEtoiles(n)]

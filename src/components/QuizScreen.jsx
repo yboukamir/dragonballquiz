@@ -4,9 +4,10 @@ import ProgressBar from './ui/ProgressBar'
 import Countdown from './ui/Countdown'
 import Panel from './ui/Panel'
 import Badge from './ui/Badge'
+import DragonBall from './ui/DragonBall'
 import Button from './ui/Button'
 import useCountdown from '../hooks/useCountdown'
-import { pointsOf } from '../lib/quiz'
+import { DIFFICULTIES, pointsOf } from '../lib/quiz'
 import { formatNombre } from '../lib/format'
 import { useLang } from '../i18n'
 import LanguageSwitch from './LanguageSwitch'
@@ -27,6 +28,8 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
   const repondu = useRef(false)
 
   const question = round[index]
+  // Étoiles des boules du bandeau : 1 en facile, 2 en moyen, 3 en difficile.
+  const niveau = DIFFICULTIES.findIndex((d) => d.id === difficulty.id) + 1
   const answered = picked !== null
   const isCorrect = answered && picked !== TEMPS_ECOULE && question.answers[picked].correct
 
@@ -86,11 +89,39 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
       <h1 className="sr-only">
         {t.categories[category.id].label} — {t.quiz.questionSur(index + 1, round.length)}
       </h1>
-      <header className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge tone={category.accent} solid>
+      <header className="flex items-center justify-end gap-3">
+        {/* Placé auprès d Abandonner : changer de langue interrompt aussi la
+            manche, autant regrouper les actions qui font quitter la partie. */}
+        <LanguageSwitch />
+        <button
+          type="button"
+          onClick={onQuit}
+          className="font-label text-sm uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
+        >
+          {t.quiz.abandonner}
+        </button>
+      </header>
+
+      {/* Bandeau de catégorie, à la manière des en-têtes de chapitre des quiz
+          books : capitales détourées sur un bandeau d'encre, ombre dure dans
+          la couleur de la catégorie. Sur grand écran, deux boules l'encadrent,
+          avec autant d'étoiles que le niveau de difficulté. */}
+      <div className="relative overflow-hidden border-[3px] border-ink bg-ink-soft px-4 py-3 text-center shadow-[6px_6px_0_0_var(--color-void)] sm:py-4">
+        <span
+          className="halftone pointer-events-none absolute inset-0 text-paper opacity-[0.07]"
+          aria-hidden="true"
+        />
+        <div className="relative flex items-center justify-center gap-4">
+          <DragonBall className="hidden h-12 w-12 shrink-0 -rotate-12 sm:block" etoiles={niveau} />
+          <p
+            className="title-ink font-titre text-3xl uppercase leading-none text-balance text-paper sm:text-5xl"
+            style={{ textShadow: `4px 4px 0 var(--color-${category.accent})` }}
+          >
             {t.categories[category.id].label}
-          </Badge>
+          </p>
+          <DragonBall className="hidden h-12 w-12 shrink-0 rotate-12 sm:block" etoiles={niveau} />
+        </div>
+        <div className="relative mt-3 flex flex-wrap justify-center gap-2">
           <Badge tone={difficulty.accent}>{t.niveaux[difficulty.id].label}</Badge>
           {chrono && (
             <Badge tone="crimson" solid>
@@ -98,20 +129,7 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
             </Badge>
           )}
         </div>
-
-        {/* Placé auprès d Abandonner : changer de langue interrompt aussi la
-            manche, autant regrouper les actions qui font quitter la partie. */}
-        <div className="flex items-center gap-3">
-          <LanguageSwitch />
-          <button
-            type="button"
-            onClick={onQuit}
-            className="font-label text-sm uppercase tracking-[0.14em] text-paper-dim underline decoration-2 underline-offset-4 hover:text-ki tap-safe"
-          >
-            {t.quiz.abandonner}
-          </button>
-        </div>
-      </header>
+      </div>
 
       <ProgressBar current={index} total={round.length} results={results} />
 

@@ -3,6 +3,7 @@ import Panel from './ui/Panel'
 import Button from './ui/Button'
 import Badge from './ui/Badge'
 import DragonBall from './ui/DragonBall'
+import { etoilesPourRatio } from '../lib/boule'
 import ShareButton from './ShareButton'
 import ScoreTable from './ScoreTable'
 import GameHistory from './GameHistory'
@@ -83,9 +84,12 @@ export default function ResultScreen({
           aria-hidden="true"
         />
 
+        {/* Une étoile par septième du taux pondéré, qui décide aussi du rang :
+            de 1 pour une manche ratée à 7 pour un sans-faute. */}
         <DragonBall
-          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-35 sm:h-52 sm:w-52"
+          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-45 sm:h-52 sm:w-52"
           tone="var(--color-orange)"
+          etoiles={etoilesPourRatio(ratio)}
         />
 
         <div className="relative flex flex-col items-center gap-3">
