@@ -79,6 +79,8 @@ Le détail de chaque point est dans les **[notes techniques](docs/notes-techniqu
   injuste.
 - **[Un partage en trois paliers](docs/notes-techniques.md#partage-du-score)** — partage
   natif, sinon presse-papier, sinon champ pré-sélectionné.
+- **[Un style quiz book sans une image reprise](docs/notes-techniques.md#identité-visuelle)** —
+  plaques numérotées, bandeaux de chapitre et boule à étoiles, tous dessinés pour le site.
 - **[Aucun saut de page au chargement](docs/notes-techniques.md#performance)** — trois causes
   isolées en retardant polices et données une à une ; décalage ramené de 0,35 à 0, et score
   Lighthouse mobile de 76 à 98.

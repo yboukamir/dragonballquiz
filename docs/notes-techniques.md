@@ -14,6 +14,7 @@ il tient debout.
 - [Tableau des scores](#tableau-des-scores)
 - [Historique des parties](#historique-des-parties)
 - [Partage du score](#partage-du-score)
+- [Identité visuelle](#identité-visuelle)
 - [Accessibilité](#accessibilité)
 - [Performance](#performance)
 - [Tests](#tests)
@@ -298,6 +299,53 @@ faut-il que l'aperçu donne envie de cliquer. Chaque langue a son image
 
 Le workflow de déploiement vérifie que les deux images répondent bien en
 `image/png` : si `public/og/` disparaissait, les aperçus casseraient sans bruit.
+
+## Identité visuelle
+
+Le site s'inspire des quiz books imprimés — plaques numérotées, bandeaux de
+chapitre, trames de points — **sans en reprendre une seule image**. La règle,
+fixée dès le départ :
+
+- **Oui** : dessiner nous-mêmes un motif de l'univers, citer les noms des
+  personnages et des techniques, écrire nos propres questions.
+- **Non** : copier ou retoucher une image existante — capture de l'anime, case du
+  manga, artwork, logo, page de livre.
+
+Pourquoi s'y tenir, alors que beaucoup de sites de fans ne le font pas : les images
+appartiennent à leurs ayants droit, le droit belge et européen n'a pas d'équivalent
+au *fair use* américain, et GitHub Pages applique les demandes de retrait sans
+discuter. Un site toléré reste retirable du jour au lendemain ; un site qui ne
+montre que ses propres dessins ne l'est pas pour ses visuels. La mention du pied de
+page (« aucune image, aucun artwork ni aucun logo tiré de l'œuvre originale ») n'est
+vraie qu'à cette condition.
+
+Trois éléments portent le style :
+
+- **La plaque de question** (`QuizScreen`) : numéro penché et valeur en points sur
+  une plaque d'encre. Le numéro est masqué aux lecteurs d'écran, qui l'ont déjà
+  dans le `h1`.
+- **Le bandeau de catégorie** (`QuizScreen`) : capitales détourées (`title-ink`) sur
+  un bandeau d'encre tramé, ombre dure dans la couleur de la catégorie. Sur grand
+  écran, deux boules l'encadrent, avec une étoile par niveau ; sur mobile, elles
+  laisseraient trop peu de place au titre.
+- **La boule de cristal** (`src/lib/boule.js`) : aplat orange, contour d'encre,
+  ombre en trame de points, reflet et étoiles rouges, de 1 à 7. Un seul dessin sert
+  au composant `DragonBall` et aux images de partage (`scripts/og-images.mjs`), et
+  l'icône d'onglet en reprend l'étoile : pas de copie qui diverge. En fin de partie,
+  elle compte `round(taux × 7)` étoiles, bornées entre 1 et 7, sur le taux pondéré
+  qui décide déjà du rang : 2 500 / 8 000 donne 2 étoiles, 6 500 / 8 000 en donne 6.
+
+**Une première version trop prudente.** La boule a d'abord été une orbe abstraite,
+anneaux et rayons, pour éviter tout motif de la série. Elle se lisait comme un
+soleil. Un motif redessiné reste dans la règle : ce qui compte, c'est de ne rien
+reprendre, pas de ne rien évoquer.
+
+**Deux pièges.** L'identifiant de la trame et du masque d'ombre est propre à chaque
+boule (`useId`) : deux boules qui partageraient un `id` se prendraient leur ombre.
+Et à l'accueil, la boule est posée à côté du bloc « Quiz », pas en fond : élément
+positionné, elle passait devant le sélecteur de langue ; glissée dessous, on n'en
+voyait plus que le bord.
+
 ## Accessibilité
 
 Lighthouse donnait 100 en accessibilité, mais il n'examine que la page au
