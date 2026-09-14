@@ -30,7 +30,7 @@ export default {
     surtitre: 'Quiz de fan · 100 % gratuit',
     accroche: (n, c) =>
       `${n} questions originales réparties en ${c} catégories et 3 niveaux. Réponds vite, gagne ton rang, et va défier tes amis avec ta puissance de combat.`,
-    etapeCategorie: 'Choisis ton terrain',
+    etapeCategorie: 'Choisis ta catégorie',
     etapeNiveau: 'Choisis ton niveau',
     legendeNiveau: 'Niveau de difficulté',
     chronoLabel: '⏱ Mode chrono',

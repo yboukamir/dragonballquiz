@@ -31,7 +31,7 @@ export default {
     surtitre: 'Fan quiz · 100% free',
     accroche: (n, c) =>
       `${n} original questions across ${c} categories and 3 difficulty levels. Answer fast, earn your rank, then go and challenge your friends.`,
-    etapeCategorie: 'Pick your battleground',
+    etapeCategorie: 'Pick your category',
     etapeNiveau: 'Pick your level',
     legendeNiveau: 'Difficulty level',
     chronoLabel: '⏱ Timed mode',
