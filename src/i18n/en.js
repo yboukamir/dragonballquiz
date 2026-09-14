@@ -1,6 +1,6 @@
 /**
  * English strings. Mirrors the shape of `fr.js` exactly — any key added
- * on one side must exist on the other, and `npm run check:i18n` fails the
+ * on one side must exist on the other, and `npm run check` fails the
  * build otherwise.
  *
  * Character and technique names follow the English releases (Frieza,
@@ -18,8 +18,6 @@ export default {
 
   meta: {
     title: 'Dragon Ball Quiz — test your power level',
-    description: (n) =>
-      `Fan quiz on the Dragon Ball universe: characters, sagas, techniques and power levels. 4 categories, 3 difficulty levels, ${n} original questions. Free, no sign-up.`,
   },
 
   langue: {
@@ -30,7 +28,7 @@ export default {
   accueil: {
     surtitre: 'Fan quiz · 100% free',
     accroche: (n, c) =>
-      `${n} original questions across ${c} categories and 3 difficulty levels. Answer fast, earn your rank, then go and challenge your friends.`,
+      `${n} original questions across ${c} categories and 3 difficulty levels. Get it right, earn your rank, then challenge your friends.`,
     etapeCategorie: 'Pick your category',
     etapeNiveau: 'Pick your level',
     legendeNiveau: 'Difficulty level',
@@ -105,12 +103,12 @@ export default {
     rangAtteint: 'Rank reached',
     score: 'Score',
     points: 'Points',
-    puissance: 'Power',
+    puissance: 'Power level',
     nouveauRecord: '★ New record in this category',
     rejouer: '↻ Play again',
     changerCategorie: 'Change category',
     voirQuestions: (n) => `▼ Review all ${n} questions`,
-    masquerQuestions: '▲ Hide the details',
+    masquerQuestions: '▲ Hide the questions',
   },
 
   partage: {
@@ -154,8 +152,8 @@ export default {
       tagline: 'The farmer with the shotgun did better — and his power level was 5.',
     },
     eleve: {
-      label: 'Turtle School student',
-      tagline: 'You put the shell on, but you have not finished the first lap of the island.',
+      label: 'Turtle School Student',
+      tagline: "You put the shell on, but you haven't finished the first lap of the island.",
     },
     'guerrier-z': {
       label: 'Z Fighter',
@@ -167,15 +165,15 @@ export default {
     },
     blue: {
       label: 'Super Saiyan Blue',
-      tagline: 'Divine ki control — and a score that is starting to make noise.',
+      tagline: "Divine ki control — and a score that's starting to make noise.",
     },
     'ultra-instinct': {
       label: 'Ultra Instinct',
-      tagline: 'You answer before you have even read the question. The body acts alone.',
+      tagline: "You answer before you've even read the question. The body acts alone.",
     },
     zeno: {
-      label: 'Zeno himself',
-      tagline: 'Flawless. At this level you are no longer a player, you are the referee.',
+      label: 'Zeno Himself',
+      tagline: "Flawless. At this level you're no longer a player, you're the referee.",
     },
   },
 

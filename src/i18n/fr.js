@@ -17,8 +17,6 @@ export default {
 
   meta: {
     title: 'Dragon Ball Quiz — teste ta puissance de combat',
-    description: (n) =>
-      `Quiz de fan sur l'univers Dragon Ball : personnages, sagas, techniques et power levels. 4 catégories, 3 niveaux de difficulté, ${n} questions originales. Gratuit et sans inscription.`,
   },
 
   langue: {
@@ -29,7 +27,7 @@ export default {
   accueil: {
     surtitre: 'Quiz de fan · 100 % gratuit',
     accroche: (n, c) =>
-      `${n} questions originales réparties en ${c} catégories et 3 niveaux. Réponds vite, gagne ton rang, et va défier tes amis avec ta puissance de combat.`,
+      `${n} questions originales réparties en ${c} catégories et 3 niveaux. Réponds juste, gagne ton rang, et défie tes amis avec ta puissance de combat.`,
     etapeCategorie: 'Choisis ta catégorie',
     etapeNiveau: 'Choisis ton niveau',
     legendeNiveau: 'Niveau de difficulté',
@@ -89,7 +87,7 @@ export default {
     propositions: 'Propositions de réponse',
     progression: (n, total) => `Progression : question ${n} sur ${total}`,
     questionSur: (n, total) => `Question ${n} / ${total}`,
-    bonnes: (n) => `${n} bonne${n > 1 ? 's' : ''}`,
+    bonnes: (n) => `${n} bonne${n > 1 ? 's' : ''} réponse${n > 1 ? 's' : ''}`,
     juste: 'Dans le mille.',
     faux: 'Raté.',
     tempsEcoule: 'Temps écoulé.',
@@ -104,12 +102,12 @@ export default {
     rangAtteint: 'Rang atteint',
     score: 'Score',
     points: 'Points',
-    puissance: 'Puissance',
+    puissance: 'Puissance de combat',
     nouveauRecord: '★ Nouveau record dans cette catégorie',
     rejouer: '↻ Rejouer',
     changerCategorie: 'Changer de catégorie',
     voirQuestions: (n) => `▼ Revoir les ${n} questions`,
-    masquerQuestions: '▲ Masquer le détail',
+    masquerQuestions: '▲ Masquer les questions',
   },
 
   partage: {
