@@ -24,6 +24,15 @@ export default {
     versAutre: 'English',
   },
 
+  // Bandeau affiché sur la page anglaise à un navigateur francophone : il
+  // parle la langue qu'il propose, donc ces textes sont en français.
+  suggestion: {
+    region: 'Suggestion de langue',
+    texte: 'Ce quiz existe aussi en français.',
+    lien: 'Jouer en français →',
+    fermer: 'Fermer',
+  },
+
   accueil: {
     surtitre: 'Quiz de fan · 100 % gratuit',
     accroche: (n, c) =>

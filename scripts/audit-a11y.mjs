@@ -206,6 +206,34 @@ for (const langue of ['fr', 'en']) {
   await page.close()
 }
 
+/* ------------------------------------------- bandeau de suggestion (fr) */
+// Les pages ci-dessus enregistrent une langue, ce qui masque le bandeau. Ici,
+// aucun choix enregistré, et un navigateur qui se déclare anglophone : Chrome
+// reprend sinon la langue du système, française sur le poste de développement,
+// et le site aurait raison de ne rien proposer. Le bandeau « This quiz is also
+// available in English » doit donc s'afficher.
+{
+  console.log('\n=== Suggestion de langue ===')
+  const page = await navigateur.newPage()
+  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 })
+  await page.evaluateOnNewDocument(() => {
+    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] })
+    Object.defineProperty(navigator, 'language', { get: () => 'en-US' })
+    try {
+      localStorage.clear()
+    } catch {
+      /* rien */
+    }
+  })
+  await page.goto(BASE, { waitUntil: 'networkidle0' })
+  await attendre(600)
+  const affiche = await page.evaluate(() => Boolean(document.querySelector('aside[lang="en"]')))
+  console.log(`  bandeau affiché à un navigateur anglophone : ${affiche}`)
+  if (!affiche) throw new Error('bandeau de suggestion absent de la page française')
+  await auditer(page, 'suggestion-langue', 'fr')
+  await page.close()
+}
+
 /* --------------------------------------------- une manche au clavier seul */
 console.log('\n=== Clavier seul (fr) ===')
 const clavier = await nouvellePage('fr')

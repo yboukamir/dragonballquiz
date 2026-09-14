@@ -25,6 +25,15 @@ export default {
     versAutre: 'Français',
   },
 
+  // Banner shown on the French page to browsers that do not list French:
+  // it speaks the language it offers, so these strings are in English.
+  suggestion: {
+    region: 'Language suggestion',
+    texte: 'This quiz is also available in English.',
+    lien: 'Play in English →',
+    fermer: 'Dismiss',
+  },
+
   accueil: {
     surtitre: 'Fan quiz · 100% free',
     accroche: (n, c) =>

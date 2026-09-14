@@ -9,6 +9,7 @@ import HomeScreen from './components/HomeScreen'
 import QuizScreen from './components/QuizScreen'
 import ResultScreen from './components/ResultScreen'
 import Footer from './components/Footer'
+import LanguageSuggestion from './components/LanguageSuggestion'
 
 /**
  * Machine à états volontairement minimale : trois écrans, aucun routeur.
@@ -108,6 +109,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <LanguageSuggestion />
       <main className="flex-1">
         {screen === 'home' && (
           <HomeScreen

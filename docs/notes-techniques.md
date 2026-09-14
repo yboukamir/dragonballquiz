@@ -68,9 +68,22 @@ Ce dernier point est délibéré : Googlebot explore le plus souvent en
 française d'être indexée. Un robot n'ayant pas de `localStorage`, se fier au seul
 choix explicite rend la redirection invisible pour lui.
 
-Le prix à payer : un anglophone qui arrive pour la première fois sur `/` voit le
-français, et doit cliquer sur EN. Le sélecteur est présent sur les trois écrans,
-en haut de page.
+Le prix à payer serait qu'un visiteur étranger arrivant sur `/` tombe sur le
+français. Deux garde-fous le limitent, sans jamais rediriger :
+
+- **`x-default` pointe vers `/en/`.** Google s'en sert pour les visiteurs dont la
+  langue ne correspond à aucune version : un Espagnol ou un Brésilien qui cherche
+  le quiz arrive sur l'anglais. Le site vit sur un `.com`, sa langue par défaut
+  est la langue internationale ; les francophones gardent la page française.
+- **Un bandeau propose l'autre langue** (`LanguageSuggestion`) : sur la page
+  française, à un navigateur qui ne déclare pas le français ; sur la page
+  anglaise, à un navigateur dont la première langue est le français. Il est écrit
+  dans la langue qu'il propose, décidé dès le premier rendu (la page ne se décale
+  pas), et disparaît pour de bon dès qu'on le ferme ou qu'on change de langue.
+  Googlebot, qui explore en anglais, le voit sur la page française, mais la page
+  reste française et indexable : il ne fait que proposer.
+
+Le sélecteur reste présent sur les trois écrans, en haut de page.
 
 Le sélecteur est fait de **vrais liens** `<a href>` vers `/` et `/en/` : un moteur
 doit pouvoir suivre le chemin vers l'autre version, et un clic du milieu doit
