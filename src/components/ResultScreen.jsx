@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Panel from './ui/Panel'
 import Button from './ui/Button'
 import Badge from './ui/Badge'
-import KiOrb from './ui/KiOrb'
+import DragonBall from './ui/DragonBall'
 import ShareButton from './ShareButton'
 import ScoreTable from './ScoreTable'
 import GameHistory from './GameHistory'
@@ -83,8 +83,8 @@ export default function ResultScreen({
           aria-hidden="true"
         />
 
-        <KiOrb
-          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-20 sm:h-52 sm:w-52"
+        <DragonBall
+          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-35 sm:h-52 sm:w-52"
           tone="var(--color-orange)"
         />
 

@@ -6,7 +6,7 @@ import DifficultyPicker from './DifficultyPicker'
 import LanguageSwitch from './LanguageSwitch'
 import Button from './ui/Button'
 import Toggle from './ui/Toggle'
-import KiOrb from './ui/KiOrb'
+import DragonBall from './ui/DragonBall'
 
 export default function HomeScreen({
   category,
@@ -34,12 +34,7 @@ export default function HomeScreen({
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-8 sm:gap-10 sm:py-14">
       {/* ---------------------------------------------------------- Hero */}
-      <header className="relative">
-        <KiOrb
-          className="pointer-events-none absolute -right-8 -top-12 h-36 w-36 opacity-30 sm:h-56 sm:w-56"
-          tone="var(--color-orange)"
-        />
-
+      <header>
         {/* Rangée sans retour à la ligne : c’est le surtitre qui se replie dans
             sa colonne, jamais le sélecteur de langue. Sa hauteur reste celle du
             sélecteur quelle que soit la police, alors qu’avant, la police de
@@ -55,8 +50,14 @@ export default function HomeScreen({
 
         <h1 className="mt-2 font-titre leading-[0.82]">
           <span className="block text-5xl text-paper sm:text-8xl">Dragon Ball</span>
-          <span className="mt-2 inline-block -skew-x-6 border-[3px] border-ink bg-orange px-4 py-1 text-5xl text-ink shadow-[6px_6px_0_0_var(--color-void)] sm:text-8xl">
-            <span className="inline-block skew-x-6">Quiz</span>
+          <span className="mt-2 inline-flex items-center gap-3 sm:gap-5">
+            <span className="inline-block -skew-x-6 border-[3px] border-ink bg-orange px-4 py-1 text-5xl text-ink shadow-[6px_6px_0_0_var(--color-void)] sm:text-8xl">
+              <span className="inline-block skew-x-6">Quiz</span>
+            </span>
+            {/* À côté du bloc, jamais en fond : derrière le sélecteur de langue,
+                on n’en voyait plus que le bord. Taille fixe, donc aucun
+                décalage quand la police arrive. */}
+            <DragonBall className="h-14 w-14 shrink-0 -rotate-12 sm:h-24 sm:w-24" />
           </span>
         </h1>
 

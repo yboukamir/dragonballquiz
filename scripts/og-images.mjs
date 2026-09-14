@@ -26,6 +26,7 @@ import { CATEGORIES } from '../src/data/categories.js'
 import { DIFFICULTIES } from '../src/lib/quiz.js'
 import fr from '../src/i18n/fr.js'
 import en from '../src/i18n/en.js'
+import { bouleSvg } from '../src/lib/boule.js'
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
 const RACINE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -62,22 +63,6 @@ const LANGUES = [
   },
 ]
 
-/** Reprise de `KiOrb` : même géométrie, en SVG autonome. */
-function orbe(teinte) {
-  const rayons = Array.from({ length: 12 }, (_, i) => i * 30)
-    .map(
-      (a) =>
-        `<path d="M100 12 L106 46 L100 40 L94 46 Z" fill="${teinte}" opacity="0.75" transform="rotate(${a} 100 100)"/>`,
-    )
-    .join('')
-  return `<svg class="orbe" viewBox="0 0 200 200" aria-hidden="true">${rayons}
-    <circle cx="100" cy="100" r="52" fill="${teinte}"/>
-    <circle cx="100" cy="100" r="52" fill="none" stroke="#0f0e14" stroke-width="5"/>
-    <circle cx="100" cy="100" r="34" fill="none" stroke="#0f0e14" stroke-width="3" opacity="0.45"/>
-    <path d="M78 78 Q92 66 108 72" fill="none" stroke="#fff7e8" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
-  </svg>`
-}
-
 function gabarit({ code, t, chiffres }) {
   const puces = CATEGORIES.map(
     (c) => `<span class="puce" style="--a:${COULEURS[c.accent]}">${t.categories[c.id].label}</span>`,
@@ -97,7 +82,7 @@ function gabarit({ code, t, chiffres }) {
     color: #fff7e8;
     font-family: Barlow, system-ui, sans-serif;
   }
-  /* Lueur chaude derrière l'orbe, trame de points par-dessus : le fond du site. */
+  /* Lueur chaude derrière la boule, trame de points par-dessus : le fond du site. */
   .lueur {
     position: absolute; inset: 0;
     background: radial-gradient(ellipse 55% 75% at 84% 26%, rgba(255, 107, 0, 0.30), transparent 70%);
@@ -149,7 +134,7 @@ function gabarit({ code, t, chiffres }) {
 <body>
   <div class="lueur"></div>
   <div class="trame"></div>
-  ${orbe('#ff6b00')}
+  ${bouleSvg({ classe: 'orbe' })}
   <div class="contenu">
     <p class="surtitre">${t.accueil.surtitre}</p>
     <h1>
