@@ -126,9 +126,24 @@ export default function QuizScreen({ round, category, difficulty, chrono, onFini
           className="speedlines pointer-events-none absolute inset-0 opacity-[0.07]"
           aria-hidden="true"
         />
-        <span className="relative mb-3 inline-block border-2 border-ink bg-jade px-2 py-0.5 font-label text-xs uppercase tracking-[0.14em] text-ink">
-          {t.quiz.pointsQuestion(formatNombre(pointsOf(question), t.locale))}
-        </span>
+        {/* Plaque de question, à la manière des quiz books : numéro penché et
+            valeur en points. Le numéro est masqué aux lecteurs d'écran, qui
+            l'ont déjà dans le h1 ; ils entendent « Points 300 ». */}
+        <p className="relative mb-4 inline-flex items-stretch border-2 border-ink bg-ink text-paper shadow-[3px_3px_0_0_var(--color-void)]">
+          <span
+            aria-hidden="true"
+            className="flex items-center px-3 py-1 font-display text-2xl leading-none sm:text-3xl"
+          >
+            <span className="inline-block -skew-x-12">{t.quiz.numeroQuestion(index + 1)}</span>
+          </span>
+          <span className="flex items-center gap-2 border-l-2 border-paper/30 px-3 font-label text-xs uppercase tracking-[0.14em] text-paper-dim">
+            {t.quiz.points}
+            <span aria-hidden="true">▸</span>
+            <span className="inline-block -skew-x-12 font-display text-xl leading-none tracking-normal text-ki sm:text-2xl">
+              {formatNombre(pointsOf(question), t.locale)}
+            </span>
+          </span>
+        </p>
 
         <h2 ref={questionRef} tabIndex={-1} className="relative font-titre text-2xl leading-[1.05] sm:text-4xl">
           {question.prompt}
